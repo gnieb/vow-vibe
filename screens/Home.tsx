@@ -14,7 +14,7 @@ width: 100%;
 const TopSection = styled.View`
 width: 100%;
 flex: 1;
-max-height: 55%;
+max-height: 60%;
 background-color: pink;
 `
 
