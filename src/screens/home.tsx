@@ -15,6 +15,7 @@ const TopSection = styled.View`
 width: 100%;
 flex: 1;
 max-height: 55%;
+background-color: pink;
 `
 
 const TopImage = styled.Image`
@@ -30,7 +31,7 @@ flex: 1;
 padding: 25px;
 `
 
-import rings from "../../assets/ringsonrecord.png"
+import rings from "../../assets/ringsrecord.jpg"
 
 const Home: FunctionComponent = () => {
     return (
@@ -41,7 +42,7 @@ const Home: FunctionComponent = () => {
                 <TopImage source={rings} />
             </TopSection>
             <BottomSection>
-                
+              
             </BottomSection>
         </HomeContainer>
         </>
