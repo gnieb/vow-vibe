@@ -4,6 +4,7 @@ import { Container } from '../components/shared';
 import styled from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
 import SmallText from '../Texts/SmallText';
+import RegText from '../Texts/RegText';
 
 const HomeContainer = styled(Container)`
 background-color: ${colors.primary};
@@ -44,8 +45,8 @@ const Home: FunctionComponent = () => {
                 <TopImage source={rings} />
             </TopSection>
             <BottomSection>
-                <BigText>Welcome to VowVibe</BigText>
-              <SmallText>You've waited for this day for forever. Let's make it perfect.</SmallText>
+                <BigText>PLACEHOLDER FOR A COUNTDOWN</BigText>
+              <RegText>You've waited forever for this day. Let's make it perfect.</RegText>
             </BottomSection>
         </HomeContainer>
         </>
