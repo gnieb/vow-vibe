@@ -8,8 +8,8 @@ import { useFonts } from 'expo-font';
 export default function App() {
   
   let loadedFonts = useFonts({
-  "Roboto-reg": require("./assets/fonts/Roboto-Regular.ttf"),
-  "Roboto-bold": require("./assets/fonts/Roboto-Bold.ttf")
+  "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+  "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf")
 });
 
 if (!loadedFonts) {

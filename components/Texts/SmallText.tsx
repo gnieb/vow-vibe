@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 const StyledText = styled.Text`
 font-size: 13px;
 color: ${colors.black};
-text-align: left;
+text-align: center;
 font-family: Roboto-reg;
 `
 
