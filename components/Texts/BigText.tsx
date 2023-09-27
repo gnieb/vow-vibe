@@ -1,17 +1,18 @@
 import { FunctionComponent } from "react";
 import { TextProps } from "./types";
-import { colors } from "../components/colors";
+import { colors } from "../colors";
 import styled from "styled-components/native";
 
 const StyledText = styled.Text`
-font-size: 20px;
+font-size: 37px;
 color: ${colors.black};
-text-align: left;
-font-family: Roboto-reg;
+text-align: center;
+font-family: Roboto-bold;
+margin-bottom: 20px;
 `
 
 
-const RegText: FunctionComponent<TextProps> = ({children, textStyles}) => {
+const BigText: FunctionComponent<TextProps> = ({children, textStyles}) => {
     return (
         <>
         <StyledText style={textStyles}>{children}</StyledText>
@@ -19,4 +20,4 @@ const RegText: FunctionComponent<TextProps> = ({children, textStyles}) => {
     )
 }
 
-export default RegText;
+export default BigText;

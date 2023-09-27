@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
-import { colors } from '../components/colors';
-import { Container } from '../components/shared';
+import { colors } from '../colors';
+import { Container } from '../shared';
 import styled from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
 import SmallText from '../Texts/SmallText';
@@ -33,7 +33,7 @@ flex: 1;
 padding: 25px;
 `
 
-import rings from "../assets/ringsrecord.jpg"
+import rings from "../../assets/ringsrecord.jpg"
 import BigText from '../Texts/BigText';
 
 const Home: FunctionComponent = () => {

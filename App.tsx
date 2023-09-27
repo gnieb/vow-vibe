@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import Home from './screens/Home';
+import Home from './components/Screens/Home';
 import AppLoading from "expo-app-loading";
 import { useFonts } from 'expo-font';
 

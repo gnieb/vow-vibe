@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { TextProps } from "./types";
-import { colors } from "../components/colors";
+import { colors } from "../colors";
 import styled from "styled-components/native";
 
 const StyledText = styled.Text`
