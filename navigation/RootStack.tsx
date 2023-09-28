@@ -2,6 +2,8 @@ import React, {FunctionComponent} from "react";
 import Welcome from "../components/Screens/Welcome";
 import HomeScreen from "../components/Screens/HomeScreen";
 import { colors } from "../components/colors";
+import Greeting from "../components/Headers/Greeting";
+import Profile from "../components/Headers/Profile";
 
 //React navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -27,13 +29,31 @@ const RootStack: FunctionComponent = () => {
                 shadowOpacity : 0,
                 elevation: 0,
                 height: 120,
-            }
+            },
+            headerTintColor: colors.lightgreen,
+            headerRight: () => (
+                <Profile />
+            ) ,
         }}
         initialRouteName="HomeScreen"
 
         >
-            <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}}/>
-            <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}} />
+            <Stack.Screen 
+            name="Welcome" 
+            component={Welcome} 
+            options={{headerShown: false}}/>
+            <Stack.Screen 
+            name="HomeScreen" 
+            component={HomeScreen} 
+            options={{headerTitle:(props)=> ( 
+                <Greeting
+                mainText="Welcome!"
+                subText="Take a deep breath."
+                {...props} 
+                />),
+                headerLeft: () => <></>,
+            }} 
+            />
         </Stack.Navigator>
     </NavigationContainer>
     )
