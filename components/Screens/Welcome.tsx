@@ -37,7 +37,7 @@ padding: 25px;
 import rings from "../../assets/ringsrecord.jpg"
 import BigText from '../Texts/BigText';
 
-const Home: FunctionComponent = () => {
+const Welcome: FunctionComponent = () => {
     return (
         <>
         <StatusBar style="light"/>
@@ -55,4 +55,4 @@ const Home: FunctionComponent = () => {
     )
 }
 
-export default Home;
+export default Welcome;

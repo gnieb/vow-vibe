@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
-import Home from './components/Screens/Home';
+import Home from './components/Screens/Welcome';
 import AppLoading from "expo-app-loading";
 import { useFonts } from 'expo-font';
+import RootStack from './navigation/RootStack';
 
 
 
@@ -16,9 +17,7 @@ if (!loadedFonts) {
   return <AppLoading />
 }
   return (
-    <View style={styles.container}>
-      <Home />
-    </View>
+   <RootStack />
   );
 }
 
