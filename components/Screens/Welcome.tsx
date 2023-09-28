@@ -7,7 +7,7 @@ import SmallText from '../Texts/SmallText';
 import RegText from '../Texts/RegText';
 import RegularButton from '../Buttons/RegularButton';
 
-const HomeContainer = styled(Container)`
+const WelcomeContainer = styled(Container)`
 background-color: ${colors.primary};
 justify-content: space-between;
 height: 100%;
@@ -41,7 +41,7 @@ const Welcome: FunctionComponent = () => {
     return (
         <>
         <StatusBar style="light"/>
-        <HomeContainer>
+        <WelcomeContainer>
             <TopSection>
                 <TopImage source={rings} />
             </TopSection>
@@ -50,7 +50,7 @@ const Welcome: FunctionComponent = () => {
                 <RegText>You've waited forever for this day. Let's make it perfect.</RegText>
                 <RegularButton onPress={()=>{}} >GET STARTED</RegularButton>
             </BottomSection>
-        </HomeContainer>
+        </WelcomeContainer>
         </>
     )
 }
