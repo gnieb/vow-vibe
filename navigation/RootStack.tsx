@@ -4,7 +4,7 @@ import HomeScreen from "../components/Screens/HomeScreen";
 import { colors } from "../components/colors";
 import Greeting from "../components/Headers/Greeting";
 import Profile from "../components/Headers/Profile";
-import avatar from "../assets/"
+import avatar from "../assets/avatar1.png"
 
 //React navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -24,7 +24,7 @@ const RootStack: FunctionComponent = () => {
         <Stack.Navigator 
         screenOptions={{
             headerStyle: {
-                backgroundColor: colors.lightgreen,
+                backgroundColor: colors.darkgreen,
                 borderBottomWidth: 0,
                 shadowColor: "transparent",
                 shadowOpacity : 0,
@@ -32,8 +32,15 @@ const RootStack: FunctionComponent = () => {
                 height: 120,
             },
             headerTintColor: colors.lightgreen,
+            headerRightContainerStyle: {
+                paddingRight:25,
+                padding:10
+            },
+            headerLeftContainerStyle : {
+                padding: 10,
+            },
             headerRight: () => (
-                <Profile />
+                <Profile img={avatar} imgContainerStyle={{backgroundColor:colors.mediumgreen}}/>
             ) ,
         }}
         initialRouteName="HomeScreen"
@@ -48,7 +55,7 @@ const RootStack: FunctionComponent = () => {
             component={HomeScreen} 
             options={{headerTitle:(props)=> ( 
                 <Greeting
-                mainText="Welcome!"
+                mainText="Welcome HI!"
                 subText="Take a deep breath."
                 {...props} 
                 />),
