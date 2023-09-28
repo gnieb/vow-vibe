@@ -4,6 +4,7 @@ import HomeScreen from "../components/Screens/HomeScreen";
 import { colors } from "../components/colors";
 import Greeting from "../components/Headers/Greeting";
 import Profile from "../components/Headers/Profile";
+import avatar from "../assets/"
 
 //React navigation
 import { NavigationContainer } from "@react-navigation/native";
