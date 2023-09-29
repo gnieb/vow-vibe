@@ -7,7 +7,7 @@ const StyledText = styled.Text`
 font-size: 37px;
 color: ${colors.black};
 text-align: center;
-font-family: Roboto-bold;
+font-family: Roboto-Bold;
 margin-bottom: 20px;
 `
 
