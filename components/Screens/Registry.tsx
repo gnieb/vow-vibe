@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { colors } from "../colors";
 import { Container } from "../shared";
 import RegText from "../Texts/RegText";
-import { Link } from "@react-navigation/native";
+import LinkButton from "../Buttons/LinkButton";
 
 import { StyleProp, ViewStyle, GestureResponderEvent, TextStyle } from "react-native";
 
@@ -18,25 +18,13 @@ const MainSection = styled.View`
 margin: auto;
 `
 
-interface LinkProps {
-    src:string
-    btnStyles?: StyleProp<ViewStyle>;
-    // onPress : ((event: GestureResponderEvent) => void | undefined);
-    textStyles?: StyleProp<TextStyle>;
-    children: React.ReactNode;
-}
-
-const RegistryLink: FunctionComponent<LinkProps> = (props) => {
-    return <Link to={props.src}>{props.children}</Link>
-}
-
 
 const Registry: FunctionComponent = () => {
     return (
         <RegistryContainer>
             <MainSection>
                 <RegText>Go to Wedding Registry</RegText>
-                <RegistryLink  />
+                <LinkButton  />
             </MainSection>
         </RegistryContainer>
     )
