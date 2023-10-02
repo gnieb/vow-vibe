@@ -5,8 +5,6 @@ import { Container } from "../shared";
 import RegText from "../Texts/RegText";
 import LinkButton from "../Buttons/LinkButton";
 
-import { StyleProp, ViewStyle, GestureResponderEvent, TextStyle } from "react-native";
-
 const RegistryContainer = styled(Container)`
 background-color: ${colors.lightgreen};
 width: 100%;
@@ -24,7 +22,7 @@ const Registry: FunctionComponent = () => {
         <RegistryContainer>
             <MainSection>
                 <RegText>Go to Wedding Registry</RegText>
-                <LinkButton src="https://www.amazon.com/ref=nav_logo"   />
+                <LinkButton src="https://www.amazon.com/ref=nav_logo">FIND GIFTS</LinkButton>
             </MainSection>
         </RegistryContainer>
     )
