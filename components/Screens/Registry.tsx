@@ -24,7 +24,7 @@ const Registry: FunctionComponent = () => {
         <RegistryContainer>
             <MainSection>
                 <RegText>Go to Wedding Registry</RegText>
-                <LinkButton  />
+                <LinkButton src="https://www.amazon.com/ref=nav_logo"   />
             </MainSection>
         </RegistryContainer>
     )

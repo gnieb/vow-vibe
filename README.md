@@ -7,7 +7,7 @@
     - set budget
     - track budget
 
-- weddinv vision (moodboard??)
+- wedding vision (moodboard??)
 
 - keep track of vendors
 
