@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
+import  { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import AppLoading from "expo-app-loading";
 import { useFonts } from 'expo-font';
 import RootStack from './navigation/RootStack';
 
 
 
-export default function App() {
+const App: React.FC = () => {
   
   let loadedFonts = useFonts({
   "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
@@ -28,3 +29,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
