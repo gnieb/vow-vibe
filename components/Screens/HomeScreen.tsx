@@ -13,7 +13,7 @@ flex:1;
 const HomeScreen: FunctionComponent = () => {
     return (
         <HomeScreenContainer>
-            <StatusBar style="dark"/>
+            <StatusBar style="light"/>
         </HomeScreenContainer>
     )
 }
