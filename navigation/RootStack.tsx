@@ -5,6 +5,7 @@ import { colors } from "../components/colors";
 import Greeting from "../components/Headers/Greeting";
 import Profile from "../components/Headers/Profile";
 import avatar from "../assets/avatar1.png"
+import Todos from "../components/Screens/Todos";
 
 //React navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,7 +16,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export type RootStackParamList = {
     Welcome: undefined;
     HomeScreen: undefined;
-
+    Todos:undefined;
 }
 
 const RootStack: FunctionComponent = () => {
@@ -43,13 +44,16 @@ const RootStack: FunctionComponent = () => {
                 <Profile img={avatar} imgContainerStyle={{backgroundColor:colors.mediumgreen}}/>
             ) ,
         }}
-        initialRouteName="HomeScreen"
+        initialRouteName="Todos"
 
         >
             <Stack.Screen 
             name="Welcome" 
             component={Welcome} 
             options={{headerShown: false}}/>
+            <Stack.Screen 
+            name="Todos"
+            component={Todos}/>
             <Stack.Screen 
             name="HomeScreen" 
             component={HomeScreen} 
