@@ -1,12 +1,7 @@
-import React, {FunctionComponent} from "react";
-import styled from "styled-components/native";
-
-
-
-const ToDo: FunctionComponent = () => {
-    return (
-        <>
-        
-        </>
-    )
+interface ToDo {
+    id: number;
+    todo: string;
+    isDone: boolean;
 }
+
+export default ToDo;

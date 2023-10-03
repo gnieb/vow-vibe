@@ -17,5 +17,9 @@
 
 - seating chart
 
+## How to open the console in ios development simulator?
 
+```sh
+npx react-native log-ios 
+```
 
