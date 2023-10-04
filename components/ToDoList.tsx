@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from "react";
-import {View, ListRenderItem, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { Container } from "./shared";
 import styled from "styled-components/native";
 import { colors } from "./colors";

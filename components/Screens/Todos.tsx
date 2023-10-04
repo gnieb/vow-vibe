@@ -4,9 +4,6 @@ import { colors } from "../colors";
 import NewToDo from "../NewToDo";
 import { Container } from "../shared";
 import ToDo from "../ToDo";
-import {View, ListRenderItem, FlatList } from 'react-native';
-import RegText from "../Texts/RegText";
-import BigText from "../Texts/BigText";
 import ToDoList from "../ToDoList";
 
 const TodosContainer = styled(Container)`
@@ -27,7 +24,7 @@ const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {
     return (
         <TodosContainer>
             <NewToDo todos={todos} setTodos={setTodos} />
-            
+            <ToDoList todos={todos} setTodos={setTodos}/>
         </TodosContainer>
     )
 }
