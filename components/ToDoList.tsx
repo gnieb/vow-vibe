@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { colors } from "./colors";
 import ToDo from "./ToDo";
 import RegText from "./Texts/RegText";
+import ToDoItem from "./ToDoItem";
 
 const ListView = styled.View`
 background-color:${colors.mediumgreen};
@@ -36,7 +37,7 @@ const ToDoList:FunctionComponent<ListProps> = ({todos, setTodos}) => {
         <ListView>
             <FlatList
                 data={todos}
-                renderItem={({item}) => <ListItem><RegText>{item.todo}</RegText><RegText>X</RegText></ListItem>}
+                renderItem={({item}) => <ToDoItem item={item} />}
             />
 
         </ListView>
