@@ -7,6 +7,7 @@ import { colors } from "./colors";
 import RegText from "./Texts/RegText";
 import ToDo from "./ToDo";
 import { useState } from "react";
+import * as Yup from 'yup';
 
 
 // const InputView = styled.TextInput`
@@ -18,6 +19,12 @@ import { useState } from "react";
 // border-radius: 50px;
 // `
 
+const ToDoSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, 'Too Short!')
+      .required('Required'),
+  });
+
 interface FormProps {
     setTodos: React.Dispatch<React.SetStateAction<ToDo[]>>
 }
@@ -28,9 +35,10 @@ const NewToDo:FunctionComponent<FormProps> = ({setTodos}) => {
     return (
     <Formik
         initialValues={{name:""}}
+        validationSchema={ToDoSchema}
         onSubmit={values => console.log(values)}
     >
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
+        {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
        <View style={formStyles.formContainer}>
          <RegText textStyles={formStyles.title}>What's Next on the List?</RegText>
          <View style={formStyles.inputWrapper}>
@@ -42,6 +50,9 @@ const NewToDo:FunctionComponent<FormProps> = ({setTodos}) => {
             style={formStyles.inputStyle}
             />
          </View>
+         {errors.name && touched.name ? (
+             <RegText>{errors.name}</RegText>
+           ) : null}
          <RegularButton  onPress={()=> handleSubmit()} >Submit</RegularButton>
        </View>
      )}
