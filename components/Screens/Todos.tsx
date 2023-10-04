@@ -4,6 +4,8 @@ import { colors } from "../colors";
 import NewToDo from "../NewToDo";
 import { Container } from "../shared";
 import ToDo from "../ToDo";
+import {View} from 'react-native';
+import RegText from "../Texts/RegText";
 
 const TodosContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -14,9 +16,17 @@ align-items: center;
 justifyContent: center;
 `
 
+const ListView = styled.View`
+background-color:${colors.mediumgreen};
+width:90%;
+border-radius: 50px;
+padding:10px;
+
+`
+
 
 const Todos: FunctionComponent = () => {
-const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
+const [todos, setTodos] = useState<ToDo[]>([{ todo:"this", isDone:false}, { todo:"that", isDone:false}, { todo:"the other thing", isDone:false}])
 
 
 const displayTodos = todos.map(t => {
@@ -28,7 +38,10 @@ return (
 
     return (
         <TodosContainer>
-            <NewToDo setTodos={setTodos} />
+            <NewToDo todos={todos} setTodos={setTodos} />
+            <ListView>
+                <RegText>ToDos</RegText>
+            </ListView>
         </TodosContainer>
     )
 }

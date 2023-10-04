@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Button, TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import styled from "styled-components/native";
@@ -25,21 +25,27 @@ const ToDoSchema = Yup.object().shape({
       .required('Required'),
   });
 
+
 interface FormProps {
-    setTodos: React.Dispatch<React.SetStateAction<ToDo[]>>
+    setTodos: React.Dispatch<React.SetStateAction<ToDo[]>>,
+    todos: ToDo[]
 }
 
-const NewToDo:FunctionComponent<FormProps> = ({setTodos}) => {
-    const [todo, setTodo] = useState<string>("")
+const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
+    // const [todo, setTodo] = useState<ToDo>()
 
     return (
     <Formik
         initialValues={{name:""}}
         validationSchema={ToDoSchema}
-        onSubmit={values => console.log(values)}
+        onSubmit={(val) => {
+            console.log(val)
+            const newTask:ToDo = {id: Data.now(), isDone:false, todo: val.name,}
+            setTodos(todos => [...todos, newTask])}}
     >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
        <View style={formStyles.formContainer}>
+     
          <RegText textStyles={formStyles.title}>What's Next on the List?</RegText>
          <View style={formStyles.inputWrapper}>
             <TextInput
@@ -54,6 +60,7 @@ const NewToDo:FunctionComponent<FormProps> = ({setTodos}) => {
              <RegText>{errors.name}</RegText>
            ) : null}
          <RegularButton  onPress={()=> handleSubmit()} >Submit</RegularButton>
+
        </View>
      )}
     </Formik>
