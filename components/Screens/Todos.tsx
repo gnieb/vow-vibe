@@ -7,6 +7,7 @@ import ToDo from "../ToDo";
 import {View, ListRenderItem, FlatList } from 'react-native';
 import RegText from "../Texts/RegText";
 import BigText from "../Texts/BigText";
+import ToDoList from "../ToDoList";
 
 const TodosContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -15,14 +16,6 @@ height:100%;
 flex:1;
 align-items: center;
 justifyContent: center;
-`
-
-const ListView = styled.View`
-background-color:${colors.mediumgreen};
-width:90%;
-border-radius: 50px;
-padding:30px;
-margin-top:15px;
 `
 
 
@@ -34,15 +27,7 @@ const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {
     return (
         <TodosContainer>
             <NewToDo todos={todos} setTodos={setTodos} />
-            <ListView>
-                <BigText>TO DO</BigText>
-                <FlatList
-                    data={todos}
-                    renderItem={({item}) => <RegText>{item.todo}</RegText>}
-                />
-
-               
-            </ListView>
+            
         </TodosContainer>
     )
 }
