@@ -26,7 +26,7 @@ padding:10px;
 
 
 const Todos: FunctionComponent = () => {
-const [todos, setTodos] = useState<ToDo[]>([{ todo:"this", isDone:false}, { todo:"that", isDone:false}, { todo:"the other thing", isDone:false}])
+const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
 
 
 const displayTodos = todos.map(t => {
