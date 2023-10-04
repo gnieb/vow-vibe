@@ -1,10 +1,12 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Button, TextInput, View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import styled from "styled-components/native";
 import { colors } from "./colors";
 import RegText from "./Texts/RegText";
+import ToDo from "./ToDo";
+import { useState } from "react";
 
 
 // const InputView = styled.TextInput`
@@ -16,7 +18,14 @@ import RegText from "./Texts/RegText";
 // border-radius: 50px;
 // `
 
-const NewToDo = () => (
+interface FormProps {
+    setTodos: React.Dispatch<React.SetStateAction<ToDo[]>>
+}
+
+const NewToDo:FunctionComponent<FormProps> = ({setTodos}) => {
+    const [todo, setTodo] = useState<string>("")
+
+    return (
     <Formik
         initialValues={{name:""}}
         onSubmit={values => console.log(values)}
@@ -33,11 +42,12 @@ const NewToDo = () => (
             style={formStyles.inputStyle}
             />
          </View>
-         <RegularButton style={formStyles.title} onPress={handleSubmit} title="Submit">Submit</RegularButton>
+         <RegularButton  onPress={()=> handleSubmit()} >Submit</RegularButton>
        </View>
      )}
     </Formik>
-)
+    );
+};
 
 const formStyles = StyleSheet.create({
    
@@ -45,7 +55,7 @@ const formStyles = StyleSheet.create({
         backgroundColor: `${colors.lightgreen}`,
         padding: 20,
         borderRadius: 50,
-        width: '100%',
+        width: '90%',
     
      },
      title : {

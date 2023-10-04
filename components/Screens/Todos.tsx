@@ -20,12 +20,15 @@ const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {
 
 
 const displayTodos = todos.map(t => {
-
+return (
+    <>
+    </>
+)
 })
 
     return (
         <TodosContainer>
-        <NewToDo />
+            <NewToDo setTodos={setTodos} />
         </TodosContainer>
     )
 }
