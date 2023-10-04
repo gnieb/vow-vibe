@@ -36,14 +36,20 @@ const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
     // const [todo, setTodo] = useState<ToDo>()
     console.log(Date.now())
 
+    const initialValues = {
+        name:""
+    }
+
     return (
     <Formik
-        initialValues={{name:""}}
+        initialValues={initialValues}
         validationSchema={ToDoSchema}
-        onSubmit={(val) => {
+        onSubmit={(val, {resetForm}) => {
             console.log(val)
             const newTask:ToDo = {id: Date.now(), isDone:false, todo: val.name,}
-            setTodos(todos => [...todos, newTask])}}
+            setTodos(todos => [...todos, newTask])
+            resetForm({values: initialValues})
+        }}
     >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
        <View style={formStyles.formContainer}>
