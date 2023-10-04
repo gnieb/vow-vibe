@@ -34,7 +34,7 @@ interface FormProps {
 
 const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
     // const [todo, setTodo] = useState<ToDo>()
- 
+    console.log(Date.now())
 
     return (
     <Formik
@@ -42,7 +42,7 @@ const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
         validationSchema={ToDoSchema}
         onSubmit={(val) => {
             console.log(val)
-            const newTask:ToDo = {id: uuid.v4().toString(), isDone:false, todo: val.name,}
+            const newTask:ToDo = {id: Date.now(), isDone:false, todo: val.name,}
             setTodos(todos => [...todos, newTask])}}
     >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
