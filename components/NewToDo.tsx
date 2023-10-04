@@ -8,6 +8,7 @@ import RegText from "./Texts/RegText";
 import ToDo from "./ToDo";
 import { useState } from "react";
 import * as Yup from 'yup';
+import uuid from 'react-native-uuid';
 
 
 // const InputView = styled.TextInput`
@@ -33,6 +34,7 @@ interface FormProps {
 
 const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
     // const [todo, setTodo] = useState<ToDo>()
+ 
 
     return (
     <Formik
@@ -40,7 +42,7 @@ const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
         validationSchema={ToDoSchema}
         onSubmit={(val) => {
             console.log(val)
-            const newTask:ToDo = {id: Data.now(), isDone:false, todo: val.name,}
+            const newTask:ToDo = {id: uuid.v4().toString(), isDone:false, todo: val.name,}
             setTodos(todos => [...todos, newTask])}}
     >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
