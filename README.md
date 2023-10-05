@@ -1,5 +1,5 @@
 # VowVibe
-## meet your new wedding plannign bestie <3
+## meet your new wedding planning bestie <3
 
 - to do's!
 
@@ -16,6 +16,8 @@
 - registry
 
 - seating chart
+
+- done screen (so I can double check that things have been completed!!! would be cool to have a done date displayed that is created when a to do is marked as done. )
 
 ## How to open the console in ios development simulator?
 

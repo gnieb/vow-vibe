@@ -35,20 +35,35 @@ margin:5px;
 
 const ToDoItem:FunctionComponent<ItemProps> = ({item, todos, setTodos}) => {
     return (
-        <Formik
-        initialValues={item}
-        onSubmit={()=> console.log(item)}
-        >
-            {({ handleChange, handleBlur, handleSubmit, values  }) => (
+           
             <ListItem>
                 <RegText>{item.todo}</RegText>
                 <IconView>
+                <Formik
+                initialValues={item}
+                onSubmit={()=> {
+                    console.log(item)
+                    
+                }}
+                >
+                {({ handleChange, handleBlur, handleSubmit, values  }) => (
                 <MaterialCommunityIcons onPress={()=> handleSubmit()} name="check" size={24} color="black" />
-                <Feather name="edit-2" size={24} color="black" />
+                )}
+                </Formik>
+                <Formik
+                initialValues={item}
+                onSubmit={()=> {
+                    console.log("Time to EDIT!!!")
+                    
+                }}
+                >
+                {({ handleChange, handleBlur, handleSubmit, values  }) => (
+                <Feather onPress={()=> handleSubmit()} name="edit-2" size={24} color="black" />
+                )}
+                </Formik>
+                
                 </IconView>
             </ListItem>
-            )}
-        </Formik>
     )
 };
 
