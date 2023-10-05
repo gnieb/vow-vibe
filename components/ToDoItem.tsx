@@ -34,6 +34,14 @@ margin:5px;
 `
 
 const ToDoItem:FunctionComponent<ItemProps> = ({item, todos, setTodos}) => {
+
+    const editTodos = (id:number | string) => {
+        setTodos(
+            todos.map((t) => 
+            t.id === id? {...t, isDone :!t.isDone} : t)
+        )
+    }
+
     return (
            
             <ListItem>
@@ -43,7 +51,7 @@ const ToDoItem:FunctionComponent<ItemProps> = ({item, todos, setTodos}) => {
                 initialValues={item}
                 onSubmit={()=> {
                     console.log(item)
-                    
+                    editTodos(item.id)
                 }}
                 >
                 {({ handleChange, handleBlur, handleSubmit, values  }) => (
@@ -54,7 +62,6 @@ const ToDoItem:FunctionComponent<ItemProps> = ({item, todos, setTodos}) => {
                 initialValues={item}
                 onSubmit={()=> {
                     console.log("Time to EDIT!!!")
-                    
                 }}
                 >
                 {({ handleChange, handleBlur, handleSubmit, values  }) => (
