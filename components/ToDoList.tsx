@@ -9,22 +9,11 @@ import ToDoItem from "./ToDoItem";
 
 const ListView = styled.View`
 background-color:${colors.mediumgreen};
-width:90%;
+width:100%;
 border-radius: 50px;
-padding:30px;
+padding:10px;
 margin-top:15px;
-`
-
-const ListItem = styled(Container)`
-background-color:${colors.lightgreen};
-padding: 5px;
-padding-left:10px;
-margin: 5px;
-width:90%;
-border-radius:50px;
-flexDirection:row;
-align-items:left;
-justifyContent: space-between;
+justifyContent:center;
 `
 
 interface ListProps {
@@ -37,7 +26,7 @@ const ToDoList:FunctionComponent<ListProps> = ({todos, setTodos}) => {
         <ListView>
             <FlatList
                 data={todos}
-                renderItem={({item}) => <ToDoItem item={item} />}
+                renderItem={({item}) => <ToDoItem item={item} key={item.id} todos={todos} setTodos={setTodos}/>}
             />
 
         </ListView>

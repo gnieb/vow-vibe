@@ -23,3 +23,4 @@
 npx react-native log-ios 
 ```
 
+Icons used - [@expo/vector-icons](https://docs.expo.dev/guides/icons/) package that comes with expo

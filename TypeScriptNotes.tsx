@@ -83,4 +83,8 @@ let logName: (name:string) => void;
 //      (declare param type) => declare return type;
 
 
+// React Native NOTES: 
+// <View> is the React Native equivalent to <div>
+
+
  
