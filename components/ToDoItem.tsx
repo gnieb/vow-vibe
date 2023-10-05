@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Container } from "./shared";
 import ToDo from "./ToDo";
-import { View,  } from "react-native";
+import { Text, View,  } from "react-native";
 import {Formik} from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 
@@ -20,6 +20,13 @@ width:95%;
 border-radius:50px;
 flexDirection:row;
 justifyContent: space-between;
+`
+
+const DoneText = styled.Text`
+font-size: 20px;
+color: ${colors.black};
+text-align: left;
+font-family: Roboto-Regular;
 `
 
 interface ItemProps {
@@ -45,7 +52,9 @@ const ToDoItem:FunctionComponent<ItemProps> = ({item, todos, setTodos}) => {
     return (
            
             <ListItem>
-                <RegText>{item.todo}</RegText>
+                {item.isDone ? <DoneText style={{ textDecorationLine: 'line-through' }}>
+                {item.todo}</DoneText> : <RegText>{item.todo}</RegText>}
+                
                 <IconView>
                 <Formik
                 initialValues={item}
