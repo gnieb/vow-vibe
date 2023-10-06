@@ -18,9 +18,9 @@ if (!loadedFonts) {
   return <AppLoading />
 }
   return (
-    <SafeAreaView>
+   
       <RootNav />
-   </SafeAreaView>
+   
   );
 }
 

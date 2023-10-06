@@ -1,11 +1,11 @@
-import { Text, View } from "react-native"
+import { SafeAreaView, Text, View } from "react-native"
 import React, {FunctionComponent} from "react"
 
 const RootNav:FunctionComponent = () => {
     return (
-        <View>
+        <SafeAreaView>
             <Text>ROOT NAV</Text>
-        </View>
+        </SafeAreaView>
     )
 }
 
