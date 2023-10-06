@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import  { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import React from 'react';
 import AppLoading from "expo-app-loading";
