@@ -6,6 +6,7 @@ import Welcome from "../components/Screens/Welcome";
 import Todos from "../components/Screens/Todos";
 import HomeScreen from "../components/Screens/HomeScreen";
 import Vision from "../components/Screens/Vision";
+import Drawer from "./Drawer";
 
 
 
@@ -13,12 +14,13 @@ import type {RouteProp} from '@react-navigation/native';
 
 export type MainStackParamList = {
   Drawer: undefined;
-  Home: undefined;
-  Details: {title: string};
-  Settings: undefined;
+  HomeScreen: undefined;
+  Welcome: undefined;
+  Todos: undefined;
+  Vision:undefined;
 };
 
-export type DetailsScreenRouteProp = RouteProp<MainStackParamList, 'Details'>;
+// export type DetailsScreenRouteProp = RouteProp<MainStackParamList, 'Details'>;
 
 //Stack will receive a mainStack Param List - (type)
 const Stack = createNativeStackNavigator();
@@ -29,6 +31,7 @@ const MainStack:FunctionComponent = () => {
             headerShown: false,
           }} >
            {/* screens here  */}
+           <Stack.Screen name="Drawer" component={Drawer} />
            <Stack.Screen name="Welcome" component={Welcome} />
            <Stack.Screen name="Home" component={HomeScreen}  />
            <Stack.Screen name="Todos" component={Todos} />
