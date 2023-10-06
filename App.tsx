@@ -1,8 +1,9 @@
-import  { StyleSheet, Text, View } from 'react-native';
+import  { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import React from 'react';
 import AppLoading from "expo-app-loading";
 import { useFonts } from 'expo-font';
-import RootStack from './navigation/RootStack';
+// import RootStack from './navigation/RootStack';
+import RootNav from './navigation/RootNav';
 
 
 
@@ -17,7 +18,9 @@ if (!loadedFonts) {
   return <AppLoading />
 }
   return (
-   <RootStack />
+    <SafeAreaView>
+      <RootNav />
+   </SafeAreaView>
   );
 }
 
