@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useState, useEffect} from "react";
 import styled from "styled-components/native";
 import { colors } from "../colors";
 import NewToDo from "../NewToDo";
@@ -20,6 +20,9 @@ const Todos: FunctionComponent = () => {
 const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
 
 
+useEffect(() => {
+    fetch("")
+})
 
     return (
         <TodosContainer>

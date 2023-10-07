@@ -2,13 +2,14 @@ import { SafeAreaView, Text, View } from "react-native"
 import React, {FunctionComponent} from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import MainStack from "./MainStack";
 
 const Drawer = createDrawerNavigator();
 
 const RootNav:FunctionComponent = () => {
     return (
         <NavigationContainer>
-            <Text>ROOT NAV</Text>
+            <MainStack />
         </NavigationContainer>
     )
 }

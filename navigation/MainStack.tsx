@@ -29,7 +29,9 @@ const MainStack:FunctionComponent = () => {
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false,
-          }} >
+           
+          }} 
+           initialRouteName="Todos">
            {/* screens here  */}
            <Stack.Screen name="Drawer" component={Drawer} />
            <Stack.Screen name="Welcome" component={Welcome} />
