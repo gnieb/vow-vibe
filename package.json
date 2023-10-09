@@ -2,6 +2,7 @@
   "name": "vowvibe",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "proxy": "http://127.0.0.1:5555",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -13,7 +14,6 @@
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
     "axios": "^1.5.1",
-    "dotenv": "^16.3.1",
     "expo": "~49.0.7",
     "expo-app-loading": "^2.1.1",
     "expo-font": "~11.4.0",
@@ -33,9 +33,7 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.14",
     "@types/react-native": "^0.72.3",
-    "@types/react-native-dotenv": "^0.2.0",
     "jest-styled-components": "^7.1.1",
-    "react-native-dotenv": "^3.4.9",
     "typescript": "^5.1.3"
   },
   "private": true
