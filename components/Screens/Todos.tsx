@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useState, useEffect} from "react";
 import styled from "styled-components/native";
 import { colors } from "../colors";
 import NewToDo from "../NewToDo";
@@ -15,11 +15,27 @@ align-items: center;
 justifyContent: center;
 `
 
+// const getToDos = async (url:string): Promise<Array<Todo> | string > => {
+//     try {
+//         const response = await fetch(url)
+//         const { data } = await response.json()
+//         return data
+//     } catch (error) {
+//         if (error) {
+//             return error.message
+//         }
+//     }
+// }
 
 const Todos: FunctionComponent = () => {
 const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
 
-
+// useEffect(async () => {
+//     const response = await fetch(
+//         "https://jsonplaceholder.typicode.com/todos"
+//       )
+//       const body = await response.json()
+// })
 
     return (
         <TodosContainer>
