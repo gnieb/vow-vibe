@@ -53,20 +53,23 @@ Icons used - [@expo/vector-icons](https://docs.expo.dev/guides/icons/) package t
 ## Getting Started
 ### Prerequisites
 
-* npm 
+* NPM 
 ```sh
   npm install npm@latest -g
   ```
-* pipenv
+
+* download [XCODE](https://apps.apple.com/us/app/xcode/id497799835) ios simulator via app store
+
+* PIPENV
 ```sh
     pip install pipenv
 ```
-* python - download latest version here <https://www.python.org/downloads/>
+* PYTHON - download latest version here <https://www.python.org/downloads/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Installation
-<!-- 1. Fork and Clone the client-side repo nand server repo
+1. Fork and Clone the front-end repo and server repo
    ```sh
    git clone https://github.com/gnieb/vow-vibe-server
    git clone https://github.com/gnieb/vow-vibe
@@ -87,20 +90,21 @@ Icons used - [@expo/vector-icons](https://docs.expo.dev/guides/icons/) package t
     ```
 4. Start the Front End
     ```sh
-    npm start
+    npx run expo
+    ```
+    then run ios simulator by typing "i"
+    ```sh
+    i
     ```
 5. Start the Server
-
-    ```sh
-    git clone https://github.com/gnieb/vow-vibe-server
-    ```
 
     ```sh
     cd server
     ```
     ```sh
     python app.py
-    ``` -->
+    ```
+
     <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
