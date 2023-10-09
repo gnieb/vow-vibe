@@ -43,7 +43,7 @@
 * ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
 * ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 * [![SQLAlchemy][SQLAlchemy.com]][SQLalchemy-url]
-Icons used - [@expo/vector-icons](https://docs.expo.dev/guides/icons/) package that comes with expo
+* [@expo/vector-icons](https://docs.expo.dev/guides/icons/)
 
 ### API's Utilized
 
