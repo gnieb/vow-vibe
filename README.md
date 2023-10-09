@@ -28,7 +28,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 "Wedding planning is EASY"     
-            -no one ever
+-no one ever
+<br />
+
+This react native app helps identify and track any and every possible wedding task into one application. There are endless details like booking a wedding venue, a photographer, and caterer. Which chair covers do you like? The flower girl doesn't like her dress. Which font should be on the reception placecards? Do the groomsmen have their suits yet? Do they all have matching socks? Things get lost and overwhelming. I am designing an app that will help get everything out of your head and organized by priority and kept safe in one place. 
 
 <br />
 <!-- PLACEHOLDER PIC HERE -->
@@ -46,7 +49,6 @@
 * [@expo/vector-icons](https://docs.expo.dev/guides/icons/)
 
 ### API's Utilized
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
