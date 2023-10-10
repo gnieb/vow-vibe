@@ -87,4 +87,5 @@ let logName: (name:string) => void;
 // <View> is the React Native equivalent to <div>
 
 
- 
+//  Clear Expo Cache command : 
+// npx expo start -c

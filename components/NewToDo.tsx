@@ -34,8 +34,6 @@ interface FormProps {
 
 const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
     // const [todo, setTodo] = useState<ToDo>()
-    console.log(Date.now())
-
     const initialValues = {
         name:""
     }

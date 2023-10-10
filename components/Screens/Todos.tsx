@@ -18,8 +18,8 @@ justifyContent: center;
 const getToDos = async (url:string): Promise<any > => {
     try {
         const response = await fetch(url)
-        const { data } = await response.json()
-        return data
+        return await response.json()
+        
     } catch (error) {
         if (error) {
             console.log("oh no", error)
@@ -27,12 +27,37 @@ const getToDos = async (url:string): Promise<any > => {
     }
 }
 
+  // for TESTING: json placeholder data url: "https://jsonplaceholder.typicode.com/todos/"
+
 const Todos: FunctionComponent = () => {
 const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
 
+
+// to access server data, replace the placeholder url with your local IP address in this format:
+//  http://IPADDRESS:SEVRER_PORT/users/1
+
 useEffect(() => {
-    getToDos("")
-}, [])
+            console.log("here we go....")
+            fetch("https://jsonplaceholder.typicode.com/todos")
+            .then(r=> {
+                if(r.ok){
+                    r.json().then(data => {
+                        console.log(data)
+                    })
+                } else {
+                    console.log(r.text)
+                }
+            })
+            .catch( (error) => {
+            if (error) {
+                console.log("oh no:", error)
+            } 
+        })
+        
+    }
+, [])
+
+
 
 
     return (
