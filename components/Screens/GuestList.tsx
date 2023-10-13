@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { View, Text, FlatList } from "react-native";
 import { colors } from "../colors";
 import Guest from "../Guest";
+import GuestListItem from "../GuestListItem";
 
 
 const GuestView = styled.View`
@@ -23,8 +24,7 @@ const GuestList:FunctionComponent = () => {
         <GuestView>
             <Text>PEOPLE YOU  LOVE HERE!!!</Text>
             <FlatList data={guests} 
-            renderItem={}/>
-            {/* create a lil guest list item to be displayed */}
+            renderItem={({item}) => <GuestListItem item={item} key={item.id} guests={guests} setGuests={setGuests} />}/>
         </GuestView>
     )
 }
