@@ -15,17 +15,17 @@ align-items: center;
 justifyContent: center;
 `
 
-const getToDos = async (url:string): Promise<any > => {
-    try {
-        const response = await fetch(url)
-        return await response.json()
+// AN ASYNC SYNTAX: const getToDos = async (url:string): Promise<any > => {
+//     try {
+//         const response = await fetch(url)
+//         return await response.json()
         
-    } catch (error) {
-        if (error) {
-            console.log("oh no", error)
-        }
-    }
-}
+//     } catch (error) {
+//         if (error) {
+//             console.log("oh no", error)
+//         }
+//     }
+// }
 
   // for TESTING: json placeholder data url: "https://jsonplaceholder.typicode.com/todos/"
 
@@ -38,11 +38,12 @@ const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {
 
 useEffect(() => {
             console.log("here we go....")
-            fetch("https://jsonplaceholder.typicode.com/todos")
+            fetch("http://192.168.1.14:5555/users/1")
             .then(r=> {
                 if(r.ok){
                     r.json().then(data => {
-                        console.log(data)
+                        console.log("DATA:", data)
+                        setTodos(data)
                     })
                 } else {
                     console.log(r.text)
@@ -56,9 +57,6 @@ useEffect(() => {
         
     }
 , [])
-
-
-
 
     return (
         <TodosContainer>
