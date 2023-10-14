@@ -1,9 +1,9 @@
 type Guest = {
-    id:number,
+    id:number | string,
     first_name: string,
     last_name:string,
     wedding_id?: number,
-    isAttending: boolean,
+    isAttending?: boolean,
 }
 
 export default Guest;

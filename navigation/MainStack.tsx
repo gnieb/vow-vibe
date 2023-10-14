@@ -7,6 +7,7 @@ import Todos from "../components/Screens/Todos";
 import HomeScreen from "../components/Screens/HomeScreen";
 import Vision from "../components/Screens/Vision";
 import Drawer from "./Drawer";
+import GuestList from "../components/Screens/GuestList";
 
 
 
@@ -18,6 +19,7 @@ export type MainStackParamList = {
   Welcome: undefined;
   Todos: undefined;
   Vision:undefined;
+  GuestList:undefined;
 };
 
 // export type DetailsScreenRouteProp = RouteProp<MainStackParamList, 'Details'>;
@@ -31,13 +33,14 @@ const MainStack:FunctionComponent = () => {
             headerShown: false,
            
           }} 
-           initialRouteName="Todos">
+           initialRouteName="GuestList">
            {/* screens here  */}
            <Stack.Screen name="Drawer" component={Drawer} />
            <Stack.Screen name="Welcome" component={Welcome} />
            <Stack.Screen name="Home" component={HomeScreen}  />
            <Stack.Screen name="Todos" component={Todos} />
            <Stack.Screen name="Vision" component={Vision} />
+           <Stack.Screen name="GuestList" component={GuestList} />
         </Stack.Navigator>
     )
 }

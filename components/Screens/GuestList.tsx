@@ -16,7 +16,7 @@ justifyContent:center;
 `
 
 const GuestList:FunctionComponent = () => {
-    const [guests, setGuests] = useState<Guest[]>([])
+    const [guests, setGuests] = useState<Guest[]>([{id:1, wedding_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, wedding_id:1, first_name:"Bryant", last_name:"Knowlton"}])
 
 
 
