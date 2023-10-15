@@ -115,6 +115,17 @@ This react native app helps identify and track any and every possible wedding ta
 npx react-native log-ios 
 ```
 
+* Start Expo
+```sh
+npx expo start
+i - run ios
+```
+* Start Expo with clear cache
+
+
+* Clear watchman warning
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

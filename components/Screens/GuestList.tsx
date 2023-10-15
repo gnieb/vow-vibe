@@ -4,6 +4,7 @@ import { View, Text, FlatList } from "react-native";
 import { colors } from "../colors";
 import Guest from "../Guest";
 import GuestListItem from "../GuestListItem";
+import RegText from "../Texts/RegText";
 
 
 const GuestView = styled.View`
@@ -22,7 +23,7 @@ const GuestList:FunctionComponent = () => {
 
     return (
         <GuestView>
-            <Text>PEOPLE YOU  LOVE HERE!!!</Text>
+            <RegText>THE LIST</RegText>
             <FlatList data={guests} 
             renderItem={({item}) => <GuestListItem item={item} key={item.id} guests={guests} setGuests={setGuests} />}/>
         </GuestView>
