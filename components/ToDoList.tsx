@@ -28,7 +28,6 @@ const ToDoList:FunctionComponent<ListProps> = ({todos, setTodos}) => {
                 data={todos}
                 renderItem={({item}) => <ToDoItem item={item} key={item.id} todos={todos} setTodos={setTodos}/>}
             />
-
         </ListView>
     )
 }

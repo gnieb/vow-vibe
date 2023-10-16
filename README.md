@@ -121,7 +121,9 @@ npx expo start
 i - run ios
 ```
 * Start Expo with clear cache
-
+```sh
+npx expo start -c 
+```
 
 * Clear watchman warning
 
