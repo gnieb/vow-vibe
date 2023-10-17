@@ -8,10 +8,11 @@ import ToDo from "./ToDo";
 import { useState } from "react";
 import * as Yup from 'yup';
 import { colors } from "./colors";
+import Guest from "./Guest";
 
 
 const FormContainer = styled(Container)`
-background-color: black;
+background-color: white;
 width:100%;
 border-radius: 50px;
 padding:10px;
@@ -20,66 +21,75 @@ justifyContent:center;
 `
 
 
-const NewGuest:FunctionComponent = () => {
-    return (
-        <FormContainer>
-            <RegText>WHO DO YOU WANT TO ADD</RegText>
-        </FormContainer>
-    )
-}
 
-const ToDoSchema = Yup.object().shape({
-    name: Yup.string()
+const GuestSchema = Yup.object().shape({
+    first_name: Yup.string()
       .min(2, 'Too Short!')
       .required('Required'),
+    last_name: Yup.string()
+    .min(1, 'Too Short!')
+    .required('Required!')
   });
 
 
 interface FormProps {
-    setTodos: React.Dispatch<React.SetStateAction<ToDo[]>>,
-    todos: ToDo[]
+    setGuests: React.Dispatch<React.SetStateAction<Guest[]>>,
+    guests: Guest[]
 }
 
-const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos}) => {
-    // const [todo, setTodo] = useState<ToDo>()
+const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests}) => {
     const initialValues = {
-        name:""
+        first_name:"",
+        last_name:"",
     }
-
+    
+    
     return (
-    <Formik
+       
+            <Formik
         initialValues={initialValues}
-        validationSchema={ToDoSchema}
+        validationSchema={GuestSchema}
         onSubmit={(val, {resetForm}) => {
             console.log(val)
-            const newTask:ToDo = {id: Date.now(), isDone:false, todo: val.name,}
-            setTodos(todos => [...todos, newTask])
+            console.log("HI")
+            const newGuest:Guest = {id: Date.now(), first_name: val.first_name, last_name:val.last_name}
+            setGuests(guests => [...guests, newGuest])
             resetForm({values: initialValues})
         }}
     >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
        <View style={formStyles.formContainer}>
      
-         <RegText textStyles={formStyles.title}>What's Next on the List?</RegText>
+         <RegText textStyles={formStyles.title}>Who's Next on the List?</RegText>
          <View style={formStyles.inputWrapper}>
             <TextInput
-            onChangeText={handleChange('name')}
-            onBlur={handleBlur('name')}
-            value={values.name}
-            placeholder="add it to the pile..."
+            onChangeText={handleChange('first_name')}
+            onBlur={handleBlur('first_name')}
+            value={values.first_name}
+            placeholder="first name"
             style={formStyles.inputStyle}
             />
          </View>
-         {errors.name && touched.name ? (
-             <RegText>{errors.name}</RegText>
-           ) : null}
+         {errors.first_name && touched.first_name ? (
+             <RegText>{errors.first_name}</RegText>
+           ) : null }
+
+           <View style={formStyles.inputWrapper}>
+            <TextInput
+             onChangeText={handleChange('last_name')}
+             onBlur={handleBlur('last_name')}
+             value={values.last_name}
+             placeholder="last name"
+             style={formStyles.inputStyle}
+            />
+           </View>
          <RegularButton  onPress={()=> handleSubmit()} >Submit</RegularButton>
 
        </View>
      )}
     </Formik>
-    );
-};
+    )
+}
 
 const formStyles = StyleSheet.create({
    

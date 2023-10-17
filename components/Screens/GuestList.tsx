@@ -6,6 +6,7 @@ import Guest from "../Guest";
 import GuestListItem from "../GuestListItem";
 import RegText from "../Texts/RegText";
 import { Container } from "../shared";
+import NewGuest from "../NewGuest";
 
 
 const GuestView = styled.View`
@@ -45,6 +46,7 @@ const GuestList:FunctionComponent = () => {
 
     return (
         <GuestContainer >
+            <NewGuest guests={guests} setGuests={setGuests} />
             <GuestListTitleView>
                 <RegText textStyles={{color:"white", textAlign:"center", fontSize:30, fontFamily:"Helvetica"}}>WHO'S COMING</RegText>
             </GuestListTitleView>
