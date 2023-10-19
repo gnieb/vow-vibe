@@ -10,6 +10,12 @@ import { useState } from "react";
 import * as Yup from 'yup';
 import uuid from 'react-native-uuid';
 
+let initialValues = {
+    first_name: "",
+    last_name:"",
+    
+}
+
 const NewUser:FunctionComponent = () => {
     return (
         <Formik
@@ -71,3 +77,5 @@ const formStyles = StyleSheet.create({
         padding: 10,
      }
 })
+
+export default NewUser;
