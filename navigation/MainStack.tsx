@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import app screens
 import Welcome from "../components/Screens/Welcome";
@@ -8,9 +8,6 @@ import HomeScreen from "../components/Screens/HomeScreen";
 import Vision from "../components/Screens/Vision";
 import Drawer from "./Drawer";
 import GuestList from "../components/Screens/GuestList";
-
-
-
 import type {RouteProp} from '@react-navigation/native';
 
 export type MainStackParamList = {
@@ -25,7 +22,7 @@ export type MainStackParamList = {
 // export type DetailsScreenRouteProp = RouteProp<MainStackParamList, 'Details'>;
 
 //Stack will receive a mainStack Param List - (type)
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainStack:FunctionComponent = () => {
     return (
@@ -33,16 +30,19 @@ const MainStack:FunctionComponent = () => {
             headerShown: false,
            
           }} 
-           initialRouteName="GuestList">
+          //  initialRouteName="GuestList"
+           >
            {/* screens here  */}
            <Stack.Screen name="Drawer" component={Drawer} />
            <Stack.Screen name="Welcome" component={Welcome} />
-           <Stack.Screen name="Home" component={HomeScreen}  />
+           <Stack.Screen name="HomeScreen" component={HomeScreen}  />
            <Stack.Screen name="Todos" component={Todos} />
            <Stack.Screen name="Vision" component={Vision} />
            <Stack.Screen name="GuestList" component={GuestList} />
         </Stack.Navigator>
     )
 }
+
+const styles = StyleSheet.create({});
 
 export default MainStack;
