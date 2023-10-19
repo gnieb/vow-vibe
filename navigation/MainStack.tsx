@@ -9,9 +9,11 @@ import Vision from "../components/Screens/Vision";
 import Drawer from "./Drawer";
 import GuestList from "../components/Screens/GuestList";
 import type {RouteProp} from '@react-navigation/native';
+import SignUp from "../components/Screens/SignUp";
 
 export type MainStackParamList = {
   Drawer: undefined;
+  SignUp: undefined
   HomeScreen: undefined;
   Welcome: undefined;
   Todos: undefined;
@@ -34,6 +36,7 @@ const MainStack:FunctionComponent = () => {
            >
            {/* screens here  */}
            <Stack.Screen name="Drawer" component={Drawer} />
+           <Stack.Screen name="SignUp" component={SignUp} />
            <Stack.Screen name="Welcome" component={Welcome} />
            <Stack.Screen name="HomeScreen" component={HomeScreen}  />
            <Stack.Screen name="Todos" component={Todos} />
