@@ -1,13 +1,21 @@
 import React, { useContext, createContext, useState } from "react";
 import { User } from "../components/User";
 
-export const UserContext = createContext<User>({
-    first_name:"",
+export type GlobalUser = {
+    user: User,
+    setUser: React.Dispatch<React.SetStateAction<User>>
+}
+
+
+export const UserContext = createContext<GlobalUser>({
+    user: 
+    {first_name:"",
     last_name:"",
     email:"",
-    todos: [],
-    id: undefined
-    // undefined might not work here..... 
+    todos: [],},
+//  is 'ID' needed?? undefined might not work here..... 
+    setUser: 
+    () => {}
 })
 
 
