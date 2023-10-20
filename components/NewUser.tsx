@@ -97,8 +97,11 @@ const formStyles = StyleSheet.create({
      formContainer : {
         backgroundColor: `${colors.lightgreen}`,
         padding: 20,
+        margin: 10,
         borderRadius: 50,
         width: '90%',
+        flex: 1,
+        
     
      },
      title : {

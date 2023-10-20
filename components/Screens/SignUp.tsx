@@ -9,6 +9,7 @@ const SignUpContainer = styled(Container)`
 background-color: ${colors.darkgreen};
 width: 100%;
 flex:1;
+
 `
 
 const SignUp:FunctionComponent = () => {
