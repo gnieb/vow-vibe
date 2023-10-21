@@ -5,6 +5,7 @@ import styled from "styled-components/native"
 import { colors } from "../colors"
 import { Container } from "../shared"
 import { StatusBar } from "expo-status-bar";
+import DrawerOpener from "../../navigation/DrawerOpener"
 
 const SignUpContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -14,10 +15,13 @@ flex:1;
 
 const SignUp:FunctionComponent = () => {
 return (
+    <>
+    <DrawerOpener />
     <SignUpContainer>
         <StatusBar style="auto"/>
         <NewUser />
     </SignUpContainer>
+    </>
 )
 }
 

@@ -1,11 +1,34 @@
-import { Text, View } from "react-native"
+import { Text, View, Button } from "react-native"
 import { Entypo } from '@expo/vector-icons';
+import styled from "styled-components/native";
+import { Container } from "../components/shared";
+import { colors } from "../components/colors";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
+
+
+const MenuContainer = styled.View`
+background-color: ${colors.darkgreen};
+text-align: left;
+align-items:left;
+padding-top:40px;
+padding-left:20px;
+`
 
 const DrawerOpener = () => {
     return (
-        <View>
-            <Entypo name="menu" size={24} color="black" />
-        </View>
+        <MenuContainer>
+                
+
+            <TouchableHighlight onPress={()=>{console.log("pushed!")}}>
+            <View>
+                <Entypo name="menu" size={35} color="black" />
+            </View>
+            </TouchableHighlight>    
+                
+            
+        </MenuContainer>
     )
 }
+
+export default DrawerOpener;

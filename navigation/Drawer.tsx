@@ -26,7 +26,8 @@ const Drawer = () => {
       drawerStyle: {
         backgroundColor: '#c6cbef',
         width: 240,
-      }
+      },
+      headerShown:false
     }}  >
       {/* Drawer Screens here */}
       <Drawer.Screen name="Sign Up/ Log In" component={ChooseLoginOrSignup} />
