@@ -8,6 +8,7 @@ import Vision from '../components/Screens/Vision';
 import Todos from '../components/Screens/Todos';
 import GuestList from '../components/Screens/GuestList';
 import SignUp from '../components/Screens/SignUp';
+import ChooseLoginOrSignup from '../components/Screens/ChooseLoginOrSignUp';
 
 
 const Drawer = () => {
@@ -15,6 +16,7 @@ const Drawer = () => {
   return (
     <Drawer.Navigator>
       {/* Drawer Screens here */}
+      <Drawer.Screen name="Sign Up/ Log In" component={ChooseLoginOrSignup} />
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Sign Up" component={SignUp} />
       <Drawer.Screen name="Welcome" component={Welcome} />

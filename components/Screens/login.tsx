@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
+import { FunctionComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function login() {
+const Login:FunctionComponent = () => {
   return (
     <View style={styles.container}>
       <Text>LOG IN WILL BE HERE</Text>
@@ -18,3 +19,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default Login;

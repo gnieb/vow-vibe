@@ -10,6 +10,8 @@ import Drawer from "./Drawer";
 import GuestList from "../components/Screens/GuestList";
 import type {RouteProp} from '@react-navigation/native';
 import SignUp from "../components/Screens/SignUp";
+import Login from "../components/Screens/Login";
+import ChooseLoginOrSignup from "../components/Screens/ChooseLoginOrSignUp";
 
 export type MainStackParamList = {
   Drawer: undefined;
@@ -19,6 +21,8 @@ export type MainStackParamList = {
   Todos: undefined;
   Vision:undefined;
   GuestList:undefined;
+  Login: undefined;
+  ChooseLoginOrSignup:undefined;
 };
 
 // export type DetailsScreenRouteProp = RouteProp<MainStackParamList, 'Details'>;
@@ -42,6 +46,8 @@ const MainStack:FunctionComponent = () => {
            <Stack.Screen name="Todos" component={Todos} />
            <Stack.Screen name="Vision" component={Vision} />
            <Stack.Screen name="GuestList" component={GuestList} />
+           <Stack.Screen name="Login" component={Login} />
+           <Stack.Screen name="ChooseLoginOrSignup" component={ChooseLoginOrSignup} />
         </Stack.Navigator>
     )
 }
