@@ -9,12 +9,25 @@ import Todos from '../components/Screens/Todos';
 import GuestList from '../components/Screens/GuestList';
 import SignUp from '../components/Screens/SignUp';
 import ChooseLoginOrSignup from '../components/Screens/ChooseLoginOrSignUp';
+import { useWindowDimensions } from 'react-native';
+
 
 
 const Drawer = () => {
+
+  const dimensions = useWindowDimensions()
+  const isLargeScreen = dimensions.width >= 768;
+
   const Drawer = createDrawerNavigator();
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+    screenOptions={{
+      drawerType: isLargeScreen ? 'permanent' : 'slide',
+      drawerStyle: {
+        backgroundColor: '#c6cbef',
+        width: 240,
+      }
+    }}  >
       {/* Drawer Screens here */}
       <Drawer.Screen name="Sign Up/ Log In" component={ChooseLoginOrSignup} />
       <Drawer.Screen name="Home" component={HomeScreen} />
