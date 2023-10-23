@@ -5,6 +5,7 @@ import NewToDo from "../NewToDo";
 import { Container } from "../shared";
 import ToDo from "../ToDo";
 import ToDoList from "../ToDoList";
+import DrawerOpener from "../../navigation/DrawerOpener";
 
 const TodosContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -29,7 +30,7 @@ justifyContent: center;
 
   // for TESTING: json placeholder data url: "https://jsonplaceholder.typicode.com/todos/"
 
-const Todos: FunctionComponent = () => {
+const Todos: FunctionComponent = ({navigation}:any) => {
 const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
 
 
@@ -59,10 +60,13 @@ useEffect(() => {
 , [])
 
     return (
+        <>
+        <DrawerOpener navigation={navigation} />
         <TodosContainer>
             <NewToDo todos={todos} setTodos={setTodos} />
             <ToDoList todos={todos} setTodos={setTodos}/>
         </TodosContainer>
+        </>
     )
 }
 
