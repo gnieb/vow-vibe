@@ -13,10 +13,10 @@ width: 100%;
 flex:1;
 `
 
-const SignUp:FunctionComponent = () => {
+const SignUp:FunctionComponent = ({navigation}:any) => {
 return (
     <>
-    <DrawerOpener />
+    <DrawerOpener navigation={navigation}/>
     <SignUpContainer>
         <StatusBar style="auto"/>
         <NewUser />

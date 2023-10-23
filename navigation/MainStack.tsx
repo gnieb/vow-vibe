@@ -12,6 +12,7 @@ import type {RouteProp} from '@react-navigation/native';
 import SignUp from "../components/Screens/SignUp";
 import Login from "../components/Screens/Login";
 import ChooseLoginOrSignup from "../components/Screens/ChooseLoginOrSignUp";
+import { useState } from "react";
 
 export type MainStackParamList = {
   Drawer: undefined;
@@ -31,6 +32,12 @@ export type MainStackParamList = {
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainStack:FunctionComponent = () => {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+
+
+
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false,
@@ -47,7 +54,7 @@ const MainStack:FunctionComponent = () => {
            <Stack.Screen name="Vision" component={Vision} />
            <Stack.Screen name="GuestList" component={GuestList} />
            <Stack.Screen name="Login" component={Login} />
-           <Stack.Screen name="ChooseLoginOrSignup" component={ChooseLoginOrSignup} />
+           <Stack.Screen name="ChooseLoginOrSignup" component={ChooseLoginOrSignup}  />
         </Stack.Navigator>
     )
 }

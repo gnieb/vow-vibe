@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { Container } from "../components/shared";
 import { colors } from "../components/colors";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import { useState } from "react";
+import { FunctionComponent, useState } from "react";
 
 
 
@@ -18,17 +18,19 @@ padding-left:20px;
 
 // need to set state assigned to drawer open vs closed... 
 
+interface DrawerOpenerProps {
+    navigation: any;
+}
 
 
 
-const DrawerOpener = () => {
-const [isOpen, setIsOpen] = useState(false)
+
+const DrawerOpener:FunctionComponent<DrawerOpenerProps> = ({navigation}) => {
 
     return (
         <MenuContainer>
             <TouchableHighlight onPress={()=> {
-                setIsOpen(!isOpen) 
-                console.log(isOpen)
+                navigation.openDrawer()
                 }}>
                 <View>
                     <Entypo name="menu" size={35} color="black" />
