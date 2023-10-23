@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import SmallText from '../Texts/SmallText';
 import RegText from '../Texts/RegText';
 import RegularButton from '../Buttons/RegularButton';
+import DrawerOpener from '../../navigation/DrawerOpener';
 
 const WelcomeContainer = styled(Container)`
 background-color: ${colors.primary};
@@ -37,9 +38,10 @@ padding: 25px;
 import rings from "../../assets/ringsrecord.jpg"
 import BigText from '../Texts/BigText';
 
-const Welcome: FunctionComponent = () => {
+const Welcome: FunctionComponent = ({navigation}:any) => {
     return (
         <>
+        <DrawerOpener navigation={navigation} />
         <StatusBar style="light"/>
         <WelcomeContainer>
             <TopSection>
