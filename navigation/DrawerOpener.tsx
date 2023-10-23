@@ -1,7 +1,6 @@
 import { Text, View, Button } from "react-native"
 import { Entypo } from '@expo/vector-icons';
 import styled from "styled-components/native";
-import { Container } from "../components/shared";
 import { colors } from "../components/colors";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { FunctionComponent, useState } from "react";
@@ -9,11 +8,12 @@ import { FunctionComponent, useState } from "react";
 
 
 const MenuContainer = styled.View`
-background-color: ${colors.darkgreen};
+background-color: transparent;
 text-align: left;
 align-items:left;
 padding-top:40px;
 padding-left:20px;
+position:fixed;
 `
 
 // need to set state assigned to drawer open vs closed... 
