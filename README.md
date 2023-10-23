@@ -47,6 +47,7 @@ This react native app helps identify and track any and every possible wedding ta
 * ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 * [![SQLAlchemy][SQLAlchemy.com]][SQLalchemy-url]
 * [@expo/vector-icons](https://docs.expo.dev/guides/icons/)
+* [@expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)
 
 ### API's Utilized
 
