@@ -7,6 +7,7 @@ import GuestListItem from "../GuestListItem";
 import RegText from "../Texts/RegText";
 import { Container } from "../shared";
 import NewGuest from "../NewGuest";
+import DrawerOpener from "../../navigation/DrawerOpener";
 
 
 const GuestView = styled.View`
@@ -39,12 +40,14 @@ justifyContent: center;
 
 
 
-const GuestList:FunctionComponent = () => {
+const GuestList:FunctionComponent = ({navigation}:any) => {
     const [guests, setGuests] = useState<Guest[]>([{id:1, wedding_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, wedding_id:1, first_name:"Bryant", last_name:"Knowlton"}])
 
 
 
     return (
+        <>
+        <DrawerOpener navigation={navigation}/>
         <GuestContainer >
             <NewGuest guests={guests} setGuests={setGuests} />
             <GuestListTitleView>
@@ -55,6 +58,7 @@ const GuestList:FunctionComponent = () => {
                 renderItem={({item}) => <GuestListItem item={item} key={item.id} guests={guests} setGuests={setGuests} />}/>
             </GuestView>
         </GuestContainer>
+        </>
     )
 }
 
