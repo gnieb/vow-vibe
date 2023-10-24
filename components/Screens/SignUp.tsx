@@ -13,15 +13,22 @@ width: 100%;
 flex:1;
 `
 
+const ScreenView = styled.View`
+height:100%;
+width: 100%;
+position:relative;
+z-index:1;
+`
+
 const SignUp:FunctionComponent = ({navigation}:any) => {
 return (
-    <>
+    <ScreenView>
     <DrawerOpener navigation={navigation}/>
     <SignUpContainer>
         <StatusBar style="auto"/>
         <NewUser />
     </SignUpContainer>
-    </>
+    </ScreenView>
 )
 }
 

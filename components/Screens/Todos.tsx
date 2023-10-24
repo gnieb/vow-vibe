@@ -6,6 +6,7 @@ import { Container } from "../shared";
 import ToDo from "../ToDo";
 import ToDoList from "../ToDoList";
 import DrawerOpener from "../../navigation/DrawerOpener";
+import { View } from "react-native";
 
 const TodosContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -14,6 +15,13 @@ height:100%;
 flex:1;
 align-items: center;
 justifyContent: center;
+`
+
+const ScreenView = styled.View`
+height:100%;
+width: 100%;
+position:relative;
+z-index:1;
 `
 
 // AN ASYNC SYNTAX: const getToDos = async (url:string): Promise<any > => {
@@ -60,13 +68,13 @@ useEffect(() => {
 , [])
 
     return (
-        <>
+        <ScreenView>
         <DrawerOpener navigation={navigation} />
         <TodosContainer>
             <NewToDo todos={todos} setTodos={setTodos} />
             <ToDoList todos={todos} setTodos={setTodos}/>
         </TodosContainer>
-        </>
+        </ScreenView>
     )
 }
 
