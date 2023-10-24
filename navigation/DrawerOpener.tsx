@@ -11,9 +11,13 @@ const MenuContainer = styled.View`
 background-color: transparent;
 text-align: left;
 align-items:left;
+width: 50px;
 padding-top:40px;
 padding-left:20px;
-position:fixed;
+position:absolute;
+top:0;
+left:0;
+z-index:2;
 `
 
 // need to set state assigned to drawer open vs closed... 
@@ -33,7 +37,7 @@ const DrawerOpener:FunctionComponent<DrawerOpenerProps> = ({navigation}) => {
                 navigation.openDrawer()
                 }}>
                 <View>
-                    <Entypo name="menu" size={35} color="black" />
+                    <Entypo name="menu" size={40} color="white" />
                 </View>
             </TouchableHighlight>    
         </MenuContainer>

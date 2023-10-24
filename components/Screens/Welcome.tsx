@@ -7,6 +7,7 @@ import SmallText from '../Texts/SmallText';
 import RegText from '../Texts/RegText';
 import RegularButton from '../Buttons/RegularButton';
 import DrawerOpener from '../../navigation/DrawerOpener';
+import { View } from 'react-native';
 
 const WelcomeContainer = styled(Container)`
 background-color: ${colors.primary};
@@ -35,12 +36,20 @@ flex: 1;
 padding: 25px;
 `
 
+const ScreenView = styled.View`
+height:100%;
+width: 100%;
+position:relative;
+z-index:1;
+`
+
 import rings from "../../assets/ringsrecord.jpg"
 import BigText from '../Texts/BigText';
 
+
 const Welcome: FunctionComponent = ({navigation}:any) => {
     return (
-        <>
+        <ScreenView>
         <DrawerOpener navigation={navigation} />
         <StatusBar style="light"/>
         <WelcomeContainer>
@@ -53,7 +62,7 @@ const Welcome: FunctionComponent = ({navigation}:any) => {
                 <RegularButton onPress={()=>{}} >GET STARTED</RegularButton>
             </BottomSection>
         </WelcomeContainer>
-        </>
+        </ScreenView>
     )
 }
 
