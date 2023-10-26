@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
 import  { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import AppLoading from "expo-app-loading";
 import { useFonts } from 'expo-font';
 // import RootStack from './navigation/RootStack';
 import RootNav from './navigation/RootNav';
+import { AuthProvider } from './context/AuthContext';
 
 
 
@@ -19,11 +20,24 @@ if (!loadedFonts) {
   return <AppLoading />
 }
   return (
-   
-      <RootNav />
-   
+      <AuthProvider>
+        <RootNav />
+      </AuthProvider>
   );
 }
+
+const Gateway:FunctionComponent = () => {
+  return (
+      
+
+
+
+
+  )
+}
+
+
+
 
 const styles = StyleSheet.create({
   container: {

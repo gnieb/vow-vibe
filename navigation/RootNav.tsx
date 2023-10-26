@@ -12,6 +12,14 @@ const RootNav:FunctionComponent = () => {
     )
 }
 
+const NotAuthenticatedYet: FunctionComponent = () => {
+    return (
+        <NavigationContainer>
+            <MiniStack />
+        </NavigationContainer>
+    )
+}
+
 export default RootNav;
 
 
