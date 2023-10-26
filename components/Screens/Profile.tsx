@@ -4,7 +4,6 @@ import { Container } from "../shared";
 import { colors } from "../colors";
 import styled from "styled-components/native";
 import DrawerOpener from "../../navigation/DrawerOpener";
-// import { TouchableHighlight } from "react-native-gesture-handler";
 import {  useAuth } from "../../context/AuthContext";
 import { TouchableOpacity } from "react-native";
 

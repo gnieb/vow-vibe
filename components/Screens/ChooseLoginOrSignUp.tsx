@@ -4,10 +4,6 @@ import RegularButton from "../Buttons/RegularButton"
 import NewUser from "../NewUser"
 import styled from "styled-components/native"
 import { colors } from "../colors"
-import { Container } from "../shared"
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 
 import chair from '../../assets/vowVibephotos/flowersInChair.jpg'
 
@@ -34,6 +30,7 @@ const ChooseLoginOrSignup:FunctionComponent<Props> = ({navigation}) => {
             <ImageBackground
             source={chair}
             style={styles.image}
+            resizeMode="cover"
             >
             <ChooseContainer>
                 <RegularButton

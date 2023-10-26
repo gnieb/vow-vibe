@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, Text } from 'react-native';
 import { Formik } from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import styled from "styled-components/native";
@@ -46,12 +46,13 @@ const NewUser:FunctionComponent = () => {
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
        <View style={formStyles.formContainer}>
      
-         <RegText textStyles={formStyles.title}>SIGN UP TO START PLANNING THE BEST DAY OF YOUR LIFE</RegText>
+         <Text style={formStyles.title}>START PLANNING THE BEST DAY OF YOUR LIFE</Text>
          <View style={formStyles.inputWrapper}>
             <TextInput
             onChangeText={handleChange('first_name')}
             onBlur={handleBlur('first_name')}
             value={values.first_name}
+            placeholderTextColor="white"
             placeholder="first name..."
             style={formStyles.inputStyle}
             />
@@ -64,6 +65,7 @@ const NewUser:FunctionComponent = () => {
             onChangeText={handleChange('last_name')}
             onBlur={handleBlur('last_name')}
             value={values.last_name}
+            placeholderTextColor="white"
             placeholder="last name ..."
             style={formStyles.inputStyle}
             />
@@ -76,6 +78,7 @@ const NewUser:FunctionComponent = () => {
             onChangeText={handleChange('email')}
             onBlur={handleBlur('email')}
             value={values.email}
+            placeholderTextColor="white"
             placeholder="email.."
             style={formStyles.inputStyle}
             />
@@ -95,29 +98,34 @@ const NewUser:FunctionComponent = () => {
 const formStyles = StyleSheet.create({
    
      formContainer : {
-        backgroundColor: `${colors.lightgreen}`,
+        // backgroundColor: `${colors.lightgreen}`,
         padding: 20,
         marginTop: 100,
         borderRadius: 50,
-        width: '90%',
+        width: '80%',
         
         
     
      },
      title : {
-        color: `${colors.darkgreen}`,
-        fontSize: 26,
-        fontWeight: '400',
+        color: `white`,
+        fontSize: 42,
+        lineHeight: 60,
+        fontWeight: 'bold',
         marginBottom: 15,
+        opacity: 1,
      },
      inputWrapper: {
         marginBottom: 15,
      },
      inputStyle: {
-        borderColor: `${colors.mediumgreen}`,
+        borderColor: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
         borderWidth: 1,
         borderRadius: 50,
         padding: 10,
+        color:'white',
      }
 })
 
