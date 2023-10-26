@@ -2,8 +2,10 @@ import { Text, View, Button } from "react-native"
 import { Entypo } from '@expo/vector-icons';
 import styled from "styled-components/native";
 import { colors } from "../components/colors";
-import { TouchableHighlight } from "react-native-gesture-handler";
+// import { TouchableHighlight } from "react-native-gesture-handler";
 import { FunctionComponent, useState } from "react";
+import { TouchableOpacity } from "react-native";
+
 
 
 
@@ -33,13 +35,13 @@ const DrawerOpener:FunctionComponent<DrawerOpenerProps> = ({navigation}) => {
 
     return (
         <MenuContainer>
-            <TouchableHighlight onPress={()=> {
+            <TouchableOpacity onPress={()=> {
                 navigation.openDrawer()
                 }}>
                 <View>
                     <Entypo name="menu" size={40} color="white" />
                 </View>
-            </TouchableHighlight>    
+            </TouchableOpacity>    
         </MenuContainer>
     )
 }
