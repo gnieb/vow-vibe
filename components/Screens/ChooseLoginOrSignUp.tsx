@@ -36,12 +36,14 @@ const ChooseLoginOrSignup:FunctionComponent<Props> = ({navigation}) => {
                 <RegularButton
                 btnStyles={{"backgroundColor":"white"}}
                 onPress={() => navigation.navigate('SignUp')}
-                >Create Account
+                textStyles={{fontWeight:"bold", color:`${colors.darkgreen}`}}
+                >CREATE ACCOUNT
                 </RegularButton>
                 <RegularButton
                 onPress={() => navigation.navigate('Login')}
                 btnStyles={{"backgroundColor":"white"}}
-                >Log In
+                textStyles={{fontWeight:"bold", color:`${colors.darkgreen}`}}
+                >LOG IN
                 </RegularButton>
             </ChooseContainer>
             </ImageBackground>

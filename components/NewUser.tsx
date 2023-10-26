@@ -87,7 +87,12 @@ const NewUser:FunctionComponent = () => {
              <RegText>{errors.email}</RegText>
            ) : null}
 
-         <RegularButton  onPress={()=> handleSubmit()} >Sign up!</RegularButton>
+         <RegularButton  
+          onPress={()=> handleSubmit()} 
+          btnStyles={{"backgroundColor":"white"}}
+          textStyles={{fontWeight:"bold", color:`${colors.darkgreen}`}}
+         >
+          CREATE ACCOUNT</RegularButton>
 
        </View>
      )}

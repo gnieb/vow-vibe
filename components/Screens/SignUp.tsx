@@ -21,7 +21,7 @@ width:100%;
 
 const ButtonView = styled.TouchableOpacity`
 align-items: center;
-background-color: #b31240;
+background-color: white;
 width: 30%;
 padding: 10px;
 margin-top: 40px;
@@ -39,6 +39,7 @@ return (
     >
          <ButtonView
                 onPress={() => navigation.navigate('Login')}
+          
                 >
             <Text style={styles.buttonText}>LOG IN</Text>
         </ButtonView>
@@ -66,9 +67,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
       },
       buttonText: {
-        color: 'white',
+        color: `${colors.darkgreen}`,
         fontSize: 20,
-        fontWeight: 'bold',
         textAlign: 'center',
       },
   });
