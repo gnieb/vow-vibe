@@ -32,7 +32,7 @@ align-items: center;
 background-color: white;
 width: 30%;
 padding: 10px;
-margin-top: 40px;
+margin-top: 50px;
 margin-left:10px;
 border-radius: 50px;
 `
@@ -46,7 +46,8 @@ return (
     style={styles.image}
     resizeMode="cover"
     >
-        <ScrollContainer>
+        <ScrollContainer
+        automaticallyAdjustKeyboardInsets={true}>
          <ButtonView
                 onPress={() => navigation.navigate('Login')}
           
@@ -55,8 +56,6 @@ return (
         </ButtonView>
         
         <FormContainer>
-            <NewUser />
-            <NewUser />
             <NewUser />
         </FormContainer>
         </ScrollContainer>

@@ -19,12 +19,12 @@ let initialValues = {
 const ToDoSchema = Yup.object().shape({
     first_name: Yup.string()
       .min(2, 'Too Short!')
-      .required('Required'),
+      .required('REQUIRED'),
     last_name: Yup.string()
     .min(2, 'Too Short!')
-    .required('Required!'),
+    .required('REQUIRED!'),
     email: Yup.string()
-    .email('Invalid Email').required('Required!')
+    .email('Invalid Email').required('REQUIRED!')
   });
 
 
@@ -58,7 +58,7 @@ const NewUser:FunctionComponent = () => {
             />
          </View>
          {errors.first_name && touched.first_name ? (
-             <RegText>{errors.first_name}</RegText>
+             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.last_name}</Text>
            ) : null}
            <View style={formStyles.inputWrapper}>
             <TextInput
@@ -71,7 +71,7 @@ const NewUser:FunctionComponent = () => {
             />
          </View>
          {errors.last_name && touched.last_name ? (
-             <RegText>{errors.last_name}</RegText>
+             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.last_name}</Text>
            ) : null}
            <View style={formStyles.inputWrapper}>
             <TextInput
@@ -84,7 +84,7 @@ const NewUser:FunctionComponent = () => {
             />
          </View>
          {errors.email && touched.email ? (
-             <RegText>{errors.email}</RegText>
+             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.last_name}</Text>
            ) : null}
 
          <RegularButton  
@@ -105,7 +105,7 @@ const formStyles = StyleSheet.create({
      formContainer : {
         // backgroundColor: `${colors.lightgreen}`,
         padding: 20,
-        marginTop: 100,
+        marginTop: 50,
         borderRadius: 50,
         width: '80%',
         
