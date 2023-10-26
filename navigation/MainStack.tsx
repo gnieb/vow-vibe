@@ -13,6 +13,7 @@ import SignUp from "../components/Screens/SignUp";
 import Login from "../components/Screens/Login";
 import ChooseLoginOrSignup from "../components/Screens/ChooseLoginOrSignUp";
 import { useState } from "react";
+import Profile from "../components/Screens/Profile";
 
 export type MainStackParamList = {
   Drawer: undefined;
@@ -24,6 +25,7 @@ export type MainStackParamList = {
   GuestList:undefined;
   Login: undefined;
   ChooseLoginOrSignup:undefined;
+  Profile: undefined;
 };
 
 // export type DetailsScreenRouteProp = RouteProp<MainStackParamList, 'Details'>;
@@ -55,6 +57,7 @@ const MainStack:FunctionComponent = () => {
            <Stack.Screen name="GuestList" component={GuestList} />
            <Stack.Screen name="Login" component={Login} />
            <Stack.Screen name="ChooseLoginOrSignup" component={ChooseLoginOrSignup}  />
+           <Stack.Screen name="Profile" component= {Profile} />
         </Stack.Navigator>
     )
 }
