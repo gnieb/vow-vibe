@@ -66,4 +66,8 @@ const Welcome: FunctionComponent = ({navigation}:any) => {
     )
 }
 
+
+
+
+
 export default Welcome;
