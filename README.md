@@ -144,6 +144,8 @@ npx expo start -c
 - registry
 - seating chart
 - done screen (so I can double check that things have been completed!!! would be cool to have a done date displayed that is created when a to do is marked as done. )
+- profile situation => this is where the onLogout function will go.... lol descruct the useAuth here. 
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

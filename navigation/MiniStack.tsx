@@ -12,7 +12,7 @@ import type {RouteProp} from '@react-navigation/native';
 import SignUp from "../components/Screens/SignUp";
 import Login from "../components/Screens/Login";
 import ChooseLoginOrSignup from "../components/Screens/ChooseLoginOrSignUp";
-import { useState } from "react";
+
 
 
 export type MiniStackParams = {

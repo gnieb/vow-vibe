@@ -4,8 +4,9 @@ import React, { FunctionComponent } from 'react';
 import AppLoading from "expo-app-loading";
 import { useFonts } from 'expo-font';
 // import RootStack from './navigation/RootStack';
-import RootNav from './navigation/RootNav';
-import { AuthProvider } from './context/AuthContext';
+import {RootNav} from './navigation/RootNav';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { MiniRootNav } from './navigation/RootNav';
 
 
 
@@ -21,17 +22,20 @@ if (!loadedFonts) {
 }
   return (
       <AuthProvider>
-        <RootNav />
+        <Gateway />
       </AuthProvider>
   );
 }
 
 const Gateway:FunctionComponent = () => {
+
+  const {authState, onLogout} = useAuth();
+  
   return (
-      
 
-
-
+    <>
+    {authState?.authenticated ? <RootNav /> : <MiniRootNav />}
+    </>
 
   )
 }
