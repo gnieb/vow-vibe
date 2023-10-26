@@ -43,7 +43,6 @@ const MainStack:FunctionComponent = () => {
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false,
-           
           }} 
           //  initialRouteName="GuestList"
            >

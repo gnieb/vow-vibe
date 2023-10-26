@@ -4,6 +4,8 @@ import { Container } from "../shared";
 import { colors } from "../colors";
 import styled from "styled-components/native";
 import DrawerOpener from "../../navigation/DrawerOpener";
+import { TouchableHighlight } from "react-native-gesture-handler";
+import {  useAuth } from "../../context/AuthContext";
 
 
 const ProfileContainer = styled(Container)`
@@ -13,9 +15,15 @@ flex:1;
 `
 
 const Profile:FunctionComponent = ({navigation}:any) => {
+    const {onLogout} = useAuth()
+
+
     return (
         <ProfileContainer>
             <DrawerOpener navigation={navigation} />
+            <TouchableHighlight onPress={() => onLogout}>
+                LOGOUT 
+            </TouchableHighlight>
             <Text>PROFILE HERE</Text>
         </ProfileContainer>
     )
