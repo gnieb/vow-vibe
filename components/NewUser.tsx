@@ -14,6 +14,7 @@ let initialValues = {
     first_name: "",
     last_name:"",
     email:"",
+    password:""
 }
 
 const NewUserSchema = Yup.object().shape({
@@ -24,7 +25,11 @@ const NewUserSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .required('REQUIRED!'),
     email: Yup.string()
-    .email('Invalid Email').required('REQUIRED!')
+    .email('Invalid Email').required('REQUIRED!'),
+    password: Yup.string()
+    .required('Please Enter Your Password')
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+    "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
   });
 
 
@@ -84,7 +89,21 @@ const NewUser:FunctionComponent = () => {
             />
          </View>
          {errors.email && touched.email ? (
-             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.last_name}</Text>
+             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.email}</Text>
+           ) : null}
+
+        <View style={formStyles.inputWrapper}>
+            <TextInput
+            onChangeText={handleChange('password')}
+            onBlur={handleBlur('password')}
+            value={values.email}
+            placeholderTextColor="white"
+            placeholder="create a secure password.."
+            style={formStyles.inputStyle}
+            />
+         </View>
+         {errors.password && touched.password ? (
+             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.password}</Text>
            ) : null}
 
          <RegularButton  
