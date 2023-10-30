@@ -20,12 +20,12 @@ let initialValues = {
 const NewUserSchema = Yup.object().shape({
     first_name: Yup.string()
       .min(2, 'Too Short!')
-      .required('REQUIRED'),
+      .required('Please enter your first name'),
     last_name: Yup.string()
     .min(2, 'Too Short!')
-    .required('REQUIRED!'),
+    .required('Please enter your last name'),
     email: Yup.string()
-    .email('Invalid Email').required('REQUIRED!'),
+    .email('This is not a valid email address').required('Please enter your email'),
     password: Yup.string()
     .required('Please Enter Your Password')
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
@@ -63,7 +63,7 @@ const NewUser:FunctionComponent = () => {
             />
          </View>
          {errors.first_name && touched.first_name ? (
-             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.last_name}</Text>
+             <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.last_name}</Text>
            ) : null}
            <View style={formStyles.inputWrapper}>
             <TextInput
@@ -76,7 +76,7 @@ const NewUser:FunctionComponent = () => {
             />
          </View>
          {errors.last_name && touched.last_name ? (
-             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.last_name}</Text>
+             <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.last_name}</Text>
            ) : null}
            <View style={formStyles.inputWrapper}>
             <TextInput
@@ -89,21 +89,21 @@ const NewUser:FunctionComponent = () => {
             />
          </View>
          {errors.email && touched.email ? (
-             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.email}</Text>
+             <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.email}</Text>
            ) : null}
 
         <View style={formStyles.inputWrapper}>
             <TextInput
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
-            value={values.email}
+            value={values.password}
             placeholderTextColor="white"
-            placeholder="create a secure password.."
+            placeholder="create a password.."
             style={formStyles.inputStyle}
             />
          </View>
          {errors.password && touched.password ? (
-             <Text style={{color:"#b31240", fontStyle:"italic", backgroundColor:"white", width:"50%",}}>{errors.password}</Text>
+             <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.password}</Text>
            ) : null}
 
          <RegularButton  

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ImageBackground, Dimensions, ScrollView } from 
 import DrawerOpener from '../../navigation/DrawerOpener';
 import styled from 'styled-components/native';
 import { colors } from '../colors';
+import ReturnUser from './ReturnUser';
 
 const ScreenContainer = styled.View`
 background-color: ${colors.darkgreen};
@@ -52,7 +53,7 @@ const Login:FunctionComponent = ({navigation}:any) => {
             <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
         </ButtonView>
         <View>
-        <Text style={styles.text}>WELCOME BACK</Text>
+        <ReturnUser />
         </View>
         </ScrollContainer>
       </ImageBackground>
