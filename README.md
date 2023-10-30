@@ -126,7 +126,10 @@ i - run ios
 npx expo start -c 
 ```
 
-* Clear watchman warning
+**Authentication**
+- Validate a strong password using YUP library and reg ex to ensure the password contains at least  one lowercase letter, one uppercase letter, one number, one special character, and is at least 8n characters or more. This [blog post](https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/) was very helpful
+
+
 
 
 
@@ -145,6 +148,9 @@ npx expo start -c
 - seating chart
 - done screen (so I can double check that things have been completed!!! would be cool to have a done date displayed that is created when a to do is marked as done. )
 - profile situation => this is where the onLogout function will go.... lol descruct the useAuth here. 
+
+- add a password field to sign up screen new user component
+- add password confirmation !!! show password option in the form?? 
 
 
 

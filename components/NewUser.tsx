@@ -16,7 +16,7 @@ let initialValues = {
     email:"",
 }
 
-const ToDoSchema = Yup.object().shape({
+const NewUserSchema = Yup.object().shape({
     first_name: Yup.string()
       .min(2, 'Too Short!')
       .required('REQUIRED'),
@@ -32,7 +32,7 @@ const NewUser:FunctionComponent = () => {
     return (
         <Formik
         initialValues={initialValues}
-        validationSchema={ToDoSchema}
+        validationSchema={NewUserSchema}
         onSubmit={(val, {resetForm}) => {
             console.log(val)
             const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: []}
