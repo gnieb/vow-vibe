@@ -1,10 +1,11 @@
-import React, {FunctionComponent} from "react";
+import React, {FunctionComponent, useState} from "react";
 import { Text, StyleSheet, View, TextInput } from "react-native";
 import RegularButton from "../Buttons/RegularButton";
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { colors } from "../colors";
 
+const API_URL = "https://google.com"
 
 let initialValues = {
     email:"",
@@ -16,18 +17,44 @@ const ReturnUserSchema = Yup.object().shape({
     .email('Invalid Email').required('Please Enter Your Email'),
     password: Yup.string()
     .required('Please Enter Your Password')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-    "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
   });
 
 
 const ReturnUser:FunctionComponent = () => {
+    const [noMatch, setNoMatch] = useState<boolean>(false)
+
+    const tryLoggingIn = (values:any) => {
+        fetch(API_URL, {
+            method:"POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(values)
+        })
+        .then(handleResponse)
+    }
+
+    const handleResponse = (r:any) => {
+        if(r.ok){
+            console.log("logging in..")
+            // set user using context
+
+
+        } else {
+            console.log("STATUS:", r.status)
+            setNoMatch(true)
+            setTimeout(() => {
+                setNoMatch(false)
+            }, 7000)
+            }
+        }
+
+
     return (
         <Formik 
         initialValues={initialValues}
         validationSchema={ReturnUserSchema}
         onSubmit={(val, {resetForm}) => {
             console.log(val)
+            tryLoggingIn(val)
             resetForm({values: initialValues})
         }}
         >
@@ -61,14 +88,15 @@ const ReturnUser:FunctionComponent = () => {
               {errors.password && touched.password ? (
                   <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.password}</Text>
                 ) : null}
-               
+               {noMatch ? (<Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>Email and Password do not match.</Text>)
+               : null }
      
               <RegularButton  
                onPress={()=> handleSubmit()} 
                btnStyles={{"backgroundColor":"white"}}
                textStyles={{fontWeight:"bold", color:`${colors.darkgreen}`}}
               >
-               CREATE ACCOUNT</RegularButton>
+               LOG IN</RegularButton>
      
             </View>
           )}
