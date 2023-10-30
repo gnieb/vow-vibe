@@ -6,5 +6,6 @@ export type User = {
     id?: number;
     email: string;
     todos: ToDo[];
+    password?:string;
     // weddings?:[];
 }

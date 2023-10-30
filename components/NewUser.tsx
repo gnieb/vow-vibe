@@ -40,7 +40,7 @@ const NewUser:FunctionComponent = () => {
         validationSchema={NewUserSchema}
         onSubmit={(val, {resetForm}) => {
             console.log(val)
-            const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: []}
+            const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: [], password:val.password}
             // do something with the newUser:
             // POST new User to server/database
             console.log(newUser)
