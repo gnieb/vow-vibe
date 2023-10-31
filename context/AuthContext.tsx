@@ -31,7 +31,8 @@ export const AuthProvider = ({children}:any) => {
     useEffect(() => {
         const loadToken = async () => {
             const token = await SecureStore.getItemAsync(TOKEN_KEY);
-            console.log(token)
+            // console.log(token)
+            
 
             if(token) {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
@@ -81,13 +82,11 @@ export const AuthProvider = ({children}:any) => {
         //update HTTP axios headers
         axios.defaults.headers.common['Authorization'] = "";
 
-
         //reset auth state
         setAuthState({
             token:null,
             authenticated:false,
         })
-
     }
 
     const value ={

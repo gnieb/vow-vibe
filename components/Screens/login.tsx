@@ -38,11 +38,7 @@ border-radius: 50px;
 import chair from '../../assets/vowVibephotos/flowersInChair.jpg'
 
 const Login:FunctionComponent = ({navigation}:any) => {
-
-
-
   return (
-
     <ScreenContainer>
       <ImageBackground
       source={chair}
@@ -59,8 +55,6 @@ const Login:FunctionComponent = ({navigation}:any) => {
           </View>
         </ScrollContainer>
       </ImageBackground>
-      
-     
     </ScreenContainer>
   );
 }

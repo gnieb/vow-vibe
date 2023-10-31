@@ -37,9 +37,6 @@ const MainStack:FunctionComponent = () => {
 
   const [isOpen, setIsOpen] = useState(false)
 
-
-
-
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false,
@@ -48,14 +45,11 @@ const MainStack:FunctionComponent = () => {
            >
            {/* screens here  */}
            <Stack.Screen name="Drawer" component={Drawer} />
-           <Stack.Screen name="SignUp" component={SignUp} />
            <Stack.Screen name="Welcome" component={Welcome} />
            <Stack.Screen name="HomeScreen" component={HomeScreen}  />
            <Stack.Screen name="Todos" component={Todos} />
            <Stack.Screen name="Vision" component={Vision} />
            <Stack.Screen name="GuestList" component={GuestList} />
-           <Stack.Screen name="Login" component={Login} />
-           <Stack.Screen name="ChooseLoginOrSignup" component={ChooseLoginOrSignup}  />
            <Stack.Screen name="Profile" component= {Profile} />
         </Stack.Navigator>
     )
