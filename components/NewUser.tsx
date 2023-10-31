@@ -31,6 +31,28 @@ const NewUserSchema = Yup.object().shape({
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
   });
+  const API_URL = "http://192.168.1.14:5555"
+
+  const handleResponse = (r:any) => {
+    if (r.ok){
+      r.json().then((resp:any) => {
+        console.log("Successfully created!", resp)
+
+      })
+    } else {
+      console.log("STATUS:", r.status)
+    }
+  }
+
+  const createNewUser = (value:any) => {
+    fetch(`${API_URL}/users`, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(value)
+    })
+    .then(handleResponse)
+
+  }
 
 
 const NewUser:FunctionComponent = () => {
@@ -43,6 +65,7 @@ const NewUser:FunctionComponent = () => {
             const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: [], password:val.password}
             // do something with the newUser:
             // POST new User to server/database
+            createNewUser(val)
             console.log(newUser)
 
             resetForm({values: initialValues})

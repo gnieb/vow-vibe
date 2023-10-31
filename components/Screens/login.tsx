@@ -5,6 +5,7 @@ import DrawerOpener from '../../navigation/DrawerOpener';
 import styled from 'styled-components/native';
 import { colors } from '../colors';
 import ReturnUser from './ReturnUser';
+import { useAuth } from '../../context/AuthContext';
 
 const ScreenContainer = styled.View`
 background-color: ${colors.darkgreen};
@@ -37,6 +38,9 @@ border-radius: 50px;
 import chair from '../../assets/vowVibephotos/flowersInChair.jpg'
 
 const Login:FunctionComponent = ({navigation}:any) => {
+
+
+
   return (
 
     <ScreenContainer>
@@ -46,15 +50,13 @@ const Login:FunctionComponent = ({navigation}:any) => {
       resizeMode="cover"
       >
         <ScrollContainer>
-        <ButtonView
-                onPress={() => navigation.navigate('SignUp')}
-          
-                >
+          <ButtonView
+            onPress={() => navigation.navigate('SignUp')}>
             <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
-        </ButtonView>
-        <View>
-        <ReturnUser />
-        </View>
+          </ButtonView>
+          <View>
+            <ReturnUser />
+          </View>
         </ScrollContainer>
       </ImageBackground>
       

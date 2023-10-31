@@ -4,8 +4,9 @@ import RegularButton from "../Buttons/RegularButton";
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { colors } from "../colors";
+import { useAuth } from '../../context/AuthContext';
 
-const API_URL = "https://google.com"
+const API_URL = "http://192.168.1.14:5555"
 
 let initialValues = {
     email:"",
@@ -21,40 +22,27 @@ const ReturnUserSchema = Yup.object().shape({
 
 
 const ReturnUser:FunctionComponent = () => {
+    const {onLogin} = useAuth()
     const [noMatch, setNoMatch] = useState<boolean>(false)
 
-    const tryLoggingIn = (values:any) => {
-        fetch(API_URL, {
-            method:"POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(values)
-        })
-        .then(handleResponse)
-    }
-
-    const handleResponse = (r:any) => {
-        if(r.ok){
-            console.log("logging in..")
-            // set user using context
-
-
-        } else {
-            console.log("STATUS:", r.status)
+    const tryLoggingIn = async (values:any) => {
+        const result = await onLogin!(values.email, values.password);
+        if (result && result.error) {
+            alert(result.msg)
             setNoMatch(true)
             setTimeout(() => {
                 setNoMatch(false)
             }, 7000)
-            }
         }
+    }
 
 
     return (
         <Formik 
         initialValues={initialValues}
         validationSchema={ReturnUserSchema}
-        onSubmit={(val, {resetForm}) => {
-            console.log(val)
-            tryLoggingIn(val)
+        onSubmit={(values, {resetForm}) => {
+            tryLoggingIn(values)
             resetForm({values: initialValues})
         }}
         >
