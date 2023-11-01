@@ -7,7 +7,7 @@ const StyledText = styled.Text`
 font-size: 20px;
 color: ${colors.black};
 text-align: left;
-font-family: Roboto-Regular;
+font-family: Helvetica;
 `
 
 

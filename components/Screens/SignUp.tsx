@@ -50,7 +50,6 @@ return (
         automaticallyAdjustKeyboardInsets={true}>
          <ButtonView
                 onPress={() => navigation.navigate('Login')}
-          
                 >
             <Text style={styles.buttonText}>LOG IN</Text>
         </ButtonView>

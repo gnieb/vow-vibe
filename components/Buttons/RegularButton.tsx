@@ -21,7 +21,7 @@ border-radius: 50px;
 
 interface ButtonProps {
     btnStyles?: StyleProp<ViewStyle>;
-    onPress : ((event: GestureResponderEvent) => void | undefined);
+    onPress : ((event: GestureResponderEvent) => void | undefined | Promise<void>);
     textStyles?: StyleProp<TextStyle>;
     children: React.ReactNode;
 }

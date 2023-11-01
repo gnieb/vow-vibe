@@ -67,7 +67,6 @@ const NewUser:FunctionComponent = () => {
             // POST new User to server/database
             createNewUser(val)
             console.log(newUser)
-
             resetForm({values: initialValues})
         }}
     >

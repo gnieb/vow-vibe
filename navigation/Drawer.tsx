@@ -7,6 +7,7 @@ import Welcome from '../components/Screens/Welcome';
 import Vision from '../components/Screens/Vision';
 import Todos from '../components/Screens/Todos';
 import GuestList from '../components/Screens/GuestList';
+import Profile from '../components/Screens/Profile';
 import { useWindowDimensions } from 'react-native';
 
 
@@ -33,6 +34,7 @@ const Drawer = () => {
       <Drawer.Screen name="Vision" component={Vision} />
       <Drawer.Screen name="Todos" component={Todos} />
       <Drawer.Screen name="GuestList" component={GuestList} />
+      <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
   );
 };

@@ -6,7 +6,7 @@ interface AuthProps {
     authState?: {token:string | null; authenticated:boolean | null};
     onSignUp?: (email:string, password:string, first_name:string, last_name:string) => Promise<any>;
     onLogin?:(email:string, password:string) => Promise<any>;
-    onLogout?:()=>Promise<any>;
+    onLogout?:()=>Promise<any> |Promise<void>;
 }
 
 const TOKEN_KEY = 'my-jwt';
@@ -52,20 +52,18 @@ export const AuthProvider = ({children}:any) => {
         } catch (e) {
             return {error: true, msg: (e as any).response.data.msg};
         }
-
     }
 
     const login = async (email:string, password:string) => {
         try {
             const result = await axios.post(`${API_URL}/login`, {email,password})
-            console.log("file: AuthContext.tsx:41 ~ login ~ 🔐 Here's your value 🔐 \n:", result)
+            // console.log("file: AuthContext.tsx:41 ~ login ~ 🔐 Here's your value 🔐 \n:", result)
             setAuthState({
                 token:result.data.token,
                 authenticated: true
             });
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.token}`
-
             await SecureStore.setItemAsync(TOKEN_KEY, result.data.token)
 
             return result 
@@ -78,6 +76,7 @@ export const AuthProvider = ({children}:any) => {
     const logout = async () => {
         // delete token from storage
         await SecureStore.deleteItemAsync(TOKEN_KEY);
+        console.log("logging out...")
 
         //update HTTP axios headers
         axios.defaults.headers.common['Authorization'] = "";
