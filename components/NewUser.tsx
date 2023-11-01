@@ -43,6 +43,8 @@ const NewUserSchema = Yup.object().shape({
       console.log("STATUS:", r.status)
     }
   }
+// I actually don't use the secure storage for this.. did NOT use the onRegister from useAuth()
+// which is fine. once a new user is registered, they're redirected to the login page.
 
   const createNewUser = (value:any) => {
     fetch(`${API_URL}/users`, {
@@ -61,12 +63,12 @@ const NewUser:FunctionComponent = () => {
         initialValues={initialValues}
         validationSchema={NewUserSchema}
         onSubmit={(val, {resetForm}) => {
-            console.log(val)
+            // console.log(val)
             const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: [], password:val.password}
-            // do something with the newUser:
-            // POST new User to server/database
+         
+            // POST new User to server/database:
             createNewUser(val)
-            console.log(newUser)
+            // console.log(newUser)
             resetForm({values: initialValues})
         }}
     >
