@@ -1,6 +1,7 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { colors } from "./colors";
 
@@ -126,9 +127,11 @@ const Countdown:FunctionComponent = () => {
                         onPress={handleResetTimer} 
                         btnStyles={styles.button }
                     >RESET</RegularButton> 
-        <DateTimePickerModal 
-                    isVisible={isDatePickerVisible} 
+        <DateTimePicker 
+                    // isVisible={isDatePickerVisible} 
+                    value={expiryDate}
                     mode="datetime"
+                        // or "date"
                     onConfirm={handleDateConfirm} 
                     onCancel={handleDateCancel} 
                 /> 
