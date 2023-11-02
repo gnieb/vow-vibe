@@ -8,6 +8,7 @@ import RegText from '../Texts/RegText';
 import RegularButton from '../Buttons/RegularButton';
 import DrawerOpener from '../../navigation/DrawerOpener';
 import { View } from 'react-native';
+import Countdown from '../Countdown';
 
 const WelcomeContainer = styled(Container)`
 background-color: ${colors.primary};
@@ -57,7 +58,7 @@ const Welcome: FunctionComponent = ({navigation}:any) => {
                 <TopImage source={rings} />
             </TopSection>
             <BottomSection>
-                <BigText>PLACEHOLDER FOR A COUNTDOWN</BigText>
+                <Countdown />
                 <RegText>You've waited forever for this day. Let's make it perfect.</RegText>
                 <RegularButton onPress={()=>{}} >GET STARTED</RegularButton>
             </BottomSection>

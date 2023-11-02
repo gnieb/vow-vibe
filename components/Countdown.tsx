@@ -1,6 +1,17 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { Text, View } from "react-native";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { Text, View, Button, StyleSheet } from "react-native";
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
+import { colors } from "./colors";
+
+import styled from 'styled-components/native';
+import RegularButton from "./Buttons/RegularButton";
+
+const TimerView = styled.View`
+justify-content: center;
+padding: 10px;
+width: 90%;
+`
 
 
 const Countdown:FunctionComponent = () => {
@@ -79,11 +90,130 @@ const Countdown:FunctionComponent = () => {
 
 
     return (
-        <View>
-        <Text>0</Text>
-        <Text>DAYS UNTIL THE BIG DAY</Text>
-        </View>
+        <TimerView>
+            <Text>DAYS UNTIL THE BIG DAY</Text>
+            <View style={styles.timer}>
+                <Text style={[ 
+                            styles.timeUnit, 
+                            styles.yearUnit, 
+                        ]} >{formatTime(timeUnits.years)}</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeUnit, 
+                            styles.dayUnit, 
+                        ]} >{formatTime(timeUnits.days)}</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeUnit, 
+                            styles.hourUnit, 
+                        ]} >{formatTime(timeUnits.hours)}</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeUnit, 
+                            styles.minuteUnit, 
+                        ]} >{formatTime(timeUnits.minutes)}</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeUnit, 
+                            styles.secondUnit, 
+                        ]}>{formatTime(timeUnits.seconds)}</Text>
+            </View>
+                    <RegularButton 
+                        btnStyles={styles.button}
+                        onPress={handleStartTimer} 
+                    >START</RegularButton> 
+                    <RegularButton 
+                        onPress={handleResetTimer} 
+                        btnStyles={styles.button }
+                    >RESET</RegularButton> 
+        <DateTimePickerModal 
+                    isVisible={isDatePickerVisible} 
+                    mode="datetime"
+                    onConfirm={handleDateConfirm} 
+                    onCancel={handleDateCancel} 
+                /> 
+        </TimerView>
     )
+    
 }
+
+
+const styles = StyleSheet.create({ 
+    container: { 
+        flex: 1, 
+        padding: 20, 
+        justifyContent: "center", 
+        alignItems: "center", 
+        backgroundColor: "#f0f0f0", 
+    }, 
+    title: { 
+        fontSize: 30, 
+        fontWeight: "bold", 
+        paddingVertical: 20, 
+        color: "green", 
+    }, 
+    subtitle: { 
+        marginBottom: 20, 
+        fontSize: 18, 
+    }, 
+    timer: { 
+        flexDirection: "row", 
+        alignItems: "center", 
+    }, 
+    timeUnit: { 
+        fontSize: 24, 
+        fontWeight: "bold", 
+        paddingHorizontal: 10, 
+        paddingVertical: 5, 
+    }, 
+    yearUnit: { 
+        backgroundColor: `${colors.darkgreen}`, 
+        borderRadius: 15, 
+        color: "white", 
+    }, 
+    dayUnit: { 
+        backgroundColor: `${colors.darkgreen}`, 
+        borderRadius: 15, 
+        color: "white", 
+    }, 
+    hourUnit: { 
+        backgroundColor: `${colors.darkgreen}`, 
+        borderRadius: 15, 
+        color: "white", 
+    }, 
+    minuteUnit: { 
+        backgroundColor: `${colors.darkgreen}`, 
+        borderRadius: 15, 
+        color: "white", 
+    }, 
+    secondUnit: { 
+        backgroundColor: `${colors.darkgreen}`, 
+        borderRadius: 15, 
+        color: "white", 
+    }, 
+    timeSeparator: { 
+        fontSize: 24, 
+        fontWeight: "bold", 
+        marginHorizontal: 5, 
+    }, 
+    timetitle: { 
+        fontSize: 17, 
+        padding: 10, 
+        paddingRight: 19, 
+        fontWeight: "bold", 
+    }, 
+    buttonText: {
+        color: `${colors.darkgreen}`,
+        fontSize: 20,
+        textAlign: 'center',
+      },
+    button: {
+        alignItems: 'center',
+        backgroundColor: 'white',
+    },
+    buttonContainer: {
+        width:'80%',
+    }
+}); 
 
 export default Countdown;
