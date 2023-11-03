@@ -1,10 +1,7 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import DateTimePicker from '@react-native-community/datetimepicker';
-
 import { colors } from "./colors";
-
 import styled from 'styled-components/native';
 import RegularButton from "./Buttons/RegularButton";
 
@@ -35,15 +32,33 @@ const Countdown:FunctionComponent = () => {
         const calculateTimeUnits = (timeDifference:any) => {
             const seconds = Math.floor( timeDifference/1000)
 
-            setTimeUnits({
-                years : Math.floor(seconds / 365 * 24 * 60 * 60),
-                days: Math.floor(seconds % (365 * 24 * 60 * 60)) / 
-                (24 * 60 * 60),
-                hours: Math.floor(seconds % (24 * 60 * 60)) / (60 * 60), 
-                minutes: Math.floor( (seconds % (60 * 60)) / 60 ), 
-                seconds: Math.floor(seconds % 60) 
-            })
+            // setTimeUnits({
+            //     years : Math.floor(seconds / 365 * 24 * 60 * 60),
+            //     days: Math.floor(seconds % (365 * 24 * 60 * 60)) / 
+            //     (24 * 60 * 60),
+            //     hours: Math.floor(seconds % (24 * 60 * 60)) / (60 * 60), 
+            //     minutes: Math.floor( (seconds % (60 * 60)) / 60 ), 
+            //     seconds: Math.floor(seconds % 60) 
+            // })
+
+            setTimeUnits({ 
+                years: Math.floor( 
+                    seconds / (365 * 24 * 60 * 60) 
+                ), 
+                days: Math.floor( 
+                    (seconds % (365 * 24 * 60 * 60)) / 
+                        (24 * 60 * 60) 
+                ), 
+                hours: Math.floor( 
+                    (seconds % (24 * 60 * 60)) / (60 * 60) 
+                ), 
+                minutes: Math.floor( 
+                    (seconds % (60 * 60)) / 60 
+                ), 
+                seconds: seconds % 60, 
+            }); 
         }
+        
 
         const updateCountdown = () => {
             const currentDate = new Date().getTime();
@@ -61,14 +76,13 @@ const Countdown:FunctionComponent = () => {
 
         updateCountdown(); 
         const interval = setInterval(updateCountdown, 1000); 
-        
         return () => clearInterval(interval); 
 
     }, [expiryDate])
 
     const formatTime = (time:any) => { 
         return time.toString().padStart(2, "0"); 
-    };
+    }; 
 
     // padStart() => The padStart() method of String values pads this string with another string (multiple times, if needed) until the resulting string reaches the given length. The padding is applied from the start of this string.
 
