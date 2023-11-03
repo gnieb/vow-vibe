@@ -21,7 +21,7 @@ const Countdown:FunctionComponent = () => {
 // create useEffect that pulls the time RIGHT NOW. and then subtract that from the WEdding date/time.
 // use DateTimePickerModal
 
-    const [isDatePickerVisible, setDatePickerVisible] = useState(false); 
+    const [isDatePickerVisible, setDatePickerVisible] = useState<boolean>(false); 
     const [expiryDate, setExpiryDate] = useState( new Date() ); // Default to current date and time 
     const [timeUnits, setTimeUnits] = useState({ 
         years: 0, 
@@ -127,11 +127,10 @@ const Countdown:FunctionComponent = () => {
                         onPress={handleResetTimer} 
                         btnStyles={styles.button }
                     >RESET</RegularButton> 
-        <DateTimePicker 
-                    // isVisible={isDatePickerVisible} 
-                    value={expiryDate}
+        <DateTimePickerModal 
+                    isVisible={isDatePickerVisible} 
+                    display="inline"
                     mode="datetime"
-                        // or "date"
                     onConfirm={handleDateConfirm} 
                     onCancel={handleDateCancel} 
                 /> 
