@@ -129,6 +129,9 @@ npx expo start -c
 **Authentication**
 - Validate a strong password using YUP library and reg ex to ensure the password contains at least  one lowercase letter, one uppercase letter, one number, one special character, and is at least 8n characters or more. This [blog post](https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/) was very helpful
 
+**Countdown** 
+- using [DateTimePicker Modal](https://github.com/mmazzarolo/react-native-modal-datetime-picker), which is built off the react-native community Date Time Picker.
+
 
 
 
