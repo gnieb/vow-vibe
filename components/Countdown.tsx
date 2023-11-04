@@ -1,5 +1,5 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, Pressable, StyleSheet } from "react-native";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { colors } from "./colors";
 import styled from 'styled-components/native';
@@ -7,8 +7,9 @@ import RegularButton from "./Buttons/RegularButton";
 
 const TimerView = styled.View`
 justify-content: center;
+align-items: center;
 padding: 10px;
-width: 90%;
+width: 100%;
 `
 
 
@@ -102,11 +103,11 @@ const Countdown:FunctionComponent = () => {
     const handleDateCancel = () => { 
         setDatePickerVisible(false); 
     }; 
-
+// how is this date format stored? 
+    console.log(expiryDate)
 
     return (
         <TimerView>
-            <Text>DAYS UNTIL THE BIG DAY</Text>
             <View style={styles.timer}>
                 <Text style={[ 
                             styles.timeUnit, 
@@ -133,14 +134,22 @@ const Countdown:FunctionComponent = () => {
                             styles.secondUnit, 
                         ]}>{formatTime(timeUnits.seconds)}</Text>
             </View>
-                    <RegularButton 
-                        btnStyles={styles.button}
-                        onPress={handleStartTimer} 
-                    >START</RegularButton> 
-                    <RegularButton 
-                        onPress={handleResetTimer} 
-                        btnStyles={styles.button }
-                    >RESET</RegularButton> 
+            <View
+            style={styles.buttonContainer}
+            >
+                <Pressable
+                style={styles.button}
+                onPress={handleStartTimer} 
+                >
+                    <Text>START</Text>
+                </Pressable>
+                <Pressable
+                style={styles.button}
+                onPress={handleResetTimer} 
+                >
+                    <Text>RESET</Text>
+                </Pressable>
+            </View>
         <DateTimePickerModal 
                     isVisible={isDatePickerVisible} 
                     display="inline"
@@ -177,35 +186,35 @@ const styles = StyleSheet.create({
         alignItems: "center", 
     }, 
     timeUnit: { 
-        fontSize: 24, 
+        fontSize: 40, 
         fontWeight: "bold", 
-        paddingHorizontal: 10, 
+        paddingHorizontal: 5, 
         paddingVertical: 5, 
     }, 
     yearUnit: { 
-        backgroundColor: `${colors.darkgreen}`, 
+        // backgroundColor: `${colors.darkgreen}`, 
         borderRadius: 15, 
-        color: "white", 
+        color: `${colors.darkgreen}`, 
     }, 
     dayUnit: { 
-        backgroundColor: `${colors.darkgreen}`, 
+        // backgroundColor: `${colors.darkgreen}`, 
         borderRadius: 15, 
-        color: "white", 
+        color: `${colors.darkgreen}`, 
     }, 
     hourUnit: { 
-        backgroundColor: `${colors.darkgreen}`, 
+        // backgroundColor: `${colors.darkgreen}`, 
         borderRadius: 15, 
-        color: "white", 
+        color: `${colors.darkgreen}`,  
     }, 
     minuteUnit: { 
-        backgroundColor: `${colors.darkgreen}`, 
+        // backgroundColor: `${colors.darkgreen}`, 
         borderRadius: 15, 
-        color: "white", 
+        color: `${colors.darkgreen}`, 
     }, 
     secondUnit: { 
-        backgroundColor: `${colors.darkgreen}`, 
+        // backgroundColor: `${colors.darkgreen}`, 
         borderRadius: 15, 
-        color: "white", 
+        color: `${colors.darkgreen}`, 
     }, 
     timeSeparator: { 
         fontSize: 24, 
@@ -226,9 +235,16 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         backgroundColor: 'white',
+        padding:10,
+        borderRadius: 50,
+        justifyContent: 'center',
+        margin:2,
     },
     buttonContainer: {
-        width:'80%',
+        width:'40%',
+        justifyContent:'center',
+        flexDirection: "row", 
+        alignItems: "center", 
     }
 }); 
 

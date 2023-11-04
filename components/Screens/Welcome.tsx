@@ -35,6 +35,7 @@ const BottomSection = styled.View`
 width: 100%;
 flex: 1;
 padding: 25px;
+justify-content:center;
 `
 
 const ScreenView = styled.View`
@@ -58,9 +59,8 @@ const Welcome: FunctionComponent = ({navigation}:any) => {
                 <TopImage source={rings} />
             </TopSection>
             <BottomSection>
-                <Countdown />
                 <RegText>You've waited forever for this day. Let's make it perfect.</RegText>
-                <RegularButton onPress={()=>{}} >GET STARTED</RegularButton>
+                <Countdown />
             </BottomSection>
         </WelcomeContainer>
         </ScreenView>

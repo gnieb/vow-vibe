@@ -7,7 +7,7 @@ const StyledText = styled.Text`
 font-size: 13px;
 color: ${colors.black};
 text-align: left;
-// font-family: Helvetica;
+font-family: Helvetica;
 `
 
 
