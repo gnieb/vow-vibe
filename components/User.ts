@@ -5,7 +5,7 @@ export type User = {
     last_name: string;
     id?: number;
     email: string;
-    todos: ToDo[];
+    todos?: ToDo[];
     password?:string;
     // weddings?:[];
 }

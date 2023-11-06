@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as SecureStore from 'expo-secure-store';
+import { User } from "../components/User";
+import ToDo from "../components/ToDo";
 
 interface AuthProps {
     authState?: {token:string | null; authenticated:boolean | null};
@@ -26,6 +28,15 @@ export const AuthProvider = ({children}:any) => {
     }>({
         token:null,
         authenticated:null
+    })
+
+    const [user, setUser] = useState<User>({
+        first_name: "",
+        last_name: "",
+        id: 0,
+        email: "",
+        todos: [],
+        password:"",
     })
 
     useEffect(() => {
