@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from "react";
+import React, {FunctionComponent, useState} from "react";
 import { Text, View, Button } from "react-native";
 import { Container } from "../shared";
 import { colors } from "../colors";
@@ -7,6 +7,9 @@ import DrawerOpener from "../../navigation/DrawerOpener";
 import {  useAuth } from "../../context/AuthContext";
 import { TouchableOpacity } from "react-native";
 import RegularButton from "../Buttons/RegularButton";
+import NewWedding from "../NewWedding";
+
+
 
 const ProfileContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -27,6 +30,7 @@ border-radius: 50px;
 
 const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout} = useAuth()
+    const [isFormVisible, setIsFormVisible] = useState<boolean>(false)
 
     const tryLoggingOut = async () => {
         await onLogout!()
@@ -39,6 +43,9 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     return (
         <ProfileContainer>
             <DrawerOpener navigation={navigation} />
+            {isFormVisible ? 
+                <NewWedding /> : null
+            }
             <ButtonView
                 onPress={() => tryLoggingOut()}
                 >
