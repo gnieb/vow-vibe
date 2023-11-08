@@ -10,6 +10,7 @@ interface AuthProps {
     onLogin?:(email:string, password:string) => Promise<any>;
     onLogout?:()=>Promise<any> |Promise<void>;
     user?: User;
+    setUser?: React.Dispatch<React.SetStateAction<User>>;
 }
 
 const TOKEN_KEY = 'my-jwt';
@@ -112,6 +113,7 @@ export const AuthProvider = ({children}:any) => {
         onLogin:login,
         onLogout:logout,
         authState,
+        setUser,
         user,
     }
     

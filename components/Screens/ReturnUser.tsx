@@ -22,7 +22,6 @@ const ReturnUserSchema = Yup.object().shape({
 
 const ReturnUser:FunctionComponent = () => {
     const {onLogin} = useAuth();
-    const {user} = useAuth();
     const [noMatch, setNoMatch] = useState<boolean>(false)
 
     const tryLoggingIn = async (values:any) => {
@@ -33,6 +32,8 @@ const ReturnUser:FunctionComponent = () => {
             setTimeout(() => {
                 setNoMatch(false)
             }, 7000)
+        } else {
+            console.log(result)
         }
     }
 

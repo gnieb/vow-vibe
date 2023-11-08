@@ -27,7 +27,7 @@ border-radius: 50px;
 `
 
 const Profile:FunctionComponent = ({navigation}:any) => {
-    const {onLogout} = useAuth()
+    const {onLogout, user} = useAuth()
 
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false)
 
@@ -42,6 +42,11 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     return (
         <ProfileContainer>
             <DrawerOpener navigation={navigation} />
+            <ButtonView
+                onPress={()=> setIsFormVisible(!isFormVisible)}
+                >
+                <Text style={{fontWeight:"bold", color:`${colors.darkgreen}`}}>Add Wedding info</Text>
+            </ButtonView>
             {isFormVisible ? 
                 <NewWedding /> : null
             }
@@ -51,6 +56,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                 <Text style={{fontWeight:"bold", color:`${colors.darkgreen}`}}>LOG OUT</Text>
             </ButtonView>
             <Text>PROFILE HERE</Text>
+            {user? <Text>{user.first_name}</Text>: null}
         </ProfileContainer>
     )
 }
