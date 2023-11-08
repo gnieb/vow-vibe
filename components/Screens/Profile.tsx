@@ -1,12 +1,10 @@
 import React, {FunctionComponent, useState} from "react";
-import { Text, View, Button } from "react-native";
+import { Text} from "react-native";
 import { Container } from "../shared";
 import { colors } from "../colors";
 import styled from "styled-components/native";
 import DrawerOpener from "../../navigation/DrawerOpener";
-import {  useAuth } from "../../context/AuthContext";
-import { TouchableOpacity } from "react-native";
-import RegularButton from "../Buttons/RegularButton";
+import {  useAuth,  } from "../../context/AuthContext";
 import NewWedding from "../NewWedding";
 
 
@@ -30,6 +28,7 @@ border-radius: 50px;
 
 const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout} = useAuth()
+
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false)
 
     const tryLoggingOut = async () => {

@@ -1,11 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import { FunctionComponent, } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Dimensions, ScrollView } from 'react-native';
-import DrawerOpener from '../../navigation/DrawerOpener';
 import styled from 'styled-components/native';
 import { colors } from '../colors';
 import ReturnUser from './ReturnUser';
-import { useAuth } from '../../context/AuthContext';
+
 
 const ScreenContainer = styled.View`
 background-color: ${colors.darkgreen};

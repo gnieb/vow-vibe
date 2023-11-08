@@ -9,6 +9,7 @@ interface AuthProps {
     onSignUp?: (email:string, password:string, first_name:string, last_name:string) => Promise<any>;
     onLogin?:(email:string, password:string) => Promise<any>;
     onLogout?:()=>Promise<any> |Promise<void>;
+    user?: User;
 }
 
 const TOKEN_KEY = 'my-jwt';
@@ -36,7 +37,6 @@ export const AuthProvider = ({children}:any) => {
         id: 0,
         email: "",
         todos: [],
-        password:"",
     })
 
     useEffect(() => {
@@ -55,7 +55,7 @@ export const AuthProvider = ({children}:any) => {
         }
 
         loadToken();
-    })
+    }, [])
 
     const register = async (email:string, password:string, first_name:string, last_name:string) => {
         try {
@@ -107,12 +107,12 @@ export const AuthProvider = ({children}:any) => {
         })
     }
 
-    const value ={
+    const value = {
         onRegister: register,
         onLogin:login,
         onLogout:logout,
         authState,
-        user
+        user,
     }
     
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

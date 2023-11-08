@@ -4,9 +4,8 @@ import RegularButton from "../Buttons/RegularButton";
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { colors } from "../colors";
-import { useAuth } from '../../context/AuthContext';
+import { useAuth, } from '../../context/AuthContext';
 
-const API_URL = "http://192.168.1.14:5555"
 
 let initialValues = {
     email:"",
@@ -22,7 +21,8 @@ const ReturnUserSchema = Yup.object().shape({
 
 
 const ReturnUser:FunctionComponent = () => {
-    const {onLogin} = useAuth()
+    const {onLogin} = useAuth();
+    const {user} = useAuth();
     const [noMatch, setNoMatch] = useState<boolean>(false)
 
     const tryLoggingIn = async (values:any) => {
