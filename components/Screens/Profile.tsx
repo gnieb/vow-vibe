@@ -30,7 +30,9 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout, user} = useAuth()
 
     const [isFormVisible, setIsFormVisible] = useState<boolean>(false)
+    const [isEditWeddingShown, setIsEditWeddingShown] = useState<boolean>(false)
 
+    
     const tryLoggingOut = async () => {
         await onLogout!()
         // if (result && result.error) {
@@ -45,7 +47,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
             <ButtonView
                 onPress={()=> setIsFormVisible(!isFormVisible)}
                 >
-                <Text style={{fontWeight:"bold", color:`${colors.darkgreen}`}}>Add Wedding info</Text>
+                <Text style={{fontWeight:"bold", color:`${colors.darkgreen}`}}>New Wedding</Text>
             </ButtonView>
             {isFormVisible ? 
                 <NewWedding /> : null
