@@ -40,6 +40,8 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         // }
     }
 
+    console.log(user)
+
 
     return (
         <ProfileContainer>

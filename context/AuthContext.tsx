@@ -14,7 +14,7 @@ interface AuthProps {
 }
 
 const TOKEN_KEY = 'my-jwt';
-export const API_URL = "http://192.168.1.14:5555"
+export const API_URL = "http://192.168.1.6:5555"
 
 const AuthContext = createContext<AuthProps>({});
 
@@ -35,7 +35,6 @@ export const AuthProvider = ({children}:any) => {
     const [user, setUser] = useState<User>({
         first_name: "",
         last_name: "",
-        id: 0,
         email: "",
         todos: [],
     })
@@ -68,7 +67,9 @@ export const AuthProvider = ({children}:any) => {
 
     const login = async (email:string, password:string) => {
         try {
+           
             const result = await axios.post(`${API_URL}/login`, {email,password})
+            
             // console.log("file: AuthContext.tsx:41 ~ login ~ 🔐 Here's your value 🔐 \n:", result)
             setAuthState({
                 token:result.data.token,
@@ -85,10 +86,11 @@ export const AuthProvider = ({children}:any) => {
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.token}`
             await SecureStore.setItemAsync(TOKEN_KEY, result.data.token)
-
+            console.log("User:",user)
             return result 
 
         } catch (e) {
+            console.log("Error during login", "e:", e)
             return {error: true, msg:(e as any).response.data.msg}
         }
     }

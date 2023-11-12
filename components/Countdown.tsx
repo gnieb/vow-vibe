@@ -103,8 +103,9 @@ const Countdown:FunctionComponent = () => {
     const handleDateCancel = () => { 
         setDatePickerVisible(false); 
     }; 
-// how is this date format stored? 
-    console.log(expiryDate)
+// how is this date format stored? :
+// 2023-11-10T15:19:49.960Z
+    // console.log(expiryDate)
 
     return (
         <TimerView>

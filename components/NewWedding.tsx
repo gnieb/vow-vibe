@@ -30,10 +30,34 @@ const NewWedding:FunctionComponent = () => {
         setDatePickerVisible(false); 
     }
 
+
+    const postWedding = async (data:any) => {
+            try {
+                const resp = await fetch(`${API_URL}/weddings`, {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body:JSON.stringify(data)
+            })
+
+        } catch (e) {
+            return {error: true, msg:(e as any).response.data.msg}
+        } 
+
+    }
+
+    console.log(user)
+
     const handleDateConfirm = (date:any) => { 
         // POST to database!
-
-
+        
+        const newWed = {
+            date: date,
+            user_id: user.id
+        }
+        postWedding(newWed)
+       
+        // console.log(date)
+        // example : 2023-11-24T15:19:00.000Z
         setWedDate(date); 
         setDatePickerVisible(false); 
     }; 

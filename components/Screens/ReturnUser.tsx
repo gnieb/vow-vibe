@@ -25,15 +25,17 @@ const ReturnUser:FunctionComponent = () => {
     const [noMatch, setNoMatch] = useState<boolean>(false)
 
     const tryLoggingIn = async (values:any) => {
+        console.log("tryLoggingIn starting (return user func) ")
         const result = await onLogin!(values.email, values.password);
         if (result && result.error) {
+            console.log(result.error)
             alert(result.msg)
             setNoMatch(true)
             setTimeout(() => {
                 setNoMatch(false)
             }, 7000)
         } else {
-            console.log(result)
+            console.log("result:", result, result.error)
         }
     }
 
@@ -44,7 +46,9 @@ const ReturnUser:FunctionComponent = () => {
         validationSchema={ReturnUserSchema}
         onSubmit={(values, {resetForm}) => {
             tryLoggingIn(values)
+            console.log("did we make it here")
             resetForm({values: initialValues})
+            
         }}
         >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (
