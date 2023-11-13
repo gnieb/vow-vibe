@@ -10,10 +10,11 @@ interface AuthProps {
     onLogin?:(email:string, password:string) => Promise<any>;
     onLogout?:()=>Promise<any> |Promise<void>;
     user?: User;
-    setUser?: React.Dispatch<React.SetStateAction<User>>;
+    // setUser?: React.Dispatch<React.SetStateAction<User>>;
 }
 
 const TOKEN_KEY = 'my-jwt';
+const USER_KEY = 'user-info';
 export const API_URL = "http://192.168.1.6:5555"
 
 const AuthContext = createContext<AuthProps>({});
@@ -35,14 +36,17 @@ export const AuthProvider = ({children}:any) => {
     const [user, setUser] = useState<User>({
         first_name: "",
         last_name: "",
+        id: undefined,
         email: "",
-        todos: [],
+        todos: undefined,
+        weddings: undefined,
     })
 
     useEffect(() => {
         const loadToken = async () => {
             const token = await SecureStore.getItemAsync(TOKEN_KEY);
-            // console.log(token)
+            const user = await SecureStore.getItemAsync(USER_KEY)
+            console.log("useEffect line 49 authContext:",user)
             
 
             if(token) {
@@ -52,6 +56,18 @@ export const AuthProvider = ({children}:any) => {
                     authenticated:true
                 })
             }
+
+            // if(user) {
+            //     axios.defaults.headers.common['Authorization'] = `Bearer ${user}`
+            //     setUser({
+            //         first_name: user.first_name,
+            //         last_name: user.last_name,
+            //         id: result.data.user.id,
+            //         email: result.data.user.email,
+            //         todos: result.data.user.todos,
+            //         weddings: result.data.user.weddings
+            //     })
+            // }
         }
 
         loadToken();
@@ -82,11 +98,14 @@ export const AuthProvider = ({children}:any) => {
                 id: result.data.user.id,
                 email: result.data.user.email,
                 todos: result.data.user.todos,
+                weddings: result.data.user.weddings
             })
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.token}`
             await SecureStore.setItemAsync(TOKEN_KEY, result.data.token)
-            console.log("User:",user)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.user}`
+            await SecureStore.setItemAsync(USER_KEY, JSON.stringify(result.data.user))
+            // console.log("User:",user)
             return result 
 
         } catch (e) {
@@ -115,7 +134,7 @@ export const AuthProvider = ({children}:any) => {
         onLogin:login,
         onLogout:logout,
         authState,
-        setUser,
+        // setUser,
         user,
     }
     

@@ -58,11 +58,11 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     const handleDateConfirm = (date:any) => { 
         // POST to database!
         
-        const newWed = {
-            date: date,
-            user_id: user.id
-        }
-        postWedding(newWed)
+        // const newWed = {
+        //     date: date,
+        //     user_id: user.id
+        // }
+        // postWedding(newWed)
        
         // console.log(date)
         // example : 2023-11-24T15:19:00.000Z
@@ -82,7 +82,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         // }
     }
 
-    console.log(user.weddings)
+    // console.log(user.weddings)
 
 
     return (
