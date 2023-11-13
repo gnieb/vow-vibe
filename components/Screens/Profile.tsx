@@ -82,7 +82,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         // }
     }
 
-    // console.log(user.weddings)
+    // console.log(user?.weddings, user?.first_name, user?.last_name)
 
 
     return (

@@ -47,6 +47,7 @@ export const AuthProvider = ({children}:any) => {
             const token = await SecureStore.getItemAsync(TOKEN_KEY);
             const user = await SecureStore.getItemAsync(USER_KEY)
             console.log("useEffect authContext USER:",user)
+           
             
 
             if(token) {
@@ -57,17 +58,20 @@ export const AuthProvider = ({children}:any) => {
                 })
             }
 
-            // if(user) {
-            //     axios.defaults.headers.common['Authorization'] = `Bearer ${user}`
-            //     setUser({
-            //         first_name: user.first_name,
-            //         last_name: user.last_name,
-            //         id: result.data.user.id,
-            //         email: result.data.user.email,
-            //         todos: result.data.user.todos,
-            //         weddings: result.data.user.weddings
-            //     })
-            // }
+            if(user) {
+
+                const userInfo = JSON.parse(user)
+                // console.log("userInfo:", userInfo.first_name)
+                axios.defaults.headers.common['Authorization'] = `Bearer ${user}`
+                setUser({
+                    first_name: userInfo.first_name,
+                    last_name: userInfo.last_name,
+                    id: userInfo.id,
+                    email: userInfo.email,
+                    todos: userInfo.todos,
+                    weddings: userInfo.weddings
+                })
+            }
         }
 
         loadToken();
