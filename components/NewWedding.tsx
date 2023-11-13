@@ -7,19 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { colors } from "./colors";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-let initialValues = {
-    wedding_date: ""
-}
-
-const NewWeddingSchema = Yup.object().shape({
-    date: Yup.date()
-      .required('Please enter the date of your wedding'),
-  });
-
   const API_URL = "http://192.168.1.14:5555"
-
-
-
 
 const NewWedding:FunctionComponent = () => {
     const {user} = useAuth()
@@ -33,11 +21,14 @@ const NewWedding:FunctionComponent = () => {
 
     const postWedding = async (data:any) => {
             try {
+                console.log(user)
                 const resp = await fetch(`${API_URL}/weddings`, {
                 method: "POST",
                 headers: {"Content-Type":"application/json"},
                 body:JSON.stringify(data)
+                
             })
+            return resp
 
         } catch (e) {
             return {error: true, msg:(e as any).response.data.msg}
