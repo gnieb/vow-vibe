@@ -46,7 +46,7 @@ export const AuthProvider = ({children}:any) => {
         const loadToken = async () => {
             const token = await SecureStore.getItemAsync(TOKEN_KEY);
             const user = await SecureStore.getItemAsync(USER_KEY)
-            console.log("useEffect line 49 authContext:",user)
+            console.log("useEffect authContext USER:",user)
             
 
             if(token) {
@@ -116,9 +116,11 @@ export const AuthProvider = ({children}:any) => {
 
     const logout = async () => {
         // delete token from storage
-        await SecureStore.deleteItemAsync(TOKEN_KEY);
         console.log("logging out...")
-
+        await SecureStore.deleteItemAsync(TOKEN_KEY);
+        console.log("deleting user info token...")
+        await SecureStore.deleteItemAsync(USER_KEY);
+        
         //update HTTP axios headers
         axios.defaults.headers.common['Authorization'] = "";
 
@@ -127,6 +129,20 @@ export const AuthProvider = ({children}:any) => {
             token:null,
             authenticated:false,
         })
+
+        //reset User
+        console.log("resetting user to undefined")
+        setUser({
+            first_name: "",
+            last_name: "",
+            id: undefined,
+            email: "",
+            todos: undefined,
+            weddings: undefined,
+        })
+        console.log(user)
+    
+
     }
 
     const value = {
