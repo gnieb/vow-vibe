@@ -26,10 +26,10 @@ margin-left:10px;
 border-radius: 50px;
 `
 
-const API_URL = "http://192.168.1.14:5555"
+const API_URL = "http://192.168.1.6:5555"
 
 const Profile:FunctionComponent = ({navigation}:any) => {
-    const {onLogout, user} = useAuth()
+    const {onLogout, user, setUser} = useAuth()
     const [isEditWeddingShown, setIsEditWeddingShown] = useState<boolean>(false)
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
     const [wedDate, setWedDate]= useState(new Date())
@@ -41,12 +41,18 @@ const Profile:FunctionComponent = ({navigation}:any) => {
 
     const postWedding = async (data:any) => {
             try {
-                console.log(user)
                 const resp = await fetch(`${API_URL}/weddings`, {
                 method: "POST",
                 headers: {"Content-Type":"application/json"},
                 body:JSON.stringify(data)
             })
+            console.log("successfully created new wedding date!")
+            if (user && setUser) {
+                setUser({
+                ...user?
+                ['weddings'] : data
+            })
+        }
             return resp
 
         } catch (e) {
@@ -58,11 +64,11 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     const handleDateConfirm = (date:any) => { 
         // POST to database!
         
-        // const newWed = {
-        //     date: date,
-        //     user_id: user.id
-        // }
-        // postWedding(newWed)
+        const newWed = {
+            wedding_date: date,
+            user_id: user?.id
+        }
+        postWedding(newWed)
        
         // console.log(date)
         // example : 2023-11-24T15:19:00.000Z
@@ -82,7 +88,8 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         // }
     }
 
-    // console.log(user?.weddings, user?.first_name, user?.last_name)
+    console.log(user?.weddings, user?.first_name, user?.last_name)
+    console.log("wedding date:",user?.weddings)
 
 
     return (
