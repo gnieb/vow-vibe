@@ -72,7 +72,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
        
         // console.log(date)
         // example : 2023-11-24T15:19:00.000Z
-        setWedDate(date); 
+        // setWedDate(date); 
         setDatePickerVisible(false); 
     }; 
 
@@ -89,13 +89,22 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     }
 
     console.log(user?.weddings, user?.first_name, user?.last_name)
-    console.log("wedding date:",user?.weddings)
+    console.log("wedding date:", user?.weddings)
+
+    const displayWeddingDate = user?.weddings?.map((w, i) => {
+        return (
+            <View key={i}>
+                <Text>{w.wedding_date}</Text>
+            </View>
+        )
+    })
 
 
     return (
         <ProfileContainer>
             <DrawerOpener navigation={navigation} />
             {user? <Text style={profileStyles.textStyle}>{user.first_name}</Text>: null}
+            {displayWeddingDate}
             <View>
          
             <RegularButton
@@ -109,6 +118,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                     mode="datetime"
                     onConfirm={handleDateConfirm} 
                     onCancel={handleDateCancel} 
+                    timeZoneOffsetInMinutes={0}
                 /> 
             </View>
             <ButtonView
