@@ -32,6 +32,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout, user, setUser} = useAuth()
     const [isEditWeddingShown, setIsEditWeddingShown] = useState<boolean>(false)
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
+    const [wedDate, setWedDate] = useState(new Date())
     const [showWeddings, setShowWeddings]= useState<Wedding[]>([])
 
     const handleDateCancel = () => { 
@@ -63,7 +64,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         postWedding(newWed)
         console.log("date passed into handleDateConfirm:",date)
         // example : 2023-11-24T15:19:00.000Z
-        // setWedDate(date); 
+        setWedDate(date); 
         setDatePickerVisible(false); 
     }; 
 
@@ -91,7 +92,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
             }
         }
         getWeddings()
-    }, [])
+    }, [wedDate])
 
     // console.log(user?.weddings, user?.first_name, user?.last_name)
     // console.log("wedding date:", user?.weddings)
@@ -109,7 +110,9 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         <ProfileContainer>
             <DrawerOpener navigation={navigation} />
             {user? <Text style={profileStyles.textStyle}>{user.first_name}</Text>: null}
+            
             {displayWeddingDate}
+
             <View>
          
             <RegularButton
