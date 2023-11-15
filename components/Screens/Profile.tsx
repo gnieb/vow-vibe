@@ -70,7 +70,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         }
         postWedding(newWed)
        
-        // console.log(date)
+        console.log(date)
         // example : 2023-11-24T15:19:00.000Z
         // setWedDate(date); 
         setDatePickerVisible(false); 
@@ -117,6 +117,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                     display="inline"
                     mode="datetime"
                     onConfirm={handleDateConfirm} 
+                    // onConfirm={(date) => {console.log("what is this?",date)}} 
                     onCancel={handleDateCancel} 
                     timeZoneOffsetInMinutes={0}
                 /> 

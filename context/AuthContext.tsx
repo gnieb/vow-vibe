@@ -144,9 +144,6 @@ export const AuthProvider = ({children}:any) => {
             todos: undefined,
             weddings: undefined,
         })
-        console.log(user)
-    
-
     }
 
     const value = {
