@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState,} from "react";
+import React, {FunctionComponent, useState, useEffect} from "react";
 import { Text, StyleSheet, View, Pressable} from "react-native";
 import RegularButton from "../Buttons/RegularButton";
 import { Container } from "../shared";
@@ -32,12 +32,11 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout, user, setUser} = useAuth()
     const [isEditWeddingShown, setIsEditWeddingShown] = useState<boolean>(false)
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
-    const [wedDate, setWedDate]= useState(new Date())
+    const [showWeddings, setShowWeddings]= useState<Wedding[]>([])
 
     const handleDateCancel = () => { 
         setDatePickerVisible(false); 
     }
-
 
     const postWedding = async (data:any) => {
             try {
@@ -47,30 +46,22 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                 body:JSON.stringify(data)
             })
             console.log("successfully created new wedding date!")
-            if (user && setUser) {
-                setUser({
-                ...user?
-                ['weddings'] : data
-            })
-        }
+            
             return resp
 
         } catch (e) {
             return {error: true, msg:(e as any).response.data.msg}
         } 
-
     }
 
     const handleDateConfirm = (date:any) => { 
         // POST to database!
-        
         const newWed = {
             wedding_date: date,
             user_id: user?.id
         }
         postWedding(newWed)
-       
-        console.log(date)
+        console.log("date passed into handleDateConfirm:",date)
         // example : 2023-11-24T15:19:00.000Z
         // setWedDate(date); 
         setDatePickerVisible(false); 
@@ -82,16 +73,30 @@ const Profile:FunctionComponent = ({navigation}:any) => {
 
     const tryLoggingOut = async () => {
         await onLogout!()
-
-        // if (result && result.error) {
-        //     alert(result.msg)
-        // }
     }
 
-    console.log(user?.weddings, user?.first_name, user?.last_name)
-    console.log("wedding date:", user?.weddings)
 
-    const displayWeddingDate = user?.weddings?.map((w, i) => {
+    useEffect(() => {
+        const getWeddings = async () => {
+            try {
+                const result = await fetch(`${API_URL}/users/${user?.id}`)
+                const data = await result.json()
+                
+                console.log("This is the getWeddings useEffect:", data.weddings)
+                setShowWeddings(data.weddings)
+
+            } catch (e) {
+                console.log("Error during reuqest for user info", "e:", e)
+                return {error: true, msg:(e as any).response.data.msg}
+            }
+        }
+        getWeddings()
+    }, [])
+
+    // console.log(user?.weddings, user?.first_name, user?.last_name)
+    // console.log("wedding date:", user?.weddings)
+
+    const displayWeddingDate = showWeddings.map((w, i) => {
         return (
             <View key={i}>
                 <Text>{w.wedding_date}</Text>
