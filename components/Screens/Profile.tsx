@@ -13,7 +13,7 @@ const ProfileContainer = styled(Container)`
 background-color: ${colors.darkgreen};
 width: 100%;
 flex:1;
-justify-content:center;
+justify-content: between;
 `
 
 const ButtonView = styled.TouchableOpacity`
@@ -109,14 +109,15 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     return (
         <ProfileContainer>
             <DrawerOpener navigation={navigation} />
-            {user? <Text style={profileStyles.textStyle}>{user.first_name}</Text>: null}
+            {user? <Text style={profileStyles.textStyle}>Welcome back to planning mode, {user.first_name}</Text>: null}
             
             {displayWeddingDate}
 
             <View>
          
             <RegularButton
-                onPress={handleOpenDatePicker} 
+                onPress={handleOpenDatePicker}
+               
                 >
                 <Text style={{color:"white"}}>Set a Date</Text>
             </RegularButton>
@@ -146,10 +147,13 @@ const profileStyles = StyleSheet.create({
    
     
     textStyle: {
-       fontSize: 20,
+       fontSize: 25,
        fontWeight: 'bold',
        padding: 10,
        color:'white',
+       marginBottom: 60,
+       marginTop: 80,
+       margin:50,
     }
 })
 

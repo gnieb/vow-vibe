@@ -4,6 +4,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { colors } from "./colors";
 import styled from 'styled-components/native';
 import RegularButton from "./Buttons/RegularButton";
+import { useAuth } from "../context/AuthContext";
 
 const TimerView = styled.View`
 justify-content: center;
@@ -11,15 +12,16 @@ align-items: center;
 padding: 10px;
 width: 100%;
 `
-
+const API_URL = "http://192.168.1.6:5555"
 
 const Countdown:FunctionComponent = () => {
 
 // to create a countdown:
 // create useEffect that pulls the time RIGHT NOW. and then subtract that from the WEdding date/time.
 // use DateTimePickerModal
-
+    const {user} = useAuth()
     const [isDatePickerVisible, setDatePickerVisible] = useState<boolean>(false); 
+    const [showWedding, setShowWedding] = useState("")
     const [expiryDate, setExpiryDate] = useState( new Date() ); // Default to current date and time 
     const [timeUnits, setTimeUnits] = useState({ 
         years: 0, 
@@ -31,16 +33,7 @@ const Countdown:FunctionComponent = () => {
     useEffect(()=> {
         
         const calculateTimeUnits = (timeDifference:any) => {
-            const seconds = Math.floor( timeDifference/1000)
-
-            // setTimeUnits({
-            //     years : Math.floor(seconds / 365 * 24 * 60 * 60),
-            //     days: Math.floor(seconds % (365 * 24 * 60 * 60)) / 
-            //     (24 * 60 * 60),
-            //     hours: Math.floor(seconds % (24 * 60 * 60)) / (60 * 60), 
-            //     minutes: Math.floor( (seconds % (60 * 60)) / 60 ), 
-            //     seconds: Math.floor(seconds % 60) 
-            // })
+        const seconds = Math.floor( timeDifference/1000)
 
             setTimeUnits({ 
                 years: Math.floor( 
@@ -64,7 +57,9 @@ const Countdown:FunctionComponent = () => {
         const updateCountdown = () => {
             const currentDate = new Date().getTime();
             const expiryTime = expiryDate.getTime();
+            // console.log("expiry time:", expiryTime, "expiryDate:", expiryDate)
             const timeDifference = expiryTime - currentDate;
+            // console.log("2023-11-30 19:00:00", new Date("2023-11-30 19:00:00"))
 
             if (timeDifference <= 0 ){
                 // countdown is over
@@ -80,6 +75,24 @@ const Countdown:FunctionComponent = () => {
         return () => clearInterval(interval); 
 
     }, [expiryDate])
+
+
+    useEffect(() => {
+        const getWeddings = async () => {
+            try {
+                const result = await fetch(`${API_URL}/users/${user?.id}`)
+                const data = await result.json()
+                setExpiryDate(new Date(data.weddings[0].wedding_date))
+
+            } catch (e) {
+                console.log("Error during reuqest for user info", "e:", e)
+                return {error: true, msg:(e as any).response.data.msg}
+            }
+        }
+        getWeddings()
+    }, [])
+
+    // console.log(showWedding)
 
     const formatTime = (time:any) => { 
         return time.toString().padStart(2, "0"); 
@@ -106,6 +119,8 @@ const Countdown:FunctionComponent = () => {
 // how is this date format stored? :
 // 2023-11-10T15:19:49.960Z
     // console.log(expiryDate)
+
+    
 
     return (
         <TimerView>
