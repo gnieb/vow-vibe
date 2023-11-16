@@ -31,7 +31,6 @@ const Countdown:FunctionComponent = () => {
         seconds: 0, 
     }); 
     useEffect(()=> {
-        
         const calculateTimeUnits = (timeDifference:any) => {
         const seconds = Math.floor( timeDifference/1000)
 
@@ -119,53 +118,101 @@ const Countdown:FunctionComponent = () => {
 // how is this date format stored? :
 // 2023-11-10T15:19:49.960Z
     // console.log(expiryDate)
+    // 2024-09-13T22:00:00.000Z
 
-    
+    // TEST:
+    // set for same day, 1 hour away from right now. 
+    // countdown should be 60 minutes / 59 minutes, and sconds away
+    // console.log(expiryDate)
+    // Tests showed 58 minutes and counting down seconds. test successful. 
+
+    // user.weddings[0] == September 13, 2024 18:00:00. 
+    // countdown should be something close to this: 
+    // 302 days, __ hours, __minutes <=59
+
+    // Test successful!!
+
+
 
     return (
         <TimerView>
             <View style={styles.timer}>
-                <Text style={[ 
+                <View>
+                    <Text style={[ 
                             styles.timeUnit, 
                             styles.yearUnit, 
                         ]} >{formatTime(timeUnits.years)}</Text>
-                <Text style={styles.timeSeparator} ></Text> 
                 <Text style={[ 
+                            styles.timeDescript 
+                        ]} >YEARS</Text>
+                </View>
+                
+                <Text style={styles.timeSeparator} ></Text> 
+                <View>
+                    <Text style={[ 
                             styles.timeUnit, 
                             styles.dayUnit, 
                         ]} >{formatTime(timeUnits.days)}</Text>
-                <Text style={styles.timeSeparator} ></Text> 
-                <Text style={[ 
+                    <Text style={[ 
+                        styles.timeDescript 
+                    ]} >DAYS</Text>
+                </View>
+                <Text style={styles.timeSeparator} ></Text>
+                <View>
+                    <Text style={[ 
                             styles.timeUnit, 
                             styles.hourUnit, 
                         ]} >{formatTime(timeUnits.hours)}</Text>
+                    <Text style={[ 
+                            styles.timeDescript 
+                        ]} >HOURS</Text>   
+                </View>
                 <Text style={styles.timeSeparator} ></Text> 
-                <Text style={[ 
+
+                <View>
+                    <Text style={[ 
                             styles.timeUnit, 
                             styles.minuteUnit, 
                         ]} >{formatTime(timeUnits.minutes)}</Text>
+                    <Text style={[ 
+                            styles.timeDescript 
+                        ]} >MINUTES</Text>
+                </View>       
                 <Text style={styles.timeSeparator} ></Text> 
-                <Text style={[ 
+
+                <View>
+                    <Text style={[ 
                             styles.timeUnit, 
                             styles.secondUnit, 
                         ]}>{formatTime(timeUnits.seconds)}</Text>
+                    <Text style={[ 
+                            styles.timeDescript
+                        ]}>SECONDS</Text>
+                </View>
+
             </View>
-            <View
-            style={styles.buttonContainer}
-            >
-                <Pressable
-                style={styles.button}
-                onPress={handleStartTimer} 
-                >
-                    <Text>START</Text>
-                </Pressable>
-                <Pressable
-                style={styles.button}
-                onPress={handleResetTimer} 
-                >
-                    <Text>RESET</Text>
-                </Pressable>
-            </View>
+
+            {/* <View style={styles.timer}>
+                <Text style={[ 
+                            styles.timeDescript 
+                        ]} >YEARS</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeDescript 
+                        ]} >DAYS</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeDescript 
+                        ]} >HOURS</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeDescript 
+                        ]} >MINUTES</Text>
+                <Text style={styles.timeSeparator} ></Text> 
+                <Text style={[ 
+                            styles.timeDescript
+                        ]}>SECONDS</Text>
+            </View> */}
         <DateTimePickerModal 
                     isVisible={isDatePickerVisible} 
                     display="inline"
@@ -201,12 +248,22 @@ const styles = StyleSheet.create({
         flexDirection: "row", 
         alignItems: "center", 
     }, 
+    timeMeasurements: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
     timeUnit: { 
         fontSize: 40, 
         fontWeight: "bold", 
         paddingHorizontal: 5, 
         paddingVertical: 5, 
     }, 
+    timeDescript: {
+        fontSize: 10,
+        fontWeight: "bold",
+        paddingHorizontal: 5
+        // borderRadius: 15,
+    },
     yearUnit: { 
         // backgroundColor: `${colors.darkgreen}`, 
         borderRadius: 15, 
