@@ -23,7 +23,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     const [isEditWeddingShown, setIsEditWeddingShown] = useState<boolean>(false)
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
     const [wedDate, setWedDate] = useState(new Date())
-    const [showWeddings, setShowWeddings]= useState<Wedding[]>([])
+    const [showWedding, setshowWedding]= useState<Wedding[]>([])
 
     const handleDateCancel = () => { 
         setDatePickerVisible(false); 
@@ -67,33 +67,27 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     }
 
 
-    useEffect(() => {
-        const getWeddings = async () => {
-            try {
-                const result = await fetch(`${API_URL}/users/${user?.id}`)
-                const data = await result.json()
+    // useEffect(() => {
+    //     const getWeddings = async () => {
+    //         try {
+    //             const result = await fetch(`${API_URL}/users/${user?.id}`)
+    //             const data = await result.json()
                 
-                console.log("This is the getWeddings useEffect:", data.weddings)
-                setShowWeddings(data.weddings)
+    //             console.log("This is the getWeddings useEffect:", data.wedding)
+    //             setshowWedding(data.wedding)
 
-            } catch (e) {
-                console.log("Error during reuqest for user info", "e:", e)
-                return {error: true, msg:(e as any).response.data.msg}
-            }
-        }
-        getWeddings()
-    }, [wedDate])
+    //         } catch (e) {
+    //             console.log("Error during reuqest for user info", "e:", e)
+    //             return {error: true, msg:(e as any).response.data.msg}
+    //         }
+    //     }
+    //     getWeddings()
+    // }, [wedDate])
 
     // console.log(user?.weddings, user?.first_name, user?.last_name)
-    // console.log("wedding date:", user?.weddings)
+    console.log("wedding date:", user, user?.wedding?.wedding_date)
 
-    const displayWeddingDate = showWeddings.map((w, i) => {
-        return (
-            <View key={i}>
-                <Text>{w.wedding_date}</Text>
-            </View>
-        )
-    })
+   
 
 
     return (
@@ -101,7 +95,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
             <DrawerOpener navigation={navigation} />
             {user? <Text style={profileStyles.textStyle}>Welcome back to planning mode, {user.first_name}</Text>: null}
             
-            {displayWeddingDate}
+            <Text>{user?.wedding?.wedding_date}</Text>
 
             <View>
          

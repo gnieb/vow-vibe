@@ -39,7 +39,7 @@ export const AuthProvider = ({children}:any) => {
         id: undefined,
         email: "",
         todos: undefined,
-        weddings: undefined,
+        wedding: undefined,
     })
 
     useEffect(() => {
@@ -69,7 +69,7 @@ export const AuthProvider = ({children}:any) => {
                     id: userInfo.id,
                     email: userInfo.email,
                     todos: userInfo.todos,
-                    weddings: userInfo.weddings
+                    wedding: userInfo.weddings
                 })
             }
         }
@@ -102,7 +102,7 @@ export const AuthProvider = ({children}:any) => {
                 id: result.data.user.id,
                 email: result.data.user.email,
                 todos: result.data.user.todos,
-                weddings: result.data.user.weddings
+                wedding: result.data.user.wedding
             })
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.token}`
@@ -142,7 +142,7 @@ export const AuthProvider = ({children}:any) => {
             id: undefined,
             email: "",
             todos: undefined,
-            weddings: undefined,
+            wedding: undefined,
         })
     }
 
