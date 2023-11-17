@@ -16,16 +16,6 @@ flex:1;
 justify-content: between;
 `
 
-const ButtonView = styled.TouchableOpacity`
-align-items: center;
-background-color: white;
-width: 30%;
-padding: 10px;
-margin-top: 50px;
-margin-left:10px;
-border-radius: 50px;
-`
-
 const API_URL = "http://192.168.1.6:5555"
 
 const Profile:FunctionComponent = ({navigation}:any) => {
@@ -115,12 +105,12 @@ const Profile:FunctionComponent = ({navigation}:any) => {
 
             <View>
          
-            <RegularButton
+            <Pressable
                 onPress={handleOpenDatePicker}
-               
+                style={{backgroundColor:`${colors.mediumgreen}`, padding:10, borderRadius:50}}
                 >
-                <Text style={{color:"white"}}>Set a Date</Text>
-            </RegularButton>
+                <Text style={{color:`${colors.darkgreen}`, fontWeight:"bold"}}>SET A DATE</Text>
+            </Pressable>
             <DateTimePickerModal 
                     isVisible={datePickerVisible} 
                     display="inline"
@@ -131,11 +121,12 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                     timeZoneOffsetInMinutes={0}
                 /> 
             </View>
-            <ButtonView
+            <Pressable
                 onPress={() => tryLoggingOut()}
+                style={{backgroundColor:`${colors.mediumgreen}`, padding:10, borderRadius:50}}
                 >
                 <Text style={{fontWeight:"bold", color:`${colors.darkgreen}`}}>LOG OUT</Text>
-            </ButtonView>
+            </Pressable>
             
             
         </ProfileContainer>
@@ -144,8 +135,6 @@ const Profile:FunctionComponent = ({navigation}:any) => {
 
 
 const profileStyles = StyleSheet.create({
-   
-    
     textStyle: {
        fontSize: 25,
        fontWeight: 'bold',
