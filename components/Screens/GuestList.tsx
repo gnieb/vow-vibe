@@ -9,9 +9,9 @@ import { Container } from "../shared";
 import NewGuest from "../NewGuest";
 import DrawerOpener from "../../navigation/DrawerOpener";
 
-
+// background-color: white;
 const GuestView = styled.View`
-background-color: white;
+
 width:90%;
 height: 50%;
 border-radius: 50px;
@@ -22,7 +22,7 @@ justifyContent:center;
 
 
 const GuestContainer = styled(Container)`
-background-color: ${colors.darkgreen};
+background-color: white;
 width: 100%;
 height:100%;
 flex:1;
@@ -36,12 +36,6 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
     const [guests, setGuests] = useState<Guest[]>([{id:1, wedding_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, wedding_id:1, first_name:"Bryant", last_name:"Knowlton"}])
     
     const addNew = (newG:Guest) => {setGuests((guests) => [...guests, newG])}
-
-    const displayAll = guests.map((g, i) => {
-        return (
-            <GuestListItem key={i} item={g} guests={guests} setGuests={setGuests} />
-        )
-    })
 
     return (
         <>

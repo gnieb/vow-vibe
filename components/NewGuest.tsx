@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from "react";
 import styled from "styled-components/native";
-import { Container } from "./shared";import { TextInput, View, StyleSheet } from 'react-native';
+import { Container } from "./shared";
+import { TextInput, View, StyleSheet, Pressable, Text } from 'react-native';
 import { Formik } from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import RegText from "./Texts/RegText";
@@ -72,6 +73,7 @@ const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
             onBlur={handleBlur('first_name')}
             value={values.first_name}
             placeholder="first name"
+            placeholderTextColor="gray"
             style={formStyles.inputStyle}
             />
          </View>
@@ -85,10 +87,15 @@ const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
              onBlur={handleBlur('last_name')}
              value={values.last_name}
              placeholder="last name"
+             placeholderTextColor="gray"
              style={formStyles.inputStyle}
             />
            </View>
-         <RegularButton  onPress={()=> handleSubmit()} >Submit</RegularButton>
+         <Pressable  onPress={()=> handleSubmit()} 
+         style={formStyles.submitButton}
+         >
+          <Text style={{textAlign:"center", color:"white"}}>Submit</Text>
+          </Pressable>
 
        </View>
      )}
@@ -99,7 +106,8 @@ const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
 const formStyles = StyleSheet.create({
    
      formContainer : {
-        backgroundColor: `white`,
+        // backgroundColor: `white`,
+        
         padding: 20,
         borderRadius: 50,
         width: '90%',
@@ -107,7 +115,7 @@ const formStyles = StyleSheet.create({
     
      },
      title : {
-        color: `${colors.darkgreen}`,
+        color: "black",
         fontSize: 26,
         fontWeight: '400',
         marginBottom: 15,
@@ -116,10 +124,17 @@ const formStyles = StyleSheet.create({
         marginBottom: 15,
      },
      inputStyle: {
-        borderColor: `${colors.mediumgreen}`,
+        borderColor: `gray`,
         borderWidth: 1,
         borderRadius: 50,
         padding: 10,
+        color: "black",
+     },
+     submitButton: {
+      backgroundColor: "gray",
+      borderRadius: 50,
+      padding:10,
+      width: "30%",
      }
 })
 
