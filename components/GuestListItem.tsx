@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Container } from "./shared";
 import ToDo from "./ToDo";
-import { Text, View,  } from "react-native";
+import { Text, View,StyleSheet  } from "react-native";
 import {Formik} from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import Guest from "./Guest";
@@ -56,9 +56,22 @@ const GuestListItem:FunctionComponent<ItemProps> = ({item, guests, setGuests}) =
 
     return (
             <View>
-                <Text>{item.first_name}</Text>
+                <Text style={styles.item}>{item.first_name}</Text>
             </View>
     )
 };
 
 export default GuestListItem;
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      marginTop: 5,
+      fontSize: 30,
+    },
+    item: {
+      padding: 10,
+      marginTop: 5,
+      fontSize: 15,
+    },
+  });

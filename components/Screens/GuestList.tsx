@@ -11,23 +11,15 @@ import DrawerOpener from "../../navigation/DrawerOpener";
 
 
 const GuestView = styled.View`
-background-color:${colors.mediumgreen};
-width:100%;
+background-color: white;
+width:90%;
+height: 50%;
 border-radius: 50px;
 padding:10px;
 margin-top:15px;
 justifyContent:center;
 `
 
-const GuestListTitleView = styled.View`
-background-color:${colors.mediumgreen};
-width:100%;
-text-align: center;
-border-radius: 50px;
-padding:20px;
-margin-top:15px;
-justifyContent:center;
-`
 
 const GuestContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -42,7 +34,7 @@ justifyContent: center;
 
 const GuestList:FunctionComponent = ({navigation}:any) => {
     const [guests, setGuests] = useState<Guest[]>([{id:1, wedding_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, wedding_id:1, first_name:"Bryant", last_name:"Knowlton"}])
-       
+    
     const addNew = (newG:Guest) => {setGuests((guests) => [...guests, newG])}
 
     const displayAll = guests.map((g, i) => {
@@ -56,15 +48,20 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
         <DrawerOpener navigation={navigation}/>
         <GuestContainer >
             <NewGuest guests={guests} setGuests={setGuests} addNew={addNew} />
-            <GuestListTitleView>
-                <RegText textStyles={{color:"white", textAlign:"center", fontSize:30, fontFamily:"Helvetica"}}>Who is Invited</RegText>
-            </GuestListTitleView>
             <GuestView>
-                {/* <FlatList data={guests} 
+                <FlatList data={guests} 
                 renderItem={({item}) => <GuestListItem item={item} guests={guests} setGuests={setGuests}  />}
                 keyExtractor={(item, index) => index.toString()}
-                /> */}
-                <ScrollView>
+                ListHeaderComponent={() => (
+                    <Text style={{ fontSize: 20, textAlign: "center",marginTop:10,fontWeight:'bold',textDecorationLine: 'underline' }}>
+                    Invite List
+                    </Text>
+                )}
+                ListFooterComponent={() => (
+                    <Text style={{ fontSize: 20, textAlign: "center",marginBottom:20,fontWeight:'bold' }}>{`<3`}</Text>
+                )}
+                />
+                {/* <ScrollView>
                     <View>
                     {guests.map((guest) => {
                         return (
@@ -74,7 +71,7 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
                         );
                     })}
                     </View>
-                </ScrollView>
+                </ScrollView> */}
             </GuestView>
         </GuestContainer>
         </>
