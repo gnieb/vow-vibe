@@ -1,6 +1,6 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
 import styled from "styled-components/native";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ScrollView, StyleSheet } from "react-native";
 import { colors } from "../colors";
 import Guest from "../Guest";
 import GuestListItem from "../GuestListItem";
@@ -42,24 +42,56 @@ justifyContent: center;
 
 const GuestList:FunctionComponent = ({navigation}:any) => {
     const [guests, setGuests] = useState<Guest[]>([{id:1, wedding_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, wedding_id:1, first_name:"Bryant", last_name:"Knowlton"}])
+       
+    const addNew = (newG:Guest) => {setGuests((guests) => [...guests, newG])}
 
-
+    const displayAll = guests.map((g, i) => {
+        return (
+            <GuestListItem key={i} item={g} guests={guests} setGuests={setGuests} />
+        )
+    })
 
     return (
         <>
         <DrawerOpener navigation={navigation}/>
         <GuestContainer >
-            <NewGuest guests={guests} setGuests={setGuests} />
+            <NewGuest guests={guests} setGuests={setGuests} addNew={addNew} />
             <GuestListTitleView>
-                <RegText textStyles={{color:"white", textAlign:"center", fontSize:30, fontFamily:"Helvetica"}}>WHO'S COMING</RegText>
+                <RegText textStyles={{color:"white", textAlign:"center", fontSize:30, fontFamily:"Helvetica"}}>Who is Invited</RegText>
             </GuestListTitleView>
             <GuestView>
-                <FlatList data={guests} 
-                renderItem={({item}) => <GuestListItem item={item} key={item.id} guests={guests} setGuests={setGuests} />}/>
+                {/* <FlatList data={guests} 
+                renderItem={({item}) => <GuestListItem item={item} guests={guests} setGuests={setGuests}  />}
+                keyExtractor={(item, index) => index.toString()}
+                /> */}
+                <ScrollView>
+                    <View>
+                    {guests.map((guest) => {
+                        return (
+                        <View>
+                            <GuestListItem item={guest} guests={guests} setGuests={setGuests}  />
+                        </View>
+                        );
+                    })}
+                    </View>
+                </ScrollView>
             </GuestView>
         </GuestContainer>
         </>
     )
 }
 
+const styles = StyleSheet.create({
+    container: {
+      padding: 50,
+      flex: 1,
+    },
+    item: {
+      padding: 20,
+      fontSize: 15,
+      marginTop: 5,
+    }
+  });
+
 export default GuestList;
+

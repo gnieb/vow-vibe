@@ -33,28 +33,33 @@ const GuestSchema = Yup.object().shape({
 
 
 interface FormProps {
+    addNew: (newG: Guest) => void,
     setGuests: React.Dispatch<React.SetStateAction<Guest[]>>,
     guests: Guest[]
 }
 
-const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests}) => {
+const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
     const initialValues = {
         first_name:"",
         last_name:"",
     }
+
+    // const handleAddGuest = (addNew:Guest) => {
+    //   return addNew
+    // }
     
-    
+    console.log(guests)
     return (
        
             <Formik
         initialValues={initialValues}
         validationSchema={GuestSchema}
         onSubmit={(val, {resetForm}) => {
-            console.log(val)
-            console.log("HI")
-            const newGuest:Guest = {id: Date.now(), first_name: val.first_name, last_name:val.last_name}
-            setGuests(guests => [...guests, newGuest])
+            const newGuest:Guest = {first_name: val.first_name, last_name:val.last_name}
+            // setGuests((guests) => [...guests, newGuest])
+            addNew(newGuest)
             resetForm({values: initialValues})
+            
         }}
     >
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched  }) => (

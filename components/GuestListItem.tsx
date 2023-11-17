@@ -34,6 +34,7 @@ interface ItemProps {
     item: Guest;
     guests: Guest[];
     setGuests: React.Dispatch<React.SetStateAction<Guest[]>>,
+
 }
 
 const IconView = styled.View`
@@ -43,44 +44,20 @@ margin:5px;
 
 const GuestListItem:FunctionComponent<ItemProps> = ({item, guests, setGuests}) => {
 
-    const editTodos = (id:number | string) => {
-        setGuests(
-            guests.map((t) => 
-            t.id === id? {...t, isAttending :!t.isAttending} : t)
-        )
-    }
+    // const editTodos = (id:number | string) => {
+    //     setGuests(
+    //         guests.map((t) => 
+    //         t.id === id? {...t, isAttending :!t.isAttending} : t)
+    //     )
+    // }
+
+
+    
 
     return (
-           
-            <ListItem>
-                {item.isAttending ? <DoneText style={{ textDecorationLine: 'line-through' }}>
-                {item.first_name}</DoneText> : <RegText>{item.first_name}</RegText>}
-                
-                <IconView>
-                <Formik
-                initialValues={item}
-                onSubmit={()=> {
-                    console.log(item)
-                    editTodos(item.id)
-                }}
-                >
-                {({ handleChange, handleBlur, handleSubmit, values  }) => (
-                <MaterialCommunityIcons onPress={()=> handleSubmit()} name="check" size={24} color="black" />
-                )}
-                </Formik>
-                <Formik
-                initialValues={item}
-                onSubmit={()=> {
-                    console.log("Time to EDIT!!!")
-                }}
-                >
-                {({ handleChange, handleBlur, handleSubmit, values  }) => (
-                <Feather onPress={()=> handleSubmit()} name="edit-2" size={24} color="black" />
-                )}
-                </Formik>
-                
-                </IconView>
-            </ListItem>
+            <View>
+                <Text>{item.first_name}</Text>
+            </View>
     )
 };
 
