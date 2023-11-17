@@ -33,7 +33,7 @@ justifyContent: center;
 
 
 const GuestList:FunctionComponent = ({navigation}:any) => {
-    const [guests, setGuests] = useState<Guest[]>([{id:1, wedding_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, wedding_id:1, first_name:"Bryant", last_name:"Knowlton"}])
+    const [guests, setGuests] = useState<Guest[]>([{id:1, user_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, user_id:1, first_name:"Bryant", last_name:"Knowlton"}])
     
     const addNew = (newG:Guest) => {setGuests((guests) => [...guests, newG])}
 

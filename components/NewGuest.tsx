@@ -10,7 +10,9 @@ import { useState } from "react";
 import * as Yup from 'yup';
 import { colors } from "./colors";
 import Guest from "./Guest";
+import { useAuth } from "../context/AuthContext";
 
+const API_URL = "http://192.168.1.6:5555"
 
 const FormContainer = styled(Container)`
 background-color: white;
@@ -40,6 +42,8 @@ interface FormProps {
 }
 
 const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
+  const {user} = useAuth();
+
     const initialValues = {
         first_name:"",
         last_name:"",
@@ -48,6 +52,24 @@ const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
     // const handleAddGuest = (addNew:Guest) => {
     //   return addNew
     // }
+
+    const postNewGuest = async (newG:Guest) => {
+      try {
+        const result = await fetch(`${API_URL}/guests`, {
+        method:"POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(newG)
+      })
+
+      return result
+
+      } catch (e) {
+        return {error: true, msg:(e as any).response.data.msg}
+    } 
+
+      
+      
+    }
     
     console.log(guests)
     return (
@@ -56,8 +78,8 @@ const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
         initialValues={initialValues}
         validationSchema={GuestSchema}
         onSubmit={(val, {resetForm}) => {
-            const newGuest:Guest = {first_name: val.first_name, last_name:val.last_name}
-            // setGuests((guests) => [...guests, newGuest])
+            const newGuest:Guest = {first_name: val.first_name, last_name:val.last_name, user_id:user?.id}
+            postNewGuest(newGuest)
             addNew(newGuest)
             resetForm({values: initialValues})
             
