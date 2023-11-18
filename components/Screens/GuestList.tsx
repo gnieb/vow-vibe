@@ -61,13 +61,17 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
         <GuestContainer >
             <NewGuest guests={guests} setGuests={setGuests} addNew={addNew} />
             <GuestView>
+            <Text style={{ fontSize: 12, textAlign: "left",marginTop:10,fontWeight:'bold' }}>
+                    TOTAL - {guests.length}
+            </Text>
                 <FlatList data={guests} 
                 renderItem={({item}) => <GuestListItem item={item} guests={guests} setGuests={setGuests}  />}
                 keyExtractor={(item, index) => index.toString()}
                 ListHeaderComponent={() => (
-                    <Text style={{ fontSize: 20, textAlign: "center",marginTop:10,fontWeight:'bold',textDecorationLine: 'underline' }}>
-                    Invite List
+                    <Text style={{ fontSize: 20, textAlign: "center",marginTop:10,fontWeight:'bold' }}>
+                    GUEST LIST
                     </Text>
+                    
                 )}
                 ListFooterComponent={() => (
                     <Text style={{ fontSize: 20, textAlign: "center",marginBottom:20,fontWeight:'bold' }}>{`<3`}</Text>

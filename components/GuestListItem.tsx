@@ -56,7 +56,7 @@ const GuestListItem:FunctionComponent<ItemProps> = ({item, guests, setGuests}) =
 
     return (
             <View>
-                <Text style={styles.item}>{item.first_name}</Text>
+                <Text style={styles.item}>{item.first_name} {item.last_name}</Text>
             </View>
     )
 };
