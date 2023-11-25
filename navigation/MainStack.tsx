@@ -2,7 +2,6 @@ import { FunctionComponent } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import app screens
-import Welcome from "../components/Screens/Welcome";
 import Todos from "../components/Screens/Todos";
 import HomeScreen from "../components/Screens/HomeScreen";
 import Vision from "../components/Screens/Vision";
@@ -14,7 +13,6 @@ import Profile from "../components/Screens/Profile";
 export type MainStackParamList = {
   Drawer: undefined;
   HomeScreen: undefined;
-  Welcome: undefined;
   Todos: undefined;
   Vision:undefined;
   GuestList:undefined;
@@ -38,7 +36,6 @@ const MainStack:FunctionComponent = () => {
            >
            {/* screens here  */}
            <Stack.Screen name="Drawer" component={Drawer} />
-           <Stack.Screen name="Welcome" component={Welcome} />
            <Stack.Screen name="HomeScreen" component={HomeScreen}  />
            <Stack.Screen name="Todos" component={Todos} />
            <Stack.Screen name="Vision" component={Vision} />
