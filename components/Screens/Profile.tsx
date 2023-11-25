@@ -67,22 +67,22 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     }
 
 
-    // useEffect(() => {
-    //     const getWeddings = async () => {
-    //         try {
-    //             const result = await fetch(`${API_URL}/users/${user?.id}`)
-    //             const data = await result.json()
+    useEffect(() => {
+        const getWedding = async () => {
+            try {
+                const result = await fetch(`${API_URL}/users/${user?.id}`)
+                const data = await result.json()
                 
-    //             console.log("This is the getWeddings useEffect:", data.wedding)
-    //             setshowWedding(data.wedding)
+                console.log("This is the getWeddings useEffect:", data.wedding)
+                setshowWedding(data.wedding)
 
-    //         } catch (e) {
-    //             console.log("Error during reuqest for user info", "e:", e)
-    //             return {error: true, msg:(e as any).response.data.msg}
-    //         }
-    //     }
-    //     getWeddings()
-    // }, [wedDate])
+            } catch (e) {
+                console.log("Error during reuqest for user info", "e:", e)
+                return {error: true, msg:(e as any).response.data.msg}
+            }
+        }
+        getWedding()
+    }, [])
 
     // console.log(user?.weddings, user?.first_name, user?.last_name)
     console.log("wedding date:", user, user?.wedding?.wedding_date)

@@ -35,7 +35,7 @@ const ReturnUser:FunctionComponent = () => {
                 setNoMatch(false)
             }, 7000)
         } else {
-            console.log("result:", result, result.error)
+            console.log("result success")
         }
     }
 
