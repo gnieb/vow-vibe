@@ -47,9 +47,7 @@ export const AuthProvider = ({children}:any) => {
             const token = await SecureStore.getItemAsync(TOKEN_KEY);
             const user = await SecureStore.getItemAsync(USER_KEY)
             console.log("useEffect authContext USER:",user)
-           
-            
-
+        
             if(token) {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
                 setAuthState({
@@ -69,8 +67,10 @@ export const AuthProvider = ({children}:any) => {
                     id: userInfo.id,
                     email: userInfo.email,
                     todos: userInfo.todos,
-                    wedding: userInfo.weddings
+                    wedding: userInfo.wedding
                 })
+
+                console.log("user useEffect() is:", user)
             }
         }
 

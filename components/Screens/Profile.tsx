@@ -29,6 +29,8 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         setDatePickerVisible(false); 
     }
 
+    console.log("user:", user)
+
     const postWedding = async (data:any) => {
             try {
                 const resp = await fetch(`${API_URL}/weddings`, {
@@ -66,7 +68,6 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         await onLogout!()
     }
 
-
     useEffect(() => {
         const getWedding = async () => {
             try {
@@ -85,7 +86,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     }, [])
 
     // console.log(user?.weddings, user?.first_name, user?.last_name)
-    console.log("wedding date:", user, user?.wedding?.wedding_date)
+    console.log("user:", user, "wedding date:", user?.wedding?.wedding_date)
 
    
 

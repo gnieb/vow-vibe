@@ -81,12 +81,16 @@ const Countdown:FunctionComponent = () => {
             try {
                 const result = await fetch(`${API_URL}/users/${user?.id}`)
                 const data = await result.json()
-                console.log("wedding date:", data.wedding.wedding_date)
+                // console.log("result:", data)
+                const wedDate = new Date(data.wedding.wedding_date)
+                // console.log("this would be the new wedding Date :",wedDate )
                 setExpiryDate(new Date(data.wedding.wedding_date))
+
             } catch (e) {
                 console.log("Countdown error during request for user info", "e:", e)
                 return {error: true, msg:(e as any).response.data.msg}
             }
+           
             
             
         }
