@@ -12,13 +12,7 @@ import {Formik} from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import Guest from "./Guest";
 
-const ListItem = styled(Container)`
-background-color:${colors.lightgreen};
-padding: 10px;
-padding-left:10px;
-margin: 5px;
-width:95%;
-border-radius:50px;
+const ListItemView = styled.View`
 flexDirection:row;
 justifyContent: space-between;
 `
@@ -55,9 +49,14 @@ const GuestListItem:FunctionComponent<ItemProps> = ({item, guests, setGuests}) =
     
 
     return (
-            <View>
+            <ListItemView>
                 <Text style={styles.item}>{item.first_name} {item.last_name}</Text>
-            </View>
+                <IconView>
+                  <MaterialCommunityIcons onPress={()=> {}} name="check" size={24} color="black" />
+                  <Feather onPress={()=> handleSubmit()} name="x" size={24} color="black" />
+                </IconView>
+                
+            </ListItemView>
     )
 };
 

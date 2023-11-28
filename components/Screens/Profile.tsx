@@ -111,7 +111,6 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                     display="inline"
                     mode="datetime"
                     onConfirm={handleDateConfirm} 
-                    // onConfirm={(date) => {console.log("what is this?",date)}} 
                     onCancel={handleDateCancel} 
                     timeZoneOffsetInMinutes={0}
                 /> 

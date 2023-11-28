@@ -1,6 +1,6 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
 import styled from "styled-components/native";
-import { View, Text, FlatList, ScrollView, StyleSheet } from "react-native";
+import { View, Text, FlatList, ScrollView, StyleSheet, Button } from "react-native";
 import { colors } from "../colors";
 import Guest from "../Guest";
 import GuestListItem from "../GuestListItem";
@@ -21,6 +21,16 @@ margin-top:15px;
 justifyContent:center;
 `
 
+const ButtonView = styled.TouchableOpacity`
+align-items: center;
+background-color: white;
+width: 30%;
+padding: 6px;
+margin-top: 50px;
+margin-left:10px;
+border-radius: 50px;
+`
+
 
 const GuestContainer = styled(Container)`
 background-color: #e0e0e0;
@@ -36,7 +46,7 @@ const API_URL = "http://192.168.1.6:5555"
 
 const GuestList:FunctionComponent = ({navigation}:any) => {
     const {user} = useAuth()
-    const [guests, setGuests] = useState<Guest[]>([{id:1, user_id:1, first_name:"Abby", last_name:"Knowlton"}, {id:2, user_id:1, first_name:"Bryant", last_name:"Knowlton"}])
+    const [guests, setGuests] = useState<Guest[]>([])
     const addNew = (newG:Guest) => {setGuests((guests) => [...guests, newG])}
 
     useEffect(() => {
@@ -44,7 +54,6 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
             try {
                 const response = await fetch(`${API_URL}/users/${user?.id}`)
                 const data = await response.json()
-
                 setGuests(data.guests)
 
             } catch (e) {
@@ -55,6 +64,13 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
         getGuests()
     }, [])
 
+
+    const handleAttendingGuests = () => {
+        console.log("ATTENDING GUESTS")
+        const filteredByAttended = guests.filter(g => g.isAttending == true )
+        console.log("these people are coming:",filteredByAttended)
+    }
+
     return (
         <>
         <DrawerOpener navigation={navigation}/>
@@ -64,6 +80,14 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
             <Text style={{ fontSize: 12, textAlign: "left",marginTop:10,fontWeight:'bold' }}>
                     TOTAL - {guests.length}
             </Text>
+            <ButtonView
+            onPress={()=> {
+                handleAttendingGuests()
+                
+            }}
+            >
+                <Text>Attending</Text>
+            </ButtonView>
                 <FlatList data={guests} 
                 renderItem={({item}) => <GuestListItem item={item} guests={guests} setGuests={setGuests}  />}
                 keyExtractor={(item, index) => index.toString()}
@@ -77,17 +101,6 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
                     <Text style={{ fontSize: 20, textAlign: "center",marginBottom:20,fontWeight:'bold' }}>{`<3`}</Text>
                 )}
                 />
-                {/* <ScrollView>
-                    <View>
-                    {guests.map((guest) => {
-                        return (
-                        <View>
-                            <GuestListItem item={guest} guests={guests} setGuests={setGuests}  />
-                        </View>
-                        );
-                    })}
-                    </View>
-                </ScrollView> */}
             </GuestView>
         </GuestContainer>
         </>
