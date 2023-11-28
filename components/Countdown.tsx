@@ -1,9 +1,7 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Text, View, Pressable, StyleSheet } from "react-native";
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { colors } from "./colors";
 import styled from 'styled-components/native';
-import RegularButton from "./Buttons/RegularButton";
 import { useAuth } from "../context/AuthContext";
 
 const TimerView = styled.View`
@@ -12,17 +10,23 @@ align-items: center;
 padding: 10px;
 width: 100%;
 `
-const API_URL = "http://192.168.1.6:5555"
+// const API_URL = "http://192.168.1.6:5555"
+
+
 
 const Countdown:FunctionComponent = () => {
-
-// to create a countdown:
-// create useEffect that pulls the time RIGHT NOW. and then subtract that from the WEdding date/time.
-// use DateTimePickerModal
     const {user} = useAuth()
+    // const wedDate = new Date(user.wedding.wedding_date)
+    // console.log(wedDate)
+    // console.log(user.wedding.wedding_date)
+    
     const [isDatePickerVisible, setDatePickerVisible] = useState<boolean>(false); 
     const [showWedding, setShowWedding] = useState("")
-    const [expiryDate, setExpiryDate] = useState( new Date() ); // Default to current date and time 
+    const [expiryDate, setExpiryDate] = useState<Date>(
+            user.wedding && user.wedding.wedding_date
+            ? new Date(user.wedding.wedding_date)
+            : new Date()
+         ); 
     const [timeUnits, setTimeUnits] = useState({ 
         years: 0, 
         days: 0, 
@@ -30,7 +34,17 @@ const Countdown:FunctionComponent = () => {
         minutes: 0, 
         seconds: 0, 
     }); 
+
+    useEffect(() => {
+        // Update expiryDate when the user object changes
+        setExpiryDate(new Date(user.wedding.wedding_date));
+      }, [user]);
+
     useEffect(()=> {
+
+        // Debug log to check the initial value of expiryDate
+        console.log('Initial Expiry Date:', expiryDate);
+
         const calculateTimeUnits = (timeDifference:any) => {
         const seconds = Math.floor( timeDifference/1000)
 
@@ -51,14 +65,15 @@ const Countdown:FunctionComponent = () => {
                 seconds: seconds % 60, 
             }); 
         }
-        
-
+    
         const updateCountdown = () => {
             const currentDate = new Date().getTime();
-            const expiryTime = expiryDate.getTime();
-            // console.log("expiry time:", expiryTime, "expiryDate:", expiryDate)
-            const timeDifference = expiryTime - currentDate;
-            // console.log("2023-11-30 19:00:00", new Date("2023-11-30 19:00:00"))
+            const expiryTime = new Date(expiryDate).getTime();
+            const timeDifference = expiryTime - currentDate; 
+
+            // console.log('Current Date:', new Date(currentDate));
+            // console.log('Expiry Date:', new Date(expiryDate));
+            // console.log('Time Difference:', timeDifference);
 
             if (timeDifference <= 0 ){
                 // countdown is over
@@ -71,74 +86,20 @@ const Countdown:FunctionComponent = () => {
 
         updateCountdown(); 
         const interval = setInterval(updateCountdown, 1000); 
+
+        // Debug logs to check if the user object and expiryDate are changing
+        console.log('User Object:', user);
+        console.log('Expiry Date:', expiryDate);
+
         return () => clearInterval(interval); 
 
     }, [expiryDate])
-
-
-    useEffect(() => {
-        const getWeddings = async () => {
-            try {
-                const result = await fetch(`${API_URL}/users/${user?.id}`)
-                const data = await result.json()
-                // console.log("result:", data)
-                const wedDate = new Date(data.wedding.wedding_date)
-                // console.log("this would be the new wedding Date :",wedDate )
-                setExpiryDate(new Date(data.wedding.wedding_date))
-
-            } catch (e) {
-                console.log("Countdown error during request for user info", "e:", e)
-                return {error: true, msg:(e as any).response.data.msg}
-            }
-           
-            
-            
-        }
-        getWeddings()
-    }, [])
-
-    // console.log(showWedding)
 
     const formatTime = (time:any) => { 
         return time.toString().padStart(2, "0"); 
     }; 
 
     // padStart() => The padStart() method of String values pads this string with another string (multiple times, if needed) until the resulting string reaches the given length. The padding is applied from the start of this string.
-
-    const handleStartTimer = () => { 
-        setDatePickerVisible(true); 
-    }; 
-
-    const handleResetTimer = () => { 
-        setExpiryDate(new Date()); // Reset to current date and time 
-    }; 
-
-    const handleDateConfirm = (date:any) => { 
-        setExpiryDate(date); 
-        setDatePickerVisible(false); 
-    }; 
-
-    const handleDateCancel = () => { 
-        setDatePickerVisible(false); 
-    }; 
-// how is this date format stored? :
-// 2023-11-10T15:19:49.960Z
-    // console.log(expiryDate)
-    // 2024-09-13T22:00:00.000Z
-
-    // TEST:
-    // set for same day, 1 hour away from right now. 
-    // countdown should be 60 minutes / 59 minutes, and sconds away
-    // console.log(expiryDate)
-    // Tests showed 58 minutes and counting down seconds. test successful. 
-
-    // user.weddings[0] == September 13, 2024 18:00:00. 
-    // countdown should be something close to this: 
-    // 302 days, __ hours, __minutes <=59
-
-    // Test successful!!
-
-
 
     return (
         <TimerView>
@@ -184,8 +145,7 @@ const Countdown:FunctionComponent = () => {
                             styles.timeDescript 
                         ]} >MINUTES</Text>
                 </View>       
-                <Text style={styles.timeSeparator} ></Text> 
-
+                    <Text style={styles.timeSeparator} ></Text> 
                 <View>
                     <Text style={[ 
                             styles.timeUnit, 
@@ -195,37 +155,7 @@ const Countdown:FunctionComponent = () => {
                             styles.timeDescript
                         ]}>SECONDS</Text>
                 </View>
-
             </View>
-
-            {/* <View style={styles.timer}>
-                <Text style={[ 
-                            styles.timeDescript 
-                        ]} >YEARS</Text>
-                <Text style={styles.timeSeparator} ></Text> 
-                <Text style={[ 
-                            styles.timeDescript 
-                        ]} >DAYS</Text>
-                <Text style={styles.timeSeparator} ></Text> 
-                <Text style={[ 
-                            styles.timeDescript 
-                        ]} >HOURS</Text>
-                <Text style={styles.timeSeparator} ></Text> 
-                <Text style={[ 
-                            styles.timeDescript 
-                        ]} >MINUTES</Text>
-                <Text style={styles.timeSeparator} ></Text> 
-                <Text style={[ 
-                            styles.timeDescript
-                        ]}>SECONDS</Text>
-            </View> */}
-        <DateTimePickerModal 
-                    isVisible={isDatePickerVisible} 
-                    display="inline"
-                    mode="datetime"
-                    onConfirm={handleDateConfirm} 
-                    onCancel={handleDateCancel} 
-                /> 
         </TimerView>
     )
     

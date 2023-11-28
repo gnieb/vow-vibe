@@ -9,6 +9,7 @@ import RegularButton from '../Buttons/RegularButton';
 import DrawerOpener from '../../navigation/DrawerOpener';
 import { View } from 'react-native';
 import Countdown from '../Countdown';
+import { useAuth } from '../../context/AuthContext';
 
 const WelcomeContainer = styled(Container)`
 background-color: ${colors.primary};
@@ -60,7 +61,7 @@ const Welcome: FunctionComponent = ({navigation}:any) => {
             </TopSection>
             <BottomSection>
                 <RegText>You've waited forever for this day. Let's make it perfect.</RegText>
-                <Countdown />
+                <Countdown  />
             </BottomSection>
         </WelcomeContainer>
         </ScreenView>

@@ -9,7 +9,7 @@ interface AuthProps {
     onSignUp?: (email:string, password:string, first_name:string, last_name:string) => Promise<any>;
     onLogin?:(email:string, password:string) => Promise<any>;
     onLogout?:()=>Promise<any> |Promise<void>;
-    user?: User;
+    user: User;
     setUser?: React.Dispatch<React.SetStateAction<User>>;
 }
 
@@ -17,7 +17,7 @@ const TOKEN_KEY = 'my-jwt';
 const USER_KEY = 'user-info';
 export const API_URL = "http://192.168.1.6:5555"
 
-const AuthContext = createContext<AuthProps>({});
+const AuthContext = createContext<AuthProps>({user:{first_name:"", last_name:"", email:"", wedding:{wedding_date:""}}});
 
 // export this to be used like a hook!
 export const useAuth = () => {
@@ -39,7 +39,7 @@ export const AuthProvider = ({children}:any) => {
         id: undefined,
         email: "",
         todos: undefined,
-        wedding: undefined,
+        wedding: {wedding_date:""},
     })
 
     useEffect(() => {
@@ -70,7 +70,7 @@ export const AuthProvider = ({children}:any) => {
                     wedding: userInfo.wedding
                 })
 
-                console.log("user useEffect() is:", user)
+                console.log("USER  UEFFECT IS:", user)
             }
         }
 
@@ -142,7 +142,7 @@ export const AuthProvider = ({children}:any) => {
             id: undefined,
             email: "",
             todos: undefined,
-            wedding: undefined,
+            wedding: {wedding_date:""},
         })
     }
 
