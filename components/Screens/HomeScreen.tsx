@@ -3,13 +3,9 @@ import { colors } from '../colors';
 import { Container } from '../shared';
 import styled from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
-import SmallText from '../Texts/SmallText';
 import RegText from '../Texts/RegText';
-import RegularButton from '../Buttons/RegularButton';
 import DrawerOpener from '../../navigation/DrawerOpener';
-import { View } from 'react-native';
 import Countdown from '../Countdown';
-import { useAuth } from '../../context/AuthContext';
 
 const WelcomeContainer = styled(Container)`
 background-color: ${colors.primary};
@@ -47,8 +43,6 @@ z-index:1;
 `
 
 import rings from "../../assets/ringsrecord.jpg"
-import BigText from '../Texts/BigText';
-
 
 const Welcome: FunctionComponent = ({navigation}:any) => {
     return (

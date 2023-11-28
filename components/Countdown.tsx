@@ -10,15 +10,9 @@ align-items: center;
 padding: 10px;
 width: 100%;
 `
-// const API_URL = "http://192.168.1.6:5555"
-
-
 
 const Countdown:FunctionComponent = () => {
     const {user} = useAuth()
-    // const wedDate = new Date(user.wedding.wedding_date)
-    // console.log(wedDate)
-    // console.log(user.wedding.wedding_date)
     
     const [isDatePickerVisible, setDatePickerVisible] = useState<boolean>(false); 
     const [showWedding, setShowWedding] = useState("")
@@ -71,10 +65,6 @@ const Countdown:FunctionComponent = () => {
             const expiryTime = new Date(expiryDate).getTime();
             const timeDifference = expiryTime - currentDate; 
 
-            // console.log('Current Date:', new Date(currentDate));
-            // console.log('Expiry Date:', new Date(expiryDate));
-            // console.log('Time Difference:', timeDifference);
-
             if (timeDifference <= 0 ){
                 // countdown is over
                 calculateTimeUnits(0);
@@ -88,8 +78,8 @@ const Countdown:FunctionComponent = () => {
         const interval = setInterval(updateCountdown, 1000); 
 
         // Debug logs to check if the user object and expiryDate are changing
-        console.log('User Object:', user);
-        console.log('Expiry Date:', expiryDate);
+        // console.log('User Object:', user);
+        // console.log('Expiry Date:', expiryDate);
 
         return () => clearInterval(interval); 
 
