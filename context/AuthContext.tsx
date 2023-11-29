@@ -3,6 +3,7 @@ import axios from "axios";
 import * as SecureStore from 'expo-secure-store';
 import { User } from "../components/User";
 import ToDo from "../components/ToDo";
+import { API_URL } from "../assets/API";
 
 interface AuthProps {
     authState?: {token:string | null; authenticated:boolean | null};
@@ -15,7 +16,6 @@ interface AuthProps {
 
 const TOKEN_KEY = 'my-jwt';
 const USER_KEY = 'user-info';
-export const API_URL = "http://192.168.1.6:5555"
 
 const AuthContext = createContext<AuthProps>({user:{first_name:"", last_name:"", email:"", wedding:{wedding_date:""}}});
 

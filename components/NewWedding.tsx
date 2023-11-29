@@ -6,8 +6,8 @@ import * as Yup from 'yup';
 import { useAuth } from "../context/AuthContext";
 import { colors } from "./colors";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { API_URL } from "../assets/API";
 
-  const API_URL = "http://192.168.1.14:5555"
 
 const NewWedding:FunctionComponent = () => {
     const {user} = useAuth()

@@ -11,8 +11,8 @@ import * as Yup from 'yup';
 import { colors } from "./colors";
 import Guest from "./Guest";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../assets/API";
 
-const API_URL = "http://192.168.1.6:5555"
 
 const FormContainer = styled(Container)`
 background-color: white;

@@ -7,6 +7,7 @@ import styled from "styled-components/native";
 import DrawerOpener from "../../navigation/DrawerOpener";
 import {  useAuth,  } from "../../context/AuthContext";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { API_URL } from "../../assets/API";
 
 
 const ProfileContainer = styled(Container)`
@@ -15,8 +16,6 @@ width: 100%;
 flex:1;
 justify-content: between;
 `
-
-const API_URL = "http://192.168.1.6:5555"
 
 const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout, user, setUser} = useAuth()
@@ -87,9 +86,6 @@ const Profile:FunctionComponent = ({navigation}:any) => {
 
     // console.log(user?.weddings, user?.first_name, user?.last_name)
     console.log("user:", user, "wedding date:", user?.wedding?.wedding_date)
-
-   
-
 
     return (
         <ProfileContainer>

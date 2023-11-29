@@ -6,7 +6,7 @@ import { Container } from "../shared";
 import ToDo from "../ToDo";
 import ToDoList from "../ToDoList";
 import DrawerOpener from "../../navigation/DrawerOpener";
-import { View } from "react-native";
+import { ImageBackground, StyleSheet, Dimensions, ScrollView } from "react-native";
 
 const TodosContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -17,42 +17,30 @@ align-items: center;
 justifyContent: center;
 `
 
+const ScrollContainer = styled.ScrollView`
+width: 100%;
+flex:1;
+`
+
 const ScreenView = styled.View`
 height:100%;
 width: 100%;
 position:relative;
 z-index:1;
 `
-
-// AN ASYNC SYNTAX: const getToDos = async (url:string): Promise<any > => {
-//     try {
-//         const response = await fetch(url)
-//         return await response.json()
-        
-//     } catch (error) {
-//         if (error) {
-//             console.log("oh no", error)
-//         }
-//     }
-// }
-
   // for TESTING: json placeholder data url: "https://jsonplaceholder.typicode.com/todos/"
+import chair from '../../assets/vowVibephotos/forestChair.jpg'
 
 const Todos: FunctionComponent = ({navigation}:any) => {
 const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
 
-
-// to access server data, replace the placeholder url with your local IP address in this format:
-//  http://IPADDRESS:SEVRER_PORT/users/1
-
 useEffect(() => {
-            console.log("here we go....")
             fetch("http://192.168.1.14:5555/users/1")
             .then(r=> {
                 if(r.ok){
                     r.json().then(data => {
                         console.log("DATA:", data)
-                        setTodos(data)
+                        setTodos(data.todos)
                     })
                 } else {
                     console.log(r.text)
@@ -67,15 +55,50 @@ useEffect(() => {
     }
 , [])
 
+   
+
     return (
         <ScreenView>
-        <DrawerOpener navigation={navigation} />
-        <TodosContainer>
-            <NewToDo todos={todos} setTodos={setTodos} />
-            <ToDoList todos={todos} setTodos={setTodos}/>
-        </TodosContainer>
+            <ImageBackground
+            source={chair}
+            style={styles.image}
+            resizeMode="cover"
+            >
+        <DrawerOpener navigation={navigation} />      
+            <TodosContainer>
+                <NewToDo todos={todos} setTodos={setTodos} />
+                <ToDoList todos={todos} setTodos={setTodos}/>
+            </TodosContainer>
+        </ImageBackground>
         </ScreenView>
     )
 }
+
+const styles = StyleSheet.create({
+    image: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+      flex: 1,
+      justifyContent: 'center',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right:0,
+      zIndex:-1
+    },
+    text: {
+        color: 'white',
+        fontSize: 42,
+        lineHeight: 84,
+        fontWeight: 'bold',
+        textAlign: 'center',
+      },
+      buttonText: {
+        color: `${colors.darkgreen}`,
+        fontSize: 15,
+        textAlign: 'center',
+      },
+  });
 
 export default Todos;

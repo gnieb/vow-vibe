@@ -9,6 +9,7 @@ import { User } from "./User";
 import { useState } from "react";
 import * as Yup from 'yup';
 import uuid from 'react-native-uuid';
+import { API_URL } from "../assets/API";
 
 let initialValues = {
     first_name: "",
@@ -31,7 +32,7 @@ const NewUserSchema = Yup.object().shape({
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
   });
-  const API_URL = "http://192.168.1.14:5555"
+
 
   const handleResponse = (r:any) => {
     if (r.ok){
@@ -64,7 +65,7 @@ const NewUser:FunctionComponent = () => {
         validationSchema={NewUserSchema}
         onSubmit={(val, {resetForm}) => {
             // console.log(val)
-            const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: [], password:val.password}
+            const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: [], password:val.password, wedding:{wedding_date:""}}
          
             // POST new User to server/database:
             createNewUser(val)

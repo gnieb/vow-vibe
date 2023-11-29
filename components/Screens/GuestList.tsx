@@ -9,6 +9,7 @@ import { Container } from "../shared";
 import NewGuest from "../NewGuest";
 import DrawerOpener from "../../navigation/DrawerOpener";
 import { useAuth } from "../../context/AuthContext";
+import { API_URL } from "../../assets/API";
 
 const GuestView = styled.View`
 width:90%;
@@ -42,9 +43,6 @@ flex:1;
 align-items: center;
 justifyContent: center;
 `
-
-
-const API_URL = "http://192.168.1.6:5555"
 
 const GuestList:FunctionComponent = ({navigation}:any) => {
     const {user} = useAuth()
@@ -96,8 +94,6 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
         // set guests to be the same, but edit the guest found
         setGuests(guests => updatedGuests)
     }
-
-
 
     const handleAttendanceFilter = (value:boolean|null) => setAttendanceFilter(value)
     const filteredByAttendance = (attendanceFilter != null) ? guests.filter(g => g.isAttending == attendanceFilter ) : [...guests ]

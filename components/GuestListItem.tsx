@@ -11,6 +11,7 @@ import { Text, View,StyleSheet  } from "react-native";
 import {Formik} from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import Guest from "./Guest";
+import { API_URL } from "../assets/API";
 
 const ListItemView = styled.View`
 flexDirection:row;
@@ -39,7 +40,7 @@ margin:5px;
 
 const GuestListItem:FunctionComponent<ItemProps> = ({item, guests, setGuests, changeToGuestNotAttending,changeToGuestAttending }) => {
 
-  const API_URL = "http://192.168.1.6:5555"
+  // const API_URL = "http://192.168.1.6:5555"
 
     const editGuest = async(updatedG:Guest) => {
       try{
@@ -70,11 +71,6 @@ const GuestListItem:FunctionComponent<ItemProps> = ({item, guests, setGuests, ch
       editGuest(updatedGuest)
       changeToGuestAttending(updatedGuest.id, true)
     }
-
-
-
-
-    
 
     return (
             <ListItemView>
