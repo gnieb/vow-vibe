@@ -1,6 +1,5 @@
 import React, {FunctionComponent, useState, useEffect} from "react";
-import { Text, StyleSheet, View, Pressable} from "react-native";
-import RegularButton from "../Buttons/RegularButton";
+import { Text, StyleSheet, View, Pressable, ImageBackground} from "react-native";
 import { Container } from "../shared";
 import { colors } from "../colors";
 import styled from "styled-components/native";
@@ -8,7 +7,7 @@ import DrawerOpener from "../../navigation/DrawerOpener";
 import {  useAuth,  } from "../../context/AuthContext";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { API_URL } from "../../assets/API";
-
+import background from '../../assets/vowVibephotos/sunsetFlowers.jpg'
 
 const ProfileContainer = styled(Container)`
 background-color: ${colors.darkgreen};
@@ -16,6 +15,13 @@ width: 100%;
 flex:1;
 justify-content: between;
 `
+
+const ImageBackgroundContainer = styled(ImageBackground)`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout, user, setUser} = useAuth()
@@ -90,6 +96,11 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     return (
         <ProfileContainer>
             <DrawerOpener navigation={navigation} />
+            <ImageBackgroundContainer
+                source={background}
+                style={profileStyles.image}
+                resizeMode="cover"
+                >
             {user? <Text style={profileStyles.textStyle}>Welcome back to planning mode, {user.first_name}</Text>: null}
             
             <Text>{user?.wedding?.wedding_date}</Text>
@@ -114,10 +125,10 @@ const Profile:FunctionComponent = ({navigation}:any) => {
             <Pressable
                 onPress={() => tryLoggingOut()}
                 style={{backgroundColor:`${colors.mediumgreen}`, padding:10, borderRadius:50}}
-                >
+            >
                 <Text style={{fontWeight:"bold", color:`${colors.darkgreen}`}}>LOG OUT</Text>
             </Pressable>
-            
+            </ImageBackgroundContainer>
             
         </ProfileContainer>
     )
@@ -133,6 +144,10 @@ const profileStyles = StyleSheet.create({
        marginBottom: 60,
        marginTop: 80,
        margin:50,
+    }, 
+    image: {
+        flex: 1,
+        width: '100%',
     }
 })
 

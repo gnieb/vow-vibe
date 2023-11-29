@@ -1,15 +1,14 @@
 import React, { FunctionComponent } from "react";
-import { TextInput, View, StyleSheet, Text } from 'react-native';
+import { TextInput, View, StyleSheet, Text, Pressable } from 'react-native';
 import { Formik } from 'formik';
 import RegularButton from "./Buttons/RegularButton";
-import styled from "styled-components/native";
 import { colors } from "./colors";
-import RegText from "./Texts/RegText";
 import { User } from "./User";
 import { useState } from "react";
 import * as Yup from 'yup';
-import uuid from 'react-native-uuid';
 import { API_URL } from "../assets/API";
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { useAuth } from "../context/AuthContext";
 
 let initialValues = {
     first_name: "",
@@ -33,12 +32,10 @@ const NewUserSchema = Yup.object().shape({
     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
   });
 
-
   const handleResponse = (r:any) => {
     if (r.ok){
       r.json().then((resp:any) => {
         console.log("Successfully created!", resp)
-
       })
     } else {
       console.log("STATUS:", r.status)
@@ -47,26 +44,60 @@ const NewUserSchema = Yup.object().shape({
 // I actually don't use the secure storage for this.. did NOT use the onRegister from useAuth()
 // which is fine. once a new user is registered, they're redirected to the login page.
 
-  const createNewUser = (value:any) => {
-    fetch(`${API_URL}/users`, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(value)
-    })
-    .then(handleResponse)
+const NewUser:FunctionComponent = () => {
+  const [isDateSet, setIsDateSet] = useState(false)
+  const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
+  const [wedDate, setWedDate] = useState<Date>(new Date())
+  const {user} = useAuth()
 
+  const handleDateCancel = () => { 
+      setDatePickerVisible(false); 
   }
 
+  
 
-const NewUser:FunctionComponent = () => {
-    return (
+    const createNewUser = (value:any) => {
+      fetch(`${API_URL}/users`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(value)
+      })
+      .then(handleResponse)
+    }
+
+    const createWeddingAssociated = async (newWedding:Wedding) => {
+        try {
+          const response = await fetch(`${API_URL}/weddings`, {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify(newWedding)
+          })
+        } catch (e) {
+          return {error: true, msg: (e as any).response.data.msg};
+        }
+      }
+
+      const handleDateConfirm = (date:any) => {
+            // POST to database!
+            const newWed = {
+              wedding_date: date,
+              user_id: user.id
+            }
+          createWeddingAssociated(newWed)
+          console.log("date passed into handleDateConfirm:",date)
+          // example : 2023-11-24T15:19:00.000Z
+          setWedDate(date)
+          setDatePickerVisible(false);
+          setIsDateSet(true) 
+          }
+    
+          return (
         <Formik
         initialValues={initialValues}
         validationSchema={NewUserSchema}
         onSubmit={(val, {resetForm}) => {
             // console.log(val)
             const newUser:User = {email:val.email, first_name: val.first_name, last_name: val.last_name, todos: [], password:val.password, wedding:{wedding_date:""}}
-         
             // POST new User to server/database:
             createNewUser(val)
             // console.log(newUser)
@@ -130,13 +161,33 @@ const NewUser:FunctionComponent = () => {
          {errors.password && touched.password ? (
              <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.password}</Text>
            ) : null}
-
-         <RegularButton  
-          onPress={()=> handleSubmit()} 
-          btnStyles={{"backgroundColor":"white"}}
-          textStyles={{fontWeight:"bold", color:`${colors.darkgreen}`}}
-         >
-          CREATE ACCOUNT</RegularButton>
+          <Pressable
+                onPress={() => setDatePickerVisible(true)}
+                style={{ padding:10, borderColor:"white", borderWidth: 1, borderRadius:50}}
+                >
+                <Text style={{fontWeight:"bold", color:"white", fontSize:20}}>{isDateSet ? wedDate.toUTCString() : "set your date"}</Text>
+          </Pressable>
+              <DateTimePickerModal 
+                    isVisible={datePickerVisible} 
+                    display="inline"
+                    mode="datetime"
+                    onConfirm={handleDateConfirm} 
+                    onCancel={handleDateCancel} 
+                    timeZoneOffsetInMinutes={0}
+                  /> 
+      {  isDateSet ? 
+            <RegularButton  
+              onPress={()=> handleSubmit()} 
+              btnStyles={{"backgroundColor":"white"}}
+              textStyles={{fontWeight:"bold", color:`${colors.darkgreen}`}}
+            >
+          CREATE ACCOUNT</RegularButton>   :
+            <RegularButton  
+              onPress={()=> {}} 
+              btnStyles={{"backgroundColor":"white"}}
+              textStyles={{fontWeight:"bold", color:`${colors.darkgreen}`}}
+            >
+          Set your wedding date, first!</RegularButton>  }
 
        </View>
      )}

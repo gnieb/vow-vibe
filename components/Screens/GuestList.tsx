@@ -119,8 +119,8 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
             >
             <NewGuest guests={guests} setGuests={setGuests} addNew={addNew} />
             <GuestView>
-            <Text style={{ fontSize: 12, textAlign: "left",marginTop:10,fontWeight:'bold' }}>
-                    TOTAL - {guests.length}
+            <Text style={{ fontSize: 15, textAlign: "left",marginTop:10,fontWeight:'bold' }}>
+                    TOTAL INVITED - {guests.length}
             </Text>
             <FilterContainer>
                 <ButtonView
