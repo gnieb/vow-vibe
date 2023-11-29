@@ -13,8 +13,8 @@ import RegText from "../Texts/RegText";
 const ButtonView = styled.TouchableOpacity`
 align-items: center;
 background-color: ${colors.mediumgreen};
-width: 80%;
-padding: 20px;
+width: 60%;
+padding: 10px;
 margin: 10px auto;
 border-radius: 50px;
 `

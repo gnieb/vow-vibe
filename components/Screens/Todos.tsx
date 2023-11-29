@@ -26,10 +26,12 @@ const NewContainer = styled(Container)`
 `
 
 const ToDoView = styled.View`
+background-color:white;
+opacity:.6;
 width:90%;
 height: 50%;
 border-radius: 50px;
-padding:10px;
+padding:20px;
 margin-top:15px;
 justifyContent:center;
 `

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, Pressable } from 'react-native';
 import { Formik } from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 import { colors } from "./colors";
@@ -67,8 +67,7 @@ const NewToDo:FunctionComponent<FormProps> = ({setTodos, todos, addNew}) => {
          {errors.name && touched.name ? (
              <RegText>{errors.name}</RegText>
            ) : null}
-         <RegularButton  onPress={()=> handleSubmit()} >Submit</RegularButton>
-
+         <RegularButton btnStyles={{backgroundColor:"gray", padding:5}}  onPress={()=> handleSubmit()} >Submit</RegularButton>
        </View>
      )}
     </Formik>
@@ -79,6 +78,7 @@ const formStyles = StyleSheet.create({
    
      formContainer : {
       backgroundColor:"white", 
+      opacity:.6,
       padding: 20,
       borderRadius: 50,
       width: '90%',
