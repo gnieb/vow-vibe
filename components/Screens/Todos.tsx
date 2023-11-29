@@ -6,36 +6,53 @@ import { Container } from "../shared";
 import ToDo from "../ToDo";
 import ToDoList from "../ToDoList";
 import DrawerOpener from "../../navigation/DrawerOpener";
-import { ImageBackground, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { ImageBackground, StyleSheet, Dimensions,FlatList, Text, View } from "react-native";
+import { useAuth } from "../../context/AuthContext";
+import ToDoItem from "../ToDoItem";
 
-const TodosContainer = styled(Container)`
-background-color: ${colors.darkgreen};
-width: 100%;
-height:100%;
-flex:1;
-align-items: center;
-justifyContent: center;
-`
-
-const ScrollContainer = styled.ScrollView`
+const ToDosView = styled.View`
 width: 100%;
 flex:1;
+margin-top:50px;
 `
 
-const ScreenView = styled.View`
-height:100%;
-width: 100%;
-position:relative;
-z-index:1;
+const ScreenContainer = styled(Container)`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+const NewContainer = styled(Container)`
+
 `
+
+const ToDoView = styled.View`
+width:90%;
+height: 50%;
+border-radius: 50px;
+padding:10px;
+margin-top:15px;
+justifyContent:center;
+`
+
+const ImageBackgroundContainer = styled(ImageBackground)`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
   // for TESTING: json placeholder data url: "https://jsonplaceholder.typicode.com/todos/"
+
 import chair from '../../assets/vowVibephotos/forestChair.jpg'
+import { API_URL } from "../../assets/API";
 
 const Todos: FunctionComponent = ({navigation}:any) => {
-const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
 
-useEffect(() => {
-            fetch("http://192.168.1.14:5555/users/1")
+    const { user } = useAuth()
+    const [todos, setTodos] = useState<ToDo[]>([{id:1, todo:"this", isDone:false}, {id:2, todo:"that", isDone:false}, {id:3, todo:"the other thing", isDone:false}])
+
+    useEffect(() => {
+            fetch(`${API_URL}/users/${user.id}`)
             .then(r=> {
                 if(r.ok){
                     r.json().then(data => {
@@ -55,49 +72,40 @@ useEffect(() => {
     }
 , [])
 
-   
+const addNew = (newT:ToDo) => setTodos([...todos, newT])
 
     return (
-        <ScreenView>
-            <ImageBackground
+        <>
+        <DrawerOpener navigation={navigation} />
+        <ScreenContainer>
+            
+            <ImageBackgroundContainer
             source={chair}
             style={styles.image}
             resizeMode="cover"
             >
-        <DrawerOpener navigation={navigation} />      
-            <TodosContainer>
-                <NewToDo todos={todos} setTodos={setTodos} />
-                <ToDoList todos={todos} setTodos={setTodos}/>
-            </TodosContainer>
-        </ImageBackground>
-        </ScreenView>
+                <NewToDo todos={todos} setTodos={setTodos} addNew={addNew} />
+                <ToDoView>
+                <FlatList data={todos} 
+                    renderItem={({item}) => <ToDoItem 
+                        todos={todos} 
+                        setTodos={setTodos}
+                        item={item} 
+                    /> }
+                keyExtractor={(item, index) => index.toString()}
+                />
+                </ToDoView>
+                
+            </ImageBackgroundContainer>
+        </ScreenContainer>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
     image: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-      flex: 1,
-      justifyContent: 'center',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right:0,
-      zIndex:-1
-    },
-    text: {
-        color: 'white',
-        fontSize: 42,
-        lineHeight: 84,
-        fontWeight: 'bold',
-        textAlign: 'center',
-      },
-      buttonText: {
-        color: `${colors.darkgreen}`,
-        fontSize: 15,
-        textAlign: 'center',
+        flex: 1,
+        width: '100%',
       },
   });
 

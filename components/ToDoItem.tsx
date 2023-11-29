@@ -11,13 +11,7 @@ import { Text, View,  } from "react-native";
 import {Formik} from 'formik';
 import RegularButton from "./Buttons/RegularButton";
 
-const ListItem = styled(Container)`
-background-color:${colors.lightgreen};
-padding: 10px;
-padding-left:10px;
-margin: 5px;
-width:95%;
-border-radius:50px;
+const ListItemView = styled.View`
 flexDirection:row;
 justifyContent: space-between;
 `
@@ -51,7 +45,7 @@ const ToDoItem:FunctionComponent<ItemProps> = ({item, todos, setTodos}) => {
 
     return (
            
-            <ListItem>
+            <ListItemView>
                 {item.isDone ? <DoneText style={{ textDecorationLine: 'line-through' }}>
                 {item.todo}</DoneText> : <RegText>{item.todo}</RegText>}
                 
@@ -79,7 +73,7 @@ const ToDoItem:FunctionComponent<ItemProps> = ({item, todos, setTodos}) => {
                 </Formik>
                 
                 </IconView>
-            </ListItem>
+            </ListItemView>
     )
 };
 
