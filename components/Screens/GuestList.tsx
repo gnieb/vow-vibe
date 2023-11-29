@@ -52,12 +52,6 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
     const [attendanceFilter, setAttendanceFilter] = useState<boolean|null>(null)
     const addNew = (newG:Guest) => {setGuests((guests) => [...guests, newG])}
 
-    // if we want ALL guests, set sttendance filter to null.
-    // true for those that are going
-    // false for those that are not 
-
-    // need a maybe category??
-
     useEffect(() => {
         const getGuests = async () => {
             try {
@@ -73,7 +67,22 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
         getGuests()
     }, [])
 
-    const changeToGuestNotAttending = (gid:number, isAtt:boolean) => {
+    const changeToGuestNotAttending = (gid:number|undefined, isAtt:boolean) => {
+        const updatedGuests = guests.map((g) => {
+            if (g.id == gid) {
+               const updatedGuest = {
+                ...g,
+                "isAttending": isAtt
+                } 
+            return updatedGuest
+            } else {
+                return g
+            }})
+        // set guests to be the same, but edit the guest found
+        setGuests(guests => updatedGuests)
+    }
+
+    const changeToGuestAttending = (gid:number, isAtt:boolean) => {
         const updatedGuests = guests.map((g) => {
             if (g.id == gid) {
                const updatedGuest = {
@@ -89,11 +98,6 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
     }
 
 
-    const handleAttendingGuests = () => {
-        console.log("ATTENDING GUESTS")
-        const filteredByAttended = guests.filter(g => g.isAttending == true )
-        console.log("these people are coming:",filteredByAttended)
-    }
 
     const handleAttendanceFilter = (value:boolean|null) => setAttendanceFilter(value)
     const filteredByAttendance = (attendanceFilter != null) ? guests.filter(g => g.isAttending == attendanceFilter ) : [...guests ]
@@ -133,7 +137,12 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
             </FilterContainer>
             
                 <FlatList data={filteredByAttendance} 
-                renderItem={({item}) => <GuestListItem changeToGuestNotAttending={changeToGuestNotAttending} item={item} guests={guests} setGuests={setGuests}  />}
+                renderItem={({item}) => <GuestListItem 
+                    changeToGuestNotAttending={changeToGuestNotAttending} 
+                    changeToGuestAttending={changeToGuestAttending}
+                    item={item} 
+                    guests={guests} 
+                    setGuests={setGuests}  />}
                 keyExtractor={(item, index) => index.toString()}
                 ListHeaderComponent={() => (
                     <Text style={{ fontSize: 20, textAlign: "center",marginTop:10,fontWeight:'bold' }}>
