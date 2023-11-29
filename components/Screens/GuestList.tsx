@@ -10,7 +10,8 @@ import NewGuest from "../NewGuest";
 import DrawerOpener from "../../navigation/DrawerOpener";
 import { useAuth } from "../../context/AuthContext";
 import { API_URL } from "../../assets/API";
-import pic from '../../assets/vowVibephotos/polaroidJustMarriedw.jpg'
+import pic from '../../assets/vowVibephotos/forestChair.jpg'
+
 
 const GuestView = styled.View`
 width:100%;
@@ -119,7 +120,7 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
             >
             <NewGuest guests={guests} setGuests={setGuests} addNew={addNew} />
             <GuestView>
-            <Text style={{ fontSize: 15, textAlign: "left",marginTop:10,fontWeight:'bold' }}>
+            <Text style={{ fontSize: 15, textAlign: "left",marginTop:10,fontWeight:'bold', color:"white" }}>
                     TOTAL INVITED - {guests.length}
             </Text>
             <FilterContainer>
