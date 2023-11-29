@@ -32,15 +32,6 @@ const NewUserSchema = Yup.object().shape({
     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
   });
 
-  const handleResponse = (r:any) => {
-    if (r.ok){
-      r.json().then((resp:any) => {
-        console.log("Successfully created!", resp)
-      })
-    } else {
-      console.log("STATUS:", r.status)
-    }
-  }
 // I actually don't use the secure storage for this.. did NOT use the onRegister from useAuth()
 // which is fine. once a new user is registered, they're redirected to the login page.
 
@@ -49,12 +40,27 @@ const NewUser:FunctionComponent = () => {
   const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
   const [wedDate, setWedDate] = useState<Date>(new Date())
   const {user} = useAuth()
+  const [notUnique, setNotUnique] = useState(false)
 
   const handleDateCancel = () => { 
       setDatePickerVisible(false); 
   }
 
   
+  const handleResponse = (r:any) => {
+    if (r.ok){
+      r.json().then((resp:any) => {
+        console.log("Successfully created!", resp)
+      })
+    } else {
+      console.log("STATUS:", r.status)
+      setNotUnique(true)
+      setTimeout(() => {
+        setNotUnique(false)
+      }, 7000)
+
+    }
+  }
 
     const createNewUser = (value:any) => {
       fetch(`${API_URL}/users`, {
@@ -147,6 +153,12 @@ const NewUser:FunctionComponent = () => {
          {errors.email && touched.email ? (
              <Text style={{color:"white", fontWeight:"900", fontStyle:"italic", width:"100%",}}>{errors.email}</Text>
            ) : null}
+        {notUnique ? 
+           <Text >
+                Username is already taken
+            </Text> : 
+            <></> 
+        }
 
         <View style={formStyles.inputWrapper}>
             <TextInput
