@@ -128,8 +128,8 @@ const NewGuest:FunctionComponent<FormProps> = ({guests, setGuests, addNew}) => {
 const formStyles = StyleSheet.create({
    
      formContainer : {
-        // backgroundColor: `white`,
-        
+        backgroundColor: `white`,
+        opacity:.6,
         padding: 20,
         borderRadius: 50,
         width: '90%',

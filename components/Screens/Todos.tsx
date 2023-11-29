@@ -1,6 +1,5 @@
 import React, {FunctionComponent, useState, useEffect} from "react";
 import styled from "styled-components/native";
-import { colors } from "../colors";
 import NewToDo from "../NewToDo";
 import { Container } from "../shared";
 import ToDo from "../ToDo";

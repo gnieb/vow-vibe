@@ -1,6 +1,6 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
 import styled from "styled-components/native";
-import { View, Text, FlatList, ScrollView, StyleSheet, Button } from "react-native";
+import { Text, FlatList, StyleSheet, ImageBackground, View } from "react-native";
 import { colors } from "../colors";
 import Guest from "../Guest";
 import GuestListItem from "../GuestListItem";
@@ -10,9 +10,10 @@ import NewGuest from "../NewGuest";
 import DrawerOpener from "../../navigation/DrawerOpener";
 import { useAuth } from "../../context/AuthContext";
 import { API_URL } from "../../assets/API";
+import pic from '../../assets/vowVibephotos/polaroidJustMarriedw.jpg'
 
 const GuestView = styled.View`
-width:90%;
+width:100%;
 height: 50%;
 border-radius: 50px;
 padding:10px;
@@ -43,6 +44,13 @@ flex:1;
 align-items: center;
 justifyContent: center;
 `
+
+const ImageBackgroundContainer = styled(ImageBackground)`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
 
 const GuestList:FunctionComponent = ({navigation}:any) => {
     const {user} = useAuth()
@@ -102,7 +110,13 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
     return (
         <>
         <DrawerOpener navigation={navigation}/>
+        
         <GuestContainer >
+            <ImageBackgroundContainer
+            source={pic}
+            style={styles.image}
+            resizeMode="cover"
+            >
             <NewGuest guests={guests} setGuests={setGuests} addNew={addNew} />
             <GuestView>
             <Text style={{ fontSize: 12, textAlign: "left",marginTop:10,fontWeight:'bold' }}>
@@ -131,7 +145,7 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
                     <Text>Not Attending</Text>
                 </ButtonView>
             </FilterContainer>
-            
+            <View style={styles.flatlist}>
                 <FlatList data={filteredByAttendance} 
                 renderItem={({item}) => <GuestListItem 
                     changeToGuestNotAttending={changeToGuestNotAttending} 
@@ -149,8 +163,11 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
                     <Text style={{ fontSize: 20, textAlign: "center",marginBottom:20,fontWeight:'bold' }}>{`<3`}</Text>
                 )}
                 />
+                </View>
             </GuestView>
+            </ImageBackgroundContainer>
         </GuestContainer>
+        
         </>
     )
 }
@@ -160,11 +177,22 @@ const styles = StyleSheet.create({
       padding: 50,
       flex: 1,
     },
+    image: {
+        flex: 1,
+        width: '100%',
+      },
     item: {
       padding: 20,
       fontSize: 15,
       marginTop: 5,
-    }
+    },
+    flatlist: {
+        backgroundColor:"white",
+        opacity:.6,
+        borderRadius:50,
+        padding:10,
+        margin:10,
+    },
   });
 
 export default GuestList;
