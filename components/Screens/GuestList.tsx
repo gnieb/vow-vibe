@@ -10,9 +10,7 @@ import NewGuest from "../NewGuest";
 import DrawerOpener from "../../navigation/DrawerOpener";
 import { useAuth } from "../../context/AuthContext";
 
-// background-color: white;
 const GuestView = styled.View`
-
 width:90%;
 height: 50%;
 border-radius: 50px;
@@ -21,13 +19,17 @@ margin-top:15px;
 justifyContent:center;
 `
 
+const FilterContainer = styled.View`
+flexDirection:row;
+justifyContent: space-between;
+`
+
 const ButtonView = styled.TouchableOpacity`
 align-items: center;
 background-color: white;
 width: 30%;
 padding: 6px;
-margin-top: 50px;
-margin-left:10px;
+margin:5px;
 border-radius: 50px;
 `
 
@@ -47,7 +49,14 @@ const API_URL = "http://192.168.1.6:5555"
 const GuestList:FunctionComponent = ({navigation}:any) => {
     const {user} = useAuth()
     const [guests, setGuests] = useState<Guest[]>([])
+    const [attendanceFilter, setAttendanceFilter] = useState<boolean|null>(null)
     const addNew = (newG:Guest) => {setGuests((guests) => [...guests, newG])}
+
+    // if we want ALL guests, set sttendance filter to null.
+    // true for those that are going
+    // false for those that are not 
+
+    // need a maybe category??
 
     useEffect(() => {
         const getGuests = async () => {
@@ -64,12 +73,31 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
         getGuests()
     }, [])
 
+    const changeToGuestNotAttending = (gid:number, isAtt:boolean) => {
+        const updatedGuests = guests.map((g) => {
+            if (g.id == gid) {
+               const updatedGuest = {
+                ...g,
+                "isAttending": isAtt
+                } 
+            return updatedGuest
+            } else {
+                return g
+            }})
+        // set guests to be the same, but edit the guest found
+        setGuests(guests => updatedGuests)
+    }
+
 
     const handleAttendingGuests = () => {
         console.log("ATTENDING GUESTS")
         const filteredByAttended = guests.filter(g => g.isAttending == true )
         console.log("these people are coming:",filteredByAttended)
     }
+
+    const handleAttendanceFilter = (value:boolean|null) => setAttendanceFilter(value)
+    const filteredByAttendance = (attendanceFilter != null) ? guests.filter(g => g.isAttending == attendanceFilter ) : [...guests ]
+
 
     return (
         <>
@@ -80,22 +108,37 @@ const GuestList:FunctionComponent = ({navigation}:any) => {
             <Text style={{ fontSize: 12, textAlign: "left",marginTop:10,fontWeight:'bold' }}>
                     TOTAL - {guests.length}
             </Text>
-            <ButtonView
-            onPress={()=> {
-                handleAttendingGuests()
-                
-            }}
-            >
-                <Text>Attending</Text>
-            </ButtonView>
-                <FlatList data={guests} 
-                renderItem={({item}) => <GuestListItem item={item} guests={guests} setGuests={setGuests}  />}
+            <FilterContainer>
+                <ButtonView
+                onPress={()=> {
+                    handleAttendanceFilter(null)   
+                }}
+                >
+                    <Text>All</Text>
+                </ButtonView>
+                <ButtonView
+                onPress={()=> {
+                    handleAttendanceFilter(true)
+                }}
+                >
+                    <Text>Attending</Text>
+                </ButtonView>
+                <ButtonView
+                onPress={()=> {
+                    handleAttendanceFilter(false)   
+                }}
+                >
+                    <Text>Not Attending</Text>
+                </ButtonView>
+            </FilterContainer>
+            
+                <FlatList data={filteredByAttendance} 
+                renderItem={({item}) => <GuestListItem changeToGuestNotAttending={changeToGuestNotAttending} item={item} guests={guests} setGuests={setGuests}  />}
                 keyExtractor={(item, index) => index.toString()}
                 ListHeaderComponent={() => (
                     <Text style={{ fontSize: 20, textAlign: "center",marginTop:10,fontWeight:'bold' }}>
                     GUEST LIST
                     </Text>
-                    
                 )}
                 ListFooterComponent={() => (
                     <Text style={{ fontSize: 20, textAlign: "center",marginBottom:20,fontWeight:'bold' }}>{`<3`}</Text>
