@@ -38,7 +38,7 @@ const MainStack:FunctionComponent = () => {
            <Stack.Screen name="Drawer" component={Drawer} />
            <Stack.Screen name="HomeScreen" component={HomeScreen}  />
            <Stack.Screen name="Todos" component={Todos} />
-           <Stack.Screen name="Vision" component={Vision} />
+           {/* <Stack.Screen name="Vision" component={Vision} /> */}
            <Stack.Screen name="GuestList" component={GuestList} />
            <Stack.Screen name="Profile" component= {Profile} />
         </Stack.Navigator>

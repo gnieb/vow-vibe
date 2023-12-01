@@ -138,18 +138,15 @@ npx expo start -c
 
 ## What's Next for VOWVIBE
 
-- to do's!
+- change the set date to CHANGE DATE with a patch method in app.py
 - budget
     - set budget
     - track budget
 - wedding vision (moodboard??)
 - keep track of vendors
-- guest list
 - registry
 - seating chart
 - done screen (so I can double check that things have been completed!!! would be cool to have a done date displayed that is created when a to do is marked as done. )
-
-
 - add password confirmation !!! show password option in the form?? 
 
 

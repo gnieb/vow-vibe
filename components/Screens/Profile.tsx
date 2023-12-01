@@ -103,7 +103,7 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                 >
             {user? <Text style={profileStyles.textStyle}>Welcome back to planning mode, {user.first_name}</Text>: null}
             
-            <Text>{user?.wedding?.wedding_date}</Text>
+            <Text style={{fontSize:20, color:"white", fontWeight:"bold"}}>My Wedding {user?.wedding?.wedding_date}</Text>
 
             <View>
          
