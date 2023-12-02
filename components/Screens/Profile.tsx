@@ -25,7 +25,6 @@ const ImageBackgroundContainer = styled(ImageBackground)`
 
 const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout, user, setUser} = useAuth()
-    const [isEditWeddingShown, setIsEditWeddingShown] = useState<boolean>(false)
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
     const [wedDate, setWedDate] = useState(new Date())
     const [showWedding, setshowWedding]= useState<Wedding[]>([])
@@ -34,19 +33,17 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         setDatePickerVisible(false); 
     }
 
-    console.log("user:", user)
+    console.log(user.wedding.id)
 
-    const postWedding = async (data:any) => {
+    const patchWedding = async (data:any) => {
             try {
-                const resp = await fetch(`${API_URL}/weddings`, {
-                method: "POST",
+                const resp = await fetch(`${API_URL}/weddings/${user.wedding.id}`, {
+                method: "PATCH",
                 headers: {"Content-Type":"application/json"},
                 body:JSON.stringify(data)
             })
             console.log("successfully created new wedding date!")
-            
             return resp
-
         } catch (e) {
             return {error: true, msg:(e as any).response.data.msg}
         } 
@@ -56,9 +53,9 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         // POST to database!
         const newWed = {
             wedding_date: date,
-            user_id: user?.id
+            user_id: user.id
         }
-        postWedding(newWed)
+        patchWedding(newWed)
         console.log("date passed into handleDateConfirm:",date)
         // example : 2023-11-24T15:19:00.000Z
         setWedDate(date); 
@@ -88,7 +85,12 @@ const Profile:FunctionComponent = ({navigation}:any) => {
             }
         }
         getWedding()
-    }, [])
+    }, [wedDate])
+
+    useEffect(() => {
+        // Update expiryDate when the user object changes
+        setWedDate(new Date(user.wedding.wedding_date));
+      }, [user]);
 
     // console.log(user?.weddings, user?.first_name, user?.last_name)
     console.log("user:", user, "wedding date:", user?.wedding?.wedding_date)
@@ -103,10 +105,8 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                 >
             {user? <Text style={profileStyles.textStyle}>Welcome back to planning mode, {user.first_name}</Text>: null}
             
-            <Text style={{fontSize:20, color:"white", fontWeight:"bold"}}>My Wedding {user?.wedding?.wedding_date}</Text>
-
+            <Text style={{fontSize:20, color:"white", fontWeight:"bold"}}>My Wedding {wedDate.toLocaleDateString()}</Text>
             <View>
-         
             <Pressable
                 onPress={handleOpenDatePicker}
                 style={{backgroundColor:`${colors.mediumgreen}`, padding:10, borderRadius:50}}
@@ -129,7 +129,6 @@ const Profile:FunctionComponent = ({navigation}:any) => {
                 <Text style={{fontWeight:"bold", color:`${colors.darkgreen}`}}>LOG OUT</Text>
             </Pressable>
             </ImageBackgroundContainer>
-            
         </ProfileContainer>
     )
 }

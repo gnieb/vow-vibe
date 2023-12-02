@@ -1,10 +1,8 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
 import styled from "styled-components/native";
 import { Text, FlatList, StyleSheet, ImageBackground, View } from "react-native";
-import { colors } from "../colors";
 import Guest from "../Guest";
 import GuestListItem from "../GuestListItem";
-import RegText from "../Texts/RegText";
 import { Container } from "../shared";
 import NewGuest from "../NewGuest";
 import DrawerOpener from "../../navigation/DrawerOpener";
