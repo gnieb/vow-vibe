@@ -27,13 +27,13 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     const {onLogout, user, setUser} = useAuth()
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
     const [wedDate, setWedDate] = useState(new Date())
-    const [showWedding, setshowWedding]= useState<Wedding[]>([])
+    // const [showWedding, setshowWedding]= useState<Wedding[]>([])
 
     const handleDateCancel = () => { 
         setDatePickerVisible(false); 
     }
 
-    console.log(user.wedding.id)
+    // console.log(user.wedding.id)
 
     const patchWedding = async (data:any) => {
             try {
@@ -58,6 +58,14 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         patchWedding(newWed)
         console.log("date passed into handleDateConfirm:",date)
         // example : 2023-11-24T15:19:00.000Z
+        setUser? setUser({
+            ...user,
+            wedding: {
+                wedding_date:date,
+                user_id: user.id
+            }
+        }): user
+
         setWedDate(date); 
         setDatePickerVisible(false); 
     }; 
@@ -73,11 +81,11 @@ const Profile:FunctionComponent = ({navigation}:any) => {
     useEffect(() => {
         const getWedding = async () => {
             try {
-                const result = await fetch(`${API_URL}/users/${user?.id}`)
+                const result = await fetch(`${API_URL}/users/${user.id}`)
                 const data = await result.json()
                 
                 console.log("This is the getWeddings useEffect:", data.wedding)
-                setshowWedding(data.wedding)
+                // setshowWedding(data.wedding)
 
             } catch (e) {
                 console.log("Error during reuqest for user info", "e:", e)
@@ -87,13 +95,17 @@ const Profile:FunctionComponent = ({navigation}:any) => {
         getWedding()
     }, [wedDate])
 
+    console.log("initial wedDate:", wedDate)
+    console.log("date object for:", new Date(user.wedding.wedding_date))
+
     useEffect(() => {
         // Update expiryDate when the user object changes
         setWedDate(new Date(user.wedding.wedding_date));
+        console.log("Updated wedDate:", wedDate)
       }, [user]);
 
     // console.log(user?.weddings, user?.first_name, user?.last_name)
-    console.log("user:", user, "wedding date:", user?.wedding?.wedding_date)
+    // console.log("user:", user, "wedding date:", user?.wedding?.wedding_date)
 
     return (
         <ProfileContainer>
